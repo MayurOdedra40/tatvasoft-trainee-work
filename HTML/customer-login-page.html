@@ -1,0 +1,1707 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Bootstrap Icon CDN LInl -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
+    <!-- External CSS File -->
+    <link rel="stylesheet" href="CSS/style.css">
+
+    <title>Customer- Helperland</title>
+</head>
+
+<body>
+
+    <!-- header -->
+
+    <header class="wrapper" id="customer-login-header">
+
+        <!-- Sidebar -->
+        <nav class="sidebar ">
+
+            <div class="container-fluid px-0 navbar-nav-scroll">
+
+                <div class="row username mx-0">
+                    <p class="px-0 mb-0 text">Welcome, <br> <b>Kavan Patel</b></p>
+                </div>
+
+                <div class="row mx-0 login-tabs">
+
+                    <ul class="px-0 nav nav-tabs">
+
+                        <li class="nav-item">
+                            <a class="text active dismiss" data-bs-toggle="tab" href="#customer-Dashboard">Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="text dismiss" data-bs-toggle="tab" href="#customer-Service-History">Service
+                                History</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="text dismiss" data-bs-toggle="tab" href="#customer-Service-Schedule">Service
+                                Schedule</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="text dismiss" data-bs-toggle="tab" href="#customer-fav-pro">Favourite Pros</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="text dismiss" data-bs-toggle="tab" href="#customer-My-setting">My Setting</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="text dismiss" data-bs-toggle="tab" href="#customer-fav-pro">Logout</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="row main-menu mx-0">
+
+                    <ul class="navbar-nav pe-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link text dismiss" aria-current="page" href="price.html">
+                                Price & Services
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text" aria-current="page" href="#">
+                                Warrenty
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text" aria-current="page" href="#">
+                                Blog
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text dismiss" aria-current="page" href="contact.html">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="row main-menu mx-0">
+
+                    <ul class="navbar-nav pe-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link dismiss d-inline-block " aria-current="page" href="price.html">
+                                <img class="social" src="Images/ic-facebook.png" alt="">
+                            </a>
+
+                            <a class="nav-link dismiss d-inline-block" aria-current="page" href="price.html">
+                                <img class="social" src="Images/ic-instagram.png" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+        </nav>
+
+        <!-- Page Content -->
+        <div class="content">
+
+            <div class="container-fluid navbar2 px-0 " id="temp-header">
+
+                <nav class="navbar navbar-expand-lg">
+
+                    <div class="container-fluid row1 d-flex">
+
+                        <a class="navbar-brand" href="#">
+                            <img class="brand-logo" src="Images/white-logo-transparent-background.png" alt="" width="73"
+                                height="54">
+                        </a>
+
+                        <ul class="navbar-nav mb-1 ms-auto me-3 notification">
+                            <li class="nav-item btn normal side-border-visible">
+
+                                <a class="nav-link px-0 position-relative" aria-current="page" href="#">
+
+                                    <img src="Images/icon-notification.png" alt="" width="27" height="30">
+                                    <span class="position-absolute translate-middle badge bg-danger">
+                                        2
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <button class="navbar-toggler btn py-0 mt-0 sidebarCollapse ms-4" type="button">
+                            <i class="bi bi-list bi-2x text-white ham"></i>
+                        </button>
+
+                        <ul class="navbar-nav mb-2 mb-lg-0 menu w-100">
+
+                            <li class="nav-item btn book-now ms-auto">
+
+                                <a class="nav-link  px-0" aria-current="page" href="#">
+                                    Book-now
+                                </a>
+                            </li>
+
+                            <li class="nav-item btn pas d-none">
+                                <a class="nav-link px-0" aria-current="page" href="#">Price & services</a>
+                            </li>
+
+                            <li class="nav-item btn normal ">
+                                <a class="nav-link px-0" aria-current="page" href="#">Price & services</a>
+                            </li>
+
+                            <li class="nav-item btn normal ">
+                                <a class="nav-link px-0" aria-current="page" href="#">Warranty</a>
+                            </li>
+
+                            <li class="nav-item btn normal">
+                                <a class="nav-link px-0" aria-current="page" href="#">Blog</a>
+                            </li>
+
+                            <li class="nav-item btn normal">
+                                <a class="nav-link px-0" aria-current="page" href="#">Contact</a>
+                            </li>
+
+                            <li class="nav-item btn normal side-border-visible">
+
+                                <a class="nav-link px-0 position-relative" aria-current="page" href="#">
+
+                                    <img src="Images/icon-notification.png" alt="" width="27" height="30">
+                                    <span class="position-absolute translate-middle badge bg-danger">
+                                        2
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item btn normal pt-0">
+                                <a class="nav-link px-0 d-inline" aria-current="page" href="#"><img class="img-fluid"
+                                        src="Images/user-icon.png" alt="" width="36" height="36"></a>
+
+                                <!-- <a class="d-inline" data-toggle="popover"><img src="Images/menu-down.png" alt=""></a> -->
+
+                                <div class="dropdown d-inline">
+                                    <button type="button" class="btn p-0" data-bs-toggle="dropdown">
+                                        <img src="Images/menu-down.png" alt="">
+                                    </button>
+                                    <div class="dropdown-menu">
+
+                                        <ul class="nav nab-tabs">
+                                            <div class="row w-100 mb-1">
+
+                                                <li class="nav-item d-block w-100 py-1">
+                                                    <p class="text mb-0">welcome,<br> <b>Gaurang Patel</b></p>
+                                                </li>
+                                            </div>
+
+                                            <li class="nav-item d-block w-100 py-1">
+                                                <a class="dropdown-text active dismiss" data-bs-toggle="tab"
+                                                    href="#customer-Dashboard">Dashboard</a>
+                                            </li>
+
+                                            <li class="nav-item d-block w-100 py-1">
+                                                <a class="dropdown-text dismiss" data-bs-toggle="tab"
+                                                    href="#customer-My-setting">My Setting</a>
+                                            </li>
+
+                                            <li class="nav-item d-block w-100 py-1">
+                                                <a class="dropdown-text dismiss" data-bs-toggle="tab"
+                                                    href="#customer-fav-pro">Logout</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+
+                            <li class="nav-item btn book-now d-none">
+                                <a class="nav-link login px-0" aria-current="page" href="#">Login</a>
+                            </li>
+                            <li class="nav-item btn book-now d-none ms-auto">
+                                <a class="nav-link px-0" href="#">Become a Helper</a>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </nav>
+
+                <!-- </div> -->
+            </div>
+        </div>
+
+        <div class="overlay"></div>
+
+    </header>
+    <!-- header -->
+
+    <!-- section 1 -->
+
+    <section class="container-fluid px-0" id="customer-login-section1">
+        <div class="row row1 text-center mx-0">
+            <p class="title mb-0">Welcome, <b>Gaurang!</b></p>
+        </div>
+
+    </section>
+
+    <!-- section 1 -->
+
+
+    <!-- section 2 -->
+
+    <section class="container-fluid px-0" id="customer-login-section2">
+
+        <div class="container-fluid">
+
+            <div class="row mx-0">
+
+                <div class="col-auto submenu-col px-0">
+
+                    <ul class="container sub-menu px-0 nav nav-tabs">
+
+                        <li class="row mx-0 nav-item">
+                            <a class="text-start active" data-bs-toggle="tab" href="#customer-Dashboard">Dashboard</a>
+                        </li>
+
+                        <!-- <li class="row mx-0 nav-item">
+                            <a class="text-start" data-bs-toggle="tab" href="#new-service-request">New Service
+                                Requests</a>
+                        </li>
+
+                        <li class="row mx-0">
+                            <a class="text-start" data-bs-toggle="tab" href="#Upcoming-service-request">Upcoming
+                                Services</a>
+                        </li> -->
+
+                        <li class="row mx-0">
+                            <a class="text-start" data-bs-toggle="tab" href="#customer-Service-History">Service
+                                History</a>
+                        </li>
+
+                        <li class="row mx-0">
+                            <a class="text-start" data-bs-toggle="tab" href="#customer-Service-Schedule">Service
+                                Schedule</a>
+                        </li>
+
+
+                        <li class="row mx-0">
+                            <a class="text-start" data-bs-toggle="tab" href="#customer-fav-pro">Favourite Pros</a>
+                        </li>
+
+                        <!-- <li class="row mx-0">
+                            <a class="text-start" data-bs-toggle="tab" href="#Block-Customer">Block Customer</a>
+                        </li> -->
+
+                    </ul>
+
+                </div>
+
+                <div class="col">
+
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="customer-Dashboard">
+
+                            <div class="">
+
+                                <div class="row mx-0 justify-content-between tab-heading">
+                                    <div class="col-auto ps-0">
+                                        <p class="title">Current Service Request</p>
+                                    </div>
+                                    <div class="col-auto pe-0">
+                                        <div class="dropdown sorting-dropdown">
+                                            <button type="button" class="btn p-0" data-bs-toggle="dropdown">
+                                                <img src="Images/sort.png" alt="">
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Service date:
+                                                            Latest</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Service date:
+                                                            Oldest</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Service Provider: A
+                                                            to Z</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Service Provider: Z
+                                                            to A</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Payment: High to
+                                                            Low</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Payment: Low to
+                                                            High</label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row row1 mx-0 justify-content-between">
+                                    <div class="col-12 col-md-auto text-center mb-2 mb-md-2 d-none d-md-flex">
+                                        <p class="mb-0 title">
+                                            Current Service Requests
+                                        </p>
+                                    </div>
+
+                                    <div class="col-12 col-md-auto">
+                                        <div class="text-center">
+                                            <button class="btn">Add New Service Request</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table class="table table-borderless mt-2">
+
+                                    <thead class="table-head">
+                                        <tr>
+                                            <th class=""><a class="table-link" href="#">Service
+                                                    ID<img class="ms-2" src="Images/sort.png" alt="" width="14"
+                                                        height="14"> </a></th>
+                                            <th class=""><a class="table-link" href="#">Service
+                                                    Date<img class="ms-2" src="Images/sort.png" alt="" width="14"
+                                                        height="14"> </a></th>
+                                            <th class="w-auto"><a class="table-link" href="#">Service Provider<img
+                                                        class="ms-2" src="Images/sort.png" alt="" width="14"
+                                                        height="14"> </a></th>
+                                            <th class=""><a class="table-link" href="#">Payment</a>
+                                            </th>
+                                            <th class=""><a class="table-link" href="#">Actions</a></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody class="table-body">
+
+                                        <tr class='clickable-row' data-href='url://'>
+
+                                            <td class="p-0">
+                                                <p class="table-data">323436</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-flex calender-img px-0"
+                                                                src="Images/calendar.png" alt="">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="d-flex m-0"><b>09/04/2018</b></p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mx-0 mt-2">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-inline" src="Images/clock.png" alt=""
+                                                                width="17" height="17">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="mb-0">12:00 - 18:00</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <div class="rating">
+                                                                <img class="rating-img"
+                                                                    src="Images/block-customer-hat.png" alt=""
+                                                                    width="30" height="19">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col px-0">
+                                                            <div class="row mx-0">
+                                                                <p class="d-flex m-0">kavan Patel</p>
+                                                            </div>
+                                                            <div class="row mx-0">
+                                                                <div class="col-auto px-2">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star2.png" alt=""
+                                                                        width="17" height="17">
+                                                                </div>
+                                                                <div class="col px-0 pt-1">
+                                                                    <p class="text mb-0">0</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <p class="table-data payment-text">56,00 €</p>
+                                            </td>
+
+                                            <td class="p-0 bb-none">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-12 col-md-auto px-0 mb-1 text-center">
+                                                            <button class="btn complete-btn">Reschedule</button>
+                                                        </div>
+                                                        <div class="col-12 col-md-auto px-0 ps-0 ps-md-1 text-center">
+                                                            <button class="btn cancel-btn">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr class='clickable-row' data-href='url://'>
+
+                                            <td class="p-0">
+                                                <p class="table-data">323436</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-flex calender-img px-0"
+                                                                src="Images/calendar.png" alt="">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="d-flex m-0"><b>09/04/2018</b></p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mx-0 mt-2">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-inline" src="Images/clock.png" alt=""
+                                                                width="17" height="17">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="mb-0">12:00 - 18:00</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col px-0">
+                                                            <div class="row mx-0">
+                                                                <p class="d-flex m-0 message">You have requested to
+                                                                    change SP. New SP will be provided soon.</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-auto px-0 d-none">
+                                                            <div class="rating">
+                                                                <img class="rating-img"
+                                                                    src="Images/block-customer-hat.png" alt=""
+                                                                    width="30" height="19">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col px-0 d-none">
+                                                            <div class="row mx-0">
+                                                                <p class="d-flex m-0">kavan Patel</p>
+                                                            </div>
+                                                            <div class="row mx-0">
+                                                                <div class="col-auto px-2">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star2.png" alt=""
+                                                                        width="17" height="17">
+                                                                </div>
+                                                                <div class="col px-0 pt-1">
+                                                                    <p class="text mb-0">0</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <p class="table-data payment-text">56,00 €</p>
+                                            </td>
+
+                                            <td class="p-0 bb-none">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-12 col-md-auto px-0 mb-1 text-center">
+                                                            <button class="btn complete-btn">Reschedule</button>
+                                                        </div>
+                                                        <div class="col-12 col-md-auto px-0 ps-0 ps-md-1 text-center">
+                                                            <button class="btn cancel-btn">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr class='clickable-row' data-href='url://'>
+
+                                            <td class="p-0">
+                                                <p class="table-data">323436</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-flex calender-img px-0"
+                                                                src="Images/calendar.png" alt="">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="d-flex m-0"><b>09/04/2018</b></p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mx-0 mt-2">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-inline" src="Images/clock.png" alt=""
+                                                                width="17" height="17">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="mb-0">12:00 - 18:00</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <div class="rating">
+                                                                <img class="rating-img"
+                                                                    src="Images/block-customer-hat.png" alt=""
+                                                                    width="30" height="19">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col px-0">
+                                                            <div class="row mx-0">
+                                                                <p class="d-flex m-0">kavan Patel</p>
+                                                            </div>
+                                                            <div class="row mx-0">
+                                                                <div class="col-auto px-2">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star2.png" alt=""
+                                                                        width="17" height="17">
+                                                                </div>
+                                                                <div class="col px-0 pt-1">
+                                                                    <p class="text mb-0">0</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <p class="table-data payment-text">56,00 €</p>
+                                            </td>
+
+                                            <td class="p-0 bb-none">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-12 col-md-auto px-0 mb-1 text-center">
+                                                            <button class="btn complete-btn">Reschedule</button>
+                                                        </div>
+                                                        <div class="col-12 col-md-auto px-0 ps-0 ps-md-1 text-center">
+                                                            <button class="btn cancel-btn">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr class='clickable-row' data-href='url://'>
+
+                                            <td class="p-0">
+                                                <p class="table-data">323436</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-flex calender-img px-0"
+                                                                src="Images/calendar.png" alt="">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="d-flex m-0"><b>09/04/2018</b></p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mx-0 mt-2">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-inline" src="Images/clock.png" alt=""
+                                                                width="17" height="17">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="mb-0">12:00 - 18:00</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <div class="rating">
+                                                                <img class="rating-img"
+                                                                    src="Images/block-customer-hat.png" alt=""
+                                                                    width="30" height="19">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col px-0">
+                                                            <div class="row mx-0">
+                                                                <p class="d-flex m-0">kavan Patel</p>
+                                                            </div>
+                                                            <div class="row mx-0">
+                                                                <div class="col-auto px-2">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star2.png" alt=""
+                                                                        width="17" height="17">
+                                                                </div>
+                                                                <div class="col px-0 pt-1">
+                                                                    <p class="text mb-0">0</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <p class="table-data payment-text">56,00 €</p>
+                                            </td>
+
+                                            <td class="p-0 bb-none">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-12 col-md-auto px-0 mb-1 text-center">
+                                                            <button class="btn complete-btn">Reschedule</button>
+                                                        </div>
+                                                        <div class="col-12 col-md-auto px-0 ps-0 ps-md-1 text-center">
+                                                            <button class="btn cancel-btn">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <div class="row row3 mx-0 pagination-row justify-content-between">
+                                    <div class="col-12 col-md-auto mb-2 mb-md-0">
+                                        <div class="row mx-0 px-0 text-center">
+                                            <p class="mb-0 text d-block mx-auto">Show
+                                                <select class="form-select select pagination-select d-inline mx-1"
+                                                    aria-label="Default select example">
+                                                    <option selected>10</option>
+                                                    <option value="2">20</option>
+                                                    <option value="3">50</option>
+                                                    <option value="3">100</option>
+                                                </select>
+                                                entries Total Record: 1
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-12 col-md-auto">
+
+                                        <div class="row mx-0 justify-content-center text">
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <img class="m-auto px-0 first-page" src="Images/first-page.png"
+                                                        alt="">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+
+                                                    <img class="m-auto px-0 next-page" src="Images/prev-page.png" alt=""
+                                                        width="6" height="9">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#'
+                                                    class="clickable-row focus active row mx-0 page-item">
+                                                    <p class="m-auto px-0 text-center">1</p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <p class="m-auto px-0 text-center">2</p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <p class="m-auto px-0 text-center">3</p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <img class="m-auto px-0 next-page" src="Images/next-page.png"
+                                                        alt="">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 mx-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <img class="m-auto px-0 first-page" src="Images/last-page.png"
+                                                        alt="">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="customer-Service-History">
+                            <div class="">
+
+                                <div class="row mx-0 justify-content-between tab-heading">
+                                    <div class="col-auto ps-0">
+                                        <p class="title">Service History</p>
+                                    </div>
+                                    <div class="col-auto pe-0">
+                                        <div class="dropdown sorting-dropdown">
+                                            <button type="button" class="btn p-0" data-bs-toggle="dropdown">
+                                                <img src="Images/sort.png" alt="">
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Service date:
+                                                            Latest</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Service date:
+                                                            Oldest</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Service Provider: A
+                                                            to Z</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Service Provider: Z
+                                                            to A</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Payment: High to
+                                                            Low</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="radio1"
+                                                            name="optradio" value="option1" checked>
+                                                        <label class="form-check-label" for="radio1">Payment: Low to
+                                                            High</label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row row1 mx-0 justify-content-between">
+                                    <div class="col-12 col-md-auto text-center mb-2 mb-md-2 d-none d-md-flex">
+                                        <p class="mb-0 title">
+                                            Service History
+                                        </p>
+                                    </div>
+
+                                    <div class="col-12 col-md-auto">
+                                        <div class="text-center">
+                                            <button class="btn">Export</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <table class="table table-borderless ">
+
+                                    <thead class="table-head">
+                                        <tr>
+                                            <th class=""><a class="table-link" href="#">Service
+                                                    ID<img class="ms-2" src="Images/sort.png" alt="" width="14"
+                                                        height="14"> </a></th>
+                                            <th class=""><a class="table-link" href="#">Service
+                                                    Date<img class="ms-2" src="Images/sort.png" alt="" width="14"
+                                                        height="14"> </a></th>
+                                            <th class=""><a class="table-link" href="#">Service Provider<img
+                                                        class="ms-2" src="Images/sort.png" alt="" width="14"
+                                                        height="14"> </a></th>
+                                            <th class=""><a class="table-link" href="#">Payment</a>
+                                            </th>
+                                            <th class=""><a class="table-link" href="#">Status</a>
+                                            </th>
+                                            <th class=""><a class="table-link" href="#">Rate SP</a></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody class="table-body">
+
+                                        <tr class='clickable-row' data-href='url://'>
+
+                                            <td class="p-0">
+                                                <p class="table-data">323436</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-flex calender-img px-0"
+                                                                src="Images/calendar.png" alt="">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="d-flex m-0"><b>09/04/2018</b></p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mx-0 mt-2">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-inline" src="Images/clock.png" alt=""
+                                                                width="17" height="17">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="mb-0">12:00 - 18:00</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <div class="rating">
+                                                                <img class="rating-img"
+                                                                    src="Images/block-customer-hat.png" alt=""
+                                                                    width="30" height="19">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col px-0">
+                                                            <div class="row mx-0">
+                                                                <p class="d-flex m-0">kavan Patel</p>
+                                                            </div>
+                                                            <div class="row mx-0">
+                                                                <div class="col-auto px-2">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star2.png" alt=""
+                                                                        width="17" height="17">
+                                                                </div>
+                                                                <div class="col px-0 pt-1">
+                                                                    <p class="text mb-0">0</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <p class="table-data payment-text">56,00 €</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="row mx-0 ps-3 py-3">
+                                                    <div class="d-inline-block cancel-badge">
+                                                        <p class="mb-0">Cancel</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0 bb-none">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-12 col-md-auto px-0 mb-1 text-center ">
+                                                            <button class="btn complete-btn disabled">Rate SP</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr class='clickable-row' data-href='url://'>
+
+                                            <td class="p-0">
+                                                <p class="table-data">323436</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-flex calender-img px-0"
+                                                                src="Images/calendar.png" alt="">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="d-flex m-0"><b>09/04/2018</b></p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mx-0 mt-2">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-inline" src="Images/clock.png" alt=""
+                                                                width="17" height="17">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="mb-0">12:00 - 18:00</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <div class="rating">
+                                                                <img class="rating-img"
+                                                                    src="Images/block-customer-hat.png" alt=""
+                                                                    width="30" height="19">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col px-0">
+                                                            <div class="row mx-0">
+                                                                <p class="d-flex m-0">kavan Patel</p>
+                                                            </div>
+                                                            <div class="row mx-0">
+                                                                <div class="col-auto px-2">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star2.png" alt=""
+                                                                        width="17" height="17">
+                                                                </div>
+                                                                <div class="col px-0 pt-1">
+                                                                    <p class="text mb-0">0</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <p class="table-data payment-text">56,00 €</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="row mx-0 ps-3 py-3">
+                                                    <div class="d-inline-block cancel-badge">
+                                                        <p class="mb-0">Cancel</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0 bb-none">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-12 col-md-auto px-0 mb-1 text-center ">
+                                                            <button class="btn complete-btn disabled">Rate SP</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr class='clickable-row' data-href='url://'>
+
+                                            <td class="p-0">
+                                                <p class="table-data">323436</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-flex calender-img px-0"
+                                                                src="Images/calendar.png" alt="">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="d-flex m-0"><b>09/04/2018</b></p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mx-0 mt-2">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-inline" src="Images/clock.png" alt=""
+                                                                width="17" height="17">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="mb-0">12:00 - 18:00</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <div class="rating">
+                                                                <img class="rating-img"
+                                                                    src="Images/block-customer-hat.png" alt=""
+                                                                    width="30" height="19">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col px-0">
+                                                            <div class="row mx-0">
+                                                                <p class="d-flex m-0">kavan Patel</p>
+                                                            </div>
+                                                            <div class="row mx-0">
+                                                                <div class="col-auto px-2">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star2.png" alt=""
+                                                                        width="17" height="17">
+                                                                </div>
+                                                                <div class="col px-0 pt-1">
+                                                                    <p class="text mb-0">0</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <p class="table-data payment-text">56,00 €</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="row mx-0 ps-3 py-3">
+                                                    <div class="d-inline-block cancel-badge">
+                                                        <p class="mb-0">Cancel</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0 bb-none">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-12 col-md-auto px-0 mb-1 text-center ">
+                                                            <button class="btn complete-btn disabled">Rate SP</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr class='clickable-row' data-href='url://'>
+
+                                            <td class="p-0">
+                                                <p class="table-data">323436</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-flex calender-img px-0"
+                                                                src="Images/calendar.png" alt="">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="d-flex m-0"><b>09/04/2018</b></p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mx-0 mt-2">
+                                                        <div class="col-auto px-0">
+                                                            <img class="d-inline" src="Images/clock.png" alt=""
+                                                                width="17" height="17">
+                                                        </div>
+                                                        <div class="col px-0 ps-1">
+                                                            <p class="mb-0">12:00 - 18:00</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-auto px-0">
+                                                            <div class="rating">
+                                                                <img class="rating-img"
+                                                                    src="Images/block-customer-hat.png" alt=""
+                                                                    width="30" height="19">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col px-0">
+                                                            <div class="row mx-0">
+                                                                <p class="d-flex m-0">kavan Patel</p>
+                                                            </div>
+                                                            <div class="row mx-0">
+                                                                <div class="col-auto px-2">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star1.png" alt=""
+                                                                        width="17" height="17">
+                                                                    <img class="d-inline" src="Images/star2.png" alt=""
+                                                                        width="17" height="17">
+                                                                </div>
+                                                                <div class="col px-0 pt-1">
+                                                                    <p class="text mb-0">0</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <p class="table-data payment-text">56,00 €</p>
+                                            </td>
+
+                                            <td class="p-0">
+                                                <div class="row mx-0 ps-3 py-3">
+                                                    <div class="d-inline-block cancel-badge">
+                                                        <p class="mb-0">Cancel</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="p-0 bb-none">
+                                                <div class="container-fluid table-data">
+                                                    <div class="row mx-0">
+                                                        <div class="col-12 col-md-auto px-0 mb-1 text-center ">
+                                                            <button class="btn complete-btn disabled">Rate SP</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+
+
+
+                                <div class="row row3 mx-0 pagination-row justify-content-between">
+                                    <div class="col-12 col-md-auto mb-2 mb-md-0">
+                                        <div class="row mx-0 px-0 text-center">
+                                            <p class="mb-0 text d-block mx-auto">Show
+                                                <select class="form-select select pagination-select d-inline mx-1"
+                                                    aria-label="Default select example">
+                                                    <option selected>10</option>
+                                                    <option value="2">20</option>
+                                                    <option value="3">50</option>
+                                                    <option value="3">100</option>
+                                                </select>
+                                                entries Total Record: 1
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-12 col-md-auto">
+
+                                        <div class="row mx-0 justify-content-center text">
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <img class="m-auto px-0 first-page" src="Images/first-page.png"
+                                                        alt="">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+
+                                                    <img class="m-auto px-0 next-page" src="Images/prev-page.png" alt=""
+                                                        width="6" height="9">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#'
+                                                    class="clickable-row focus row mx-0 page-item active">
+                                                    <p class="m-auto px-0 text-center">1</p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <p class="m-auto px-0 text-center">2</p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <p class="m-auto px-0 text-center">3</p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <img class="m-auto px-0 next-page" src="Images/next-page.png"
+                                                        alt="">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 mx-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <img class="m-auto px-0 first-page" src="Images/last-page.png"
+                                                        alt="">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="tab-pane fade" id="customer-Service-Schedule">
+                            <button class="btn btn-primary">Nice to have feature</button>
+                        </div>
+
+                        <div class="tab-pane fade" id="customer-fav-pro">
+                            <div class="">
+
+                                <div class="row mx-0 justify-content-between tab-heading">
+                                    <div class="col-auto ps-0">
+                                        <p class="title">Favourite Pros</p>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mx-0">
+
+                                    <div class="col-12 col-sm-6 col-md-4">
+                                        <div class="row customer-pro-card mx-0">
+                                            <div class="d-block customer-pro-img-body px-0 mx-auto text-center">
+                                                <img class="customer-pro-img mx-auto" src="Images/cap.png" alt=""
+                                                    width="45" height="30">
+                                            </div>
+                                            <div class="row row1 text-center mx-0">
+                                                <div class="col px-0">
+                                                    <div class="row mx-0 text-center">
+                                                        <p class="m-0">kavan Patel</p>
+                                                    </div>
+                                                    <div class="row mx-0 justify-content-center">
+                                                        <div class="col-auto px-2">
+                                                            <img class="d-inline" src="Images/star1.png" alt=""
+                                                                width="17" height="17">
+                                                            <img class="d-inline" src="Images/star1.png" alt=""
+                                                                width="17" height="17">
+                                                            <img class="d-inline" src="Images/star1.png" alt=""
+                                                                width="17" height="17">
+                                                            <img class="d-inline" src="Images/star1.png" alt=""
+                                                                width="17" height="17">
+                                                            <img class="d-inline" src="Images/star2.png" alt=""
+                                                                width="17" height="17">
+                                                        </div>
+                                                        <div class="col-auto px-0 pt-1">
+                                                            <p class="text mb-0">3.6</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-3">
+                                                    <p class="text m-0 texts-small">1 Cleanings</p>
+                                                </div>
+                                            </div>
+                                            <div class="row row2 mx-0 mt-3 justify-content-center">
+                                                <button class=" d-flex mx-1 btn w-auto alternate">Remove</button>
+                                                <button class=" d-flex mx-1 btn w-auto">Block</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-sm-6 col-md-4">
+                                        <div class="row customer-pro-card mx-0">
+                                            <div class="d-block customer-pro-img-body px-0 mx-auto text-center">
+                                                <img class="customer-pro-img mx-auto" src="Images/cap.png" alt=""
+                                                    width="45" height="30">
+                                            </div>
+                                            <div class="row row1 text-center mx-0">
+                                                <div class="col px-0">
+                                                    <div class="row mx-0 text-center">
+                                                        <p class="m-0">Sandip Patel</p>
+                                                    </div>
+                                                    <div class="row mx-0 justify-content-center">
+                                                        <div class="col-auto px-2">
+                                                            <img class="d-inline" src="Images/star1.png" alt=""
+                                                                width="17" height="17">
+                                                            <img class="d-inline" src="Images/star1.png" alt=""
+                                                                width="17" height="17">
+                                                            <img class="d-inline" src="Images/star1.png" alt=""
+                                                                width="17" height="17">
+                                                            <img class="d-inline" src="Images/star1.png" alt=""
+                                                                width="17" height="17">
+                                                            <img class="d-inline" src="Images/star2.png" alt=""
+                                                                width="17" height="17">
+                                                        </div>
+                                                        <div class="col-auto px-0 pt-1">
+                                                            <p class="text mb-0">3.6</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-3">
+                                                    <p class="text m-0 texts-small">18 Cleanings</p>
+                                                </div>
+                                            </div>
+                                            <div class="row row2 mx-0 mt-3 justify-content-center">
+                                                <button class=" d-flex mx-1 btn w-auto alternate">Remove</button>
+                                                <button class=" d-flex mx-1 btn w-auto">Block</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row row3 mx-0 pagination-row justify-content-between">
+                                    <div class="col-12 col-md-auto mb-2 mb-md-0">
+                                        <div class="row mx-0 px-0 text-center">
+                                            <p class="mb-0 text d-block mx-auto">Show
+                                                <select class="form-select select pagination-select d-inline mx-1"
+                                                    aria-label="Default select example">
+                                                    <option selected>10</option>
+                                                    <option value="2">20</option>
+                                                    <option value="3">50</option>
+                                                    <option value="3">100</option>
+                                                </select>
+                                                entries Total Record: 1
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-12 col-md-auto">
+
+                                        <div class="row mx-0 justify-content-center text">
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <img class="m-auto px-0 first-page" src="Images/first-page.png"
+                                                        alt="">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+
+                                                    <img class="m-auto px-0 next-page" src="Images/prev-page.png" alt=""
+                                                        width="6" height="9">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#'
+                                                    class="clickable-row focus row mx-0 page-item active">
+                                                    <p class="m-auto px-0 text-center">1</p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <p class="m-auto px-0 text-center">2</p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item d-none">
+                                                    <p class="m-auto px-0 text-center">3</p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 ms-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item d-none">
+                                                    <img class="m-auto px-0 next-page" src="Images/next-page.png"
+                                                        alt="">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-auto px-0 mx-1">
+
+                                                <div data-href='#' class="clickable-row row mx-0 page-item">
+                                                    <img class="m-auto px-0 first-page" src="Images/last-page.png"
+                                                        alt="">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="customer-My-setting">
+                            <div class="">
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- section 2 -->
+
+    <!-- footer section -->
+
+    <footer class="container-fluid px-0 footer-section" id="#service-login-section3">
+        <div class="row row1 m-0 ">
+            <div class="div1 px-0">
+                <a href="">
+                    <img class="img-fluid" src="Images/white-logo-transparent-background.png" alt="" width="120"
+                        height="92">
+                </a>
+            </div>
+
+            <div class="row div2 justify-content-center px-0">
+                <div class=" col-sm-6  col-lg-4 col-xl-auto text text-center"><a href="homepage.html">HOME</a></div>
+                <div class="col-sm-6 col-lg-4 col-xl-auto text text-center"><a href="about.html">ABOUT</a></div>
+                <div class="col-sm-6 col-lg-4 col-xl-auto text text-center"><a href="#">TESTIMONIALS</a></div>
+                <div class="col-sm-6  col-lg-4 col-xl-auto text text-center"><a href="faq.html">FAQS</a></div>
+                <div class="col-sm-6 col-lg-4 col-xl-auto text text-center"><a href="#">INSURANCE POLICY</a></div>
+                <div class="col-sm-6 col-lg-4 col-xl-auto text text-center"><a href="#">IMPRESSUM</a></div>
+
+            </div>
+
+            <div class="div3">
+                <a class="px-0 img1" href="">
+                    <img class="img-fluid" src="Images/ic-facebook.png" alt="" width="9" height="18">
+                </a>
+                <a class="mx-0 px-0" href="">
+                    <img class="img-fluid" src="Images/ic-instagram.png" alt="" width="20" height="20">
+                </a>
+            </div>
+        </div>
+
+        <div class="row row2 mx-0 px-0">
+            <div class="line">
+            </div>
+        </div>
+
+        <div class="row row3 mx-0 px-0 text-center">
+            <p class="">©2018 Helperland. All rights reserved.
+                <a href="">Terms and Conditions </a> |
+                <a href="">Privacy Policy</a>
+            </p>
+        </div>
+
+    </footer>
+
+    <!-- footer section -->
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="js/helperland.js"></script>
+
+    <script>
+    </script>
+</body>
+
+</html>

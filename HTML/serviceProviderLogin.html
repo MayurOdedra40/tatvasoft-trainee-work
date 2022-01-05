@@ -42,7 +42,7 @@
                     <ul class="px-0 nav nav-tabs">
 
                         <li class="nav-item">
-                            <a class="text active dismiss" data-bs-toggle="tab" href="#Dashboard">Dashboard</a>
+                            <a class="text active dismiss" data-bs-toggle="tab" href="#Service-provider-Dashboard">Dashboard</a>
                         </li>
 
                         <li class="nav-item">
@@ -209,7 +209,38 @@
                                 <a class="nav-link px-0 d-inline" aria-current="page" href="#"><img class="img-fluid"
                                         src="Images/user-icon.png" alt="" width="36" height="36"></a>
 
-                                <a class="d-inline" data-toggle="popover"><img src="Images/menu-down.png" alt=""></a>
+                                <!-- <a class="d-inline" data-toggle="popover"><img src="Images/menu-down.png" alt=""></a> -->
+                                <div class="dropdown d-inline">
+                                    <button type="button" class="btn p-0" data-bs-toggle="dropdown">
+                                        <img src="Images/menu-down.png" alt="">
+                                    </button>
+                                    <div class="dropdown-menu">
+
+                                        <ul class="nav nab-tabs">
+                                            <div class="row w-100 mb-1">
+
+                                                <li class="nav-item d-block w-100 py-1">
+                                                    <p class="text mb-0">welcome,<br> <b>Gaurang Patel</b></p>
+                                                </li>
+                                            </div>
+
+                                            <li class="nav-item d-block w-100 py-1">
+                                                <a class="dropdown-text active dismiss" data-bs-toggle="tab" href="#Service-provider-Dashboard">Dashboard</a> 
+                                            </li>
+
+                                            <li class="nav-item d-block w-100 py-1">
+                                                <a class="dropdown-text dismiss" data-bs-toggle="tab" href="#customer-My-setting">My Setting</a>
+                                            </li>
+
+                                            <li class="nav-item d-block w-100 py-1">
+                                                <a class="dropdown-text dismiss" data-bs-toggle="tab" href="#customer-fav-pro">Logout</a> 
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                            
                             </li>
 
                             <li class="nav-item btn book-now d-none">
@@ -223,17 +254,6 @@
 
                     </div>
                 </nav>
-
-
-                <div id="popover-title" class="d-none pop-title">
-                    <p>Welcome, <br><b>Sandip Patel</b></p>
-                </div>
-
-                <div id="popover-content" class="d-none">
-                    <a class="d-block" href="">My profile</a>
-                    <a class="d-block" href="">dashboard</a>
-                    <a class="d-block" href="">Logout</a>
-                </div>
 
                 <!-- </div> -->
             </div>
@@ -269,7 +289,7 @@
                     <ul class="container sub-menu px-0 nav nav-tabs">
 
                         <li class="row mx-0 nav-item">
-                            <a class="text-start active" data-bs-toggle="tab" href="#Dashboard">Dashboard</a>
+                            <a class="text-start active" data-bs-toggle="tab" href="#Service-provider-Dashboard">Dashboard</a>
                         </li>
 
                         <li class="row mx-0 nav-item">
@@ -306,7 +326,7 @@
 
                     <div class="tab-content">
 
-                        <div class="tab-pane active" id="Dashboard">
+                        <div class="tab-pane active" id="Service-provider-Dashboard">
                             <div class="">
 
                                 <div class="row mx-0 justify-content-center tab-heading ">

@@ -2087,7 +2087,7 @@ a {
 }
 
 .table {
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 .table-head .table-link {
@@ -2212,6 +2212,7 @@ a {
 
 /* pagination design */
 
+
 #service-login-section2 .title {
   font-size: 20px;
   color: #646464;
@@ -2224,12 +2225,12 @@ a {
   font-weight: 400;
 }
 
-#Dashboard .border-x {
+#Service-provider-Dashboard .border-x {
   border-left: 1px solid #E1E1E1;
   border-right: 1px solid #E1E1E1;
 }
 
-#Dashboard .count {
+#Service-provider-Dashboard .count {
   width: 100px;
   height: 100px;
   background: #1FB6FF;
@@ -2239,27 +2240,27 @@ a {
   font-weight: 700;
 }
 
-#Dashboard .col2 {
+#Service-provider-Dashboard .col2 {
   background: #2CC896;
 }
 
-#Dashboard .col3 {
+#Service-provider-Dashboard .col3 {
   background: #FD6966;
 }
 
 
 
-#Dashboard .count p {
+#Service-provider-Dashboard .count p {
   text-align: center;
   line-height: 100px;
 }
 
-#Dashboard .text {
+#Service-provider-Dashboard .text {
   font-size: 20px;
   font-weight: 400;
 }
 
-#Dashboard .btn {
+#Service-provider-Dashboard .btn {
   padding: 5px 12px;
   color: #1d7a8c;
   border: 1px solid #1d7a8c;
@@ -2270,16 +2271,16 @@ a {
   margin-left: auto;
 }
 
-#Dashboard a:hover .btn {
+#Service-provider-Dashboard a:hover .btn {
   color: white;
   background: #1d7a8c;
 }
 
-#Dashboard .nav-tabs {
+#Service-provider-Dashboard .nav-tabs {
   border-bottom: none;
 }
 
-#Dashboard .nav-tabs .nav-link {
+#Service-provider-Dashboard .nav-tabs .nav-link {
   margin-bottom: 0;
   background: 0;
   border: none;
@@ -2294,7 +2295,7 @@ a {
 
 @media (max-width: 768px) {
 
-  #Dashboard .border-x {
+  #Service-provider-Dashboard .border-x {
     border-right: 0;
   }
 
@@ -2339,7 +2340,7 @@ a {
 
 @media (max-width: 576px) {
 
-  #Dashboard .border-x {
+  #Service-provider-Dashboard .border-x {
     border-left: 0;
     border-top: 1px solid #E1E1E1;
     border-bottom: 1px solid #E1E1E1;
@@ -2511,3 +2512,185 @@ a {
 }
 
 /* service-login */
+
+
+
+/* customer login page */
+
+#customer-login-header{
+  position: sticky;
+  top: 0;
+  z-index: +1;
+  /* font-size: 14px; */
+}
+
+
+.dropdown-menu {
+  position:absolute;
+  background-color: white;
+  right:0;
+  width: 50px;
+  padding-left: 15px;
+  box-shadow: 0 0 6px rgba(0,0,0,.25);
+}
+
+.btn:focus, input:focus{
+  outline: none;
+  box-shadow: none;
+}
+
+.dropdown-menu[data-bs-popper] {
+  top: 100%;
+  right: 0;
+  left: auto;
+  margin-top: .125rem;
+}
+
+/* .sorting-dropdown .dropdown-menu{
+} */
+
+.dropdown-menu a{
+  font-size: 16px;
+  color: #4F4F4F;
+  font-weight: 400;
+}
+
+.dropdown-menu .text{
+  font-size: 14px;
+  color: #4F4F4F;
+  font-weight: 400;
+}
+
+.dropdown-menu .row{
+  border-bottom: 1px solid #DEDEDE;
+}
+
+.dropdown-menu a:hover{
+  color: #278091;
+}
+
+#customer-login-header .sidebar .dropdown-text{
+  font-size: 14px;
+  color: #4F4F4F;
+  font-weight: 400;
+}
+
+#customer-login-section1 .title {
+  color: #4F4F4F;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+#customer-login-section1 .row1 {
+  margin-top: 38.5px;
+  margin-bottom: 43.9px;
+}
+
+#customer-login-section1 {
+  border-bottom: 1px solid #E1E1E1;
+}
+
+#customer-login-section2 {
+  margin-top: 30px;
+  padding-bottom: 55px;
+}
+
+#customer-login-section2 .title {
+  font-size: 22px;
+  color: #646464;
+  font-weight: 700;
+}
+
+#customer-login-section2 .text {
+  color: #646464;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#customer-login-section2 .row1 .btn{
+
+background: #146371;
+color: white;
+border-radius: 50px;
+padding: 8px 14px;
+margin-bottom: 10px;
+}
+
+#customer-login-section2 .payment-text{
+
+color: #1d7a8c;
+font-size: 24px;
+font-weight: 700;
+}
+
+#customer-login-section2 .rating{
+
+  display: block;
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  border: 1px solid #9C9C9C;
+  position: relative;
+  }
+
+  #customer-login-section2 .rating-img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #customer-Dashboard .message{
+    color: #67b644;
+  }
+
+  #customer-Service-History .cancel-badge{
+    background: #ff6b6b;
+    color: white;
+    width: auto;
+  }
+
+
+  #customer-fav-pro .customer-pro-card {
+    border: 1px solid #E1E1E1;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 15px;
+  }
+
+  #customer-fav-pro .customer-pro-img-body {
+    width: 88px;
+    height: 88px;
+    border: 1px solid #acacac;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  #customer-fav-pro .customer-pro-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #customer-fav-pro .row1 .texts-small{
+    font-size: 12px;
+  }
+
+  #customer-fav-pro .customer-pro-card .row2 .btn {
+    border-radius: 50px;
+    border: none;
+    width: 80px;
+    padding: 6px 12px;
+    font-size: 16px;
+    background: #FD6966;
+    color: white;
+  
+  }
+
+  #customer-fav-pro .customer-pro-card .row2 .alternate{
+    background: #1D7A8C;
+  }
+
+/* customer login page */
