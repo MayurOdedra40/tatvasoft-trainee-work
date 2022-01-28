@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewData["Title"] = "ContactUs";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<section class="container-fluid px-0" id="contact-banner">
+</section>
+
+<!-- contact us banner -->
+<!-- section 2 -->
+<section class="container-fluid px-0" id="contact-section2">
+
+    <div class="row text-center row1 mx-0">
+        <p class="title m-0 p-0">Contact Us</p>
+    </div>
+
+    <div class="row row2 justify-content-center mx-0">
+        <div class="line"></div>
+        <img class="px-0" id="seprator" src="~/Images/separator.png" alt="">
+        <div class="line"></div>
+    </div>
+
+    <div class="container row3 px-0">
+        <div class="row mx-0 text-center subrow3">
+
+            <div class="col py-2">
+                <div class="contact-card mx-auto">
+
+                    <div class="contact-card-img">
+                        <img class="" src="~/Images/forma-1_2.png" alt="">
+                    </div>
+                    <div class="contact-card-body">
+                        <p class="contact-text mb-0">1111 Lorem ipsum text 100, Lorem ipsum AB</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col py-2">
+                <div class="contact-card mx-auto">
+
+                    <div class="contact-card-img">
+                        <img class="" src="~/Images/phone-call.png" alt="">
+                    </div>
+                    <div class="contact-card-body">
+                        <p class="contact-text mb-0">+49 (40) 123 56 7890 <br> +49 (40) 987 56 0000</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col py-2">
+                <div class="contact-card mx-auto">
+
+                    <div class="contact-card-img">
+                        <img class="" src="~/Images/mail.png" alt="">
+                    </div>
+                    <div class="contact-card-body">
+                        <p class="contact-text mb-0">info@helperland.com</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- section 2 -->
+<!-- section 3 -->
+
+<section class="container-fluid px-0" id="contact-section3">
+    <form class="container contact-form">
+        <div class="row text-center row1">
+            <p class="title m-0 p-0">Get in touch with us</p>
+        </div>
+
+        <div class="row row2 mx-auto">
+            <div class="col-sm-6 ps-sm-0 mb-3 mb-sm-0">
+                <input type="text" class="form-control fm-input fm-text" id="" placeholder="First Name">
+            </div>
+            <div class="col-sm-6 px-sm-0">
+                <input type="text" class="form-control fm-input fm-text" id="" placeholder="Last Name">
+            </div>
+
+        </div>
+
+        <div class="row row3 mx-auto">
+            <div class="col-sm-6 ps-sm-0 mb-3 mb-sm-0">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text fm-input fm-text">+49</div>
+                    </div>
+                    <input type="text" class="form-control fm-input fm-text" id="inlineFormInputGroup" placeholder="Mobile number">
+                </div>
+            </div>
+            <div class="col-sm-6 px-sm-0">
+                <input type="email" class="form-control fm-input fm-text" id="" placeholder="Email Address">
+            </div>
+
+        </div>
+
+        <div class="row row4 mx-auto px-2 px-sm-0">
+            <select class="form-select fm-input fm-text" id="">
+                <option class="fm-input fm-text" selected>Subject</option>
+                <option class="fm-input fm-text">Subject 2</option>
+                <option class="fm-input fm-text">Subject 3</option>
+                <option class="fm-input fm-text">Subject 4</option>
+
+            </select>
+        </div>
+
+        <div class="row row5 mx-auto px-2 px-sm-0">
+            <textarea class="form-control fm-text" id="exampleFormControlTextarea1" rows="3">Message</textarea>
+        </div>
+
+        <div class="row row6 mx-auto">
+            <button class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+</section>
+<!-- section 3 -->
+<!-- map -->
+
+<section class="container-fluid px-0" id="contact-map">
+
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d80860.0679486272!2d7.047260309362327!3d50.703664739413625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bee19f7ccbda49%3A0x86dbf8c6685c9617!2sBonn%2C%20Germany!5e0!3m2!1sen!2sin!4v1643365468560!5m2!1sen!2sin" height="400" style="border:0; width: 100%;" allowfullscreen="" loading="lazy"></iframe>
+</section>
+
+<!-- map -->
+
+<partial name="_newLetter2Partial" />
