@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Helperland.Models;
+using Helperland.Data;
 
 namespace Helperland
 {
@@ -23,6 +26,11 @@ namespace Helperland
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+            var cs = "Data source=PCI234\\SQL2017;initial catalog=Helperland;user id=sa;password=tatva123";
+            services.AddDbContext<HelperlandContext>(options => options.UseSqlServer(cs));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +44,10 @@ namespace Helperland
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 

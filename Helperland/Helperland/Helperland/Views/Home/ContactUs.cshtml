@@ -1,4 +1,4 @@
-﻿
+﻿@model ContactU
 @{
     ViewData["Title"] = "ContactUs";
     Layout = "~/Views/Shared/_Layout2.cshtml";
@@ -74,17 +74,19 @@
 <!-- section 3 -->
 
 <section class="container-fluid px-0" id="contact-section3">
-    <form class="container contact-form">
+    <form class="container contact-form" method="post" asp-controller="Home" asp-action="ContactUs">
         <div class="row text-center row1">
             <p class="title m-0 p-0">Get in touch with us</p>
         </div>
 
         <div class="row row2 mx-auto">
             <div class="col-sm-6 ps-sm-0 mb-3 mb-sm-0">
-                <input type="text" class="form-control fm-input fm-text" id="" placeholder="First Name">
+                <input asp-for="FirstName" type="text" class="form-control fm-input fm-text" id="" placeholder="First Name" required>
+                <span asp-validation-for="FirstName" class="danger"></span>
             </div>
             <div class="col-sm-6 px-sm-0">
-                <input type="text" class="form-control fm-input fm-text" id="" placeholder="Last Name">
+                <input asp-for="LastName" type="text" class="form-control fm-input fm-text" id="" placeholder="Last Name">
+                <span asp-validation-for="LastName" class="danger"></span>
             </div>
 
         </div>
@@ -95,31 +97,34 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text fm-input fm-text">+49</div>
                     </div>
-                    <input type="text" class="form-control fm-input fm-text" id="inlineFormInputGroup" placeholder="Mobile number">
+                    <input asp-for="PhoneNumber" type="text" class="form-control fm-input fm-text" id="inlineFormInputGroup" placeholder="Mobile number" required>
                 </div>
+                <span asp-validation-for="PhoneNumber" class="danger"></span>
             </div>
             <div class="col-sm-6 px-sm-0">
-                <input type="email" class="form-control fm-input fm-text" id="" placeholder="Email Address">
+                <input asp-for="Email" type="email" class="form-control fm-input fm-text" id="" placeholder="Email Address" required>
+                <span asp-validation-for="Email" class="danger"></span>
             </div>
 
         </div>
 
         <div class="row row4 mx-auto px-2 px-sm-0">
-            <select class="form-select fm-input fm-text" id="">
-                <option class="fm-input fm-text" selected>Subject</option>
-                <option class="fm-input fm-text">Subject 2</option>
-                <option class="fm-input fm-text">Subject 3</option>
-                <option class="fm-input fm-text">Subject 4</option>
-
+            <select asp-for="Subject" class="form-select fm-input fm-text" id="" required>
+                <option class="fm-input fm-text" value="General" selected>General</option>
+                <option class="fm-input fm-text" value="Inquiry">Inquiry</option>
+                <option class="fm-input fm-text" value="Renewal">Renewal</option>
+                <option class="fm-input fm-text" value="Revocation">Revocation</option>
             </select>
+            <span asp-validation-for="Subject" class="danger"></span>
         </div>
 
         <div class="row row5 mx-auto px-2 px-sm-0">
-            <textarea class="form-control fm-text" id="exampleFormControlTextarea1" rows="3">Message</textarea>
+            <textarea asp-for="Message" class="form-control fm-text" id="exampleFormControlTextarea1" rows="3" required>Message</textarea>
+            <span asp-validation-for="Message" class="danger"></span>
         </div>
 
         <div class="row row6 mx-auto">
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
         </div>
 
     </form>

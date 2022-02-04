@@ -1,4 +1,4 @@
-﻿
+﻿@model User
 @{
     ViewData["Title"] = "service provider-Helperland";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,38 +8,44 @@
     <!-- service header 1 or section -->
     <section class="container-fluid px-0" id="service-section1">
 
-        <form class="container row1 px-0" action="">
+        <form class="container row1 px-0" method="post" asp-controller="Home" asp-action="ServiceProvider" novalidate>
 
             <div class="row mx-0 sub-row1 text-center">
                 <p class="p-0 m-0 title">Register Now!</p>
             </div>
 
             <div class="row mx-0 service-input-row get-mt-15">
-                <input type="text" class="form-control service-input" id="" placeholder="First Name">
+                <input asp-for="FirstName" type="text" class="form-control service-input" id="" placeholder="First Name" required>
+                <span asp-validation-for="FirstName" class="danger"></span>
             </div>
 
             <div class="row mx-0 service-input-row get-mt-15">
-                <input type="text" class="form-control service-input" id="" placeholder="Last name">
+                <input asp-for="LastName" type="text" class="form-control service-input" id="" placeholder="Last name" required>
+                <span asp-validation-for="LastName" class="danger"></span>
             </div>
 
             <div class="row mx-0 service-input-row get-mt-15">
-                <input type="email" class="form-control service-input" id="" placeholder="Email Addresse">
+                <input asp-for="Email" type="email" class="form-control service-input" id="" placeholder="Email Addresse" required>
+                <span asp-validation-for="Email" class="danger"></span>
             </div>
 
             <div class="mx-0 service-input-row get-mt-15 input-group">
                 <div class="input-group-prepend br-none">
                     <div class="input-group-text fm-text service-input br-none">+46</div>
                 </div>
-                <input style="border-left-width: 0px;" type="text" class="form-control fm-input service-input"
-                       id="inlineFormInputGroup" placeholder="Phone Number">
+                <input asp-for="Mobile" style="border-left-width: 0px;" type="text" class="form-control fm-input service-input"
+                       id="inlineFormInputGroup" placeholder="Phone Number" required>
+                <span asp-validation-for="Mobile" class="danger d-block w-100"></span>
             </div>
 
             <div class="row mx-0 service-input-row get-mt-15">
-                <input type="password" class="form-control service-input" id="" placeholder="Password">
+                <input asp-for="Password" type="password" class="form-control service-input" id="" placeholder="Password" required>
+                <span asp-validation-for="Password" class="danger"></span>
             </div>
 
             <div class="row mx-0 service-input-row get-mt-15">
-                <input type="password" class="form-control service-input" id="" placeholder="Confirm Password">
+                <input asp-for="ConfirmPassword" type="password" class="form-control service-input" id="" placeholder="Confirm Password" required>
+                <span asp-validation-for="ConfirmPassword" class="danger"></span>
             </div>
 
             <div class="row mx-0 service-input-row get-mt-15">
@@ -58,19 +64,21 @@
             <div class="row mx-0 service-input-row mt-2">
 
                 <div class="col-1 ps-0">
-                    <input class="form-check-input m-0 px-0 service-check-input" type="checkbox" value=""
-                           id="flexCheckDefault">
+                    <input asp-for="Terms" class="form-check-input m-0 px-0 service-check-input" type="checkbox" value="true"
+                           id="flexCheckDefault" required>
+
                 </div>
                 <div class="col-11 px-0 ">
                     <p class="text mb-0" for="flexCheckDefault">
                         I accept <a href="#">terms and conditions</a> & <a href="">privacy policy</a>
                     </p>
                 </div>
+                <span asp-validation-for="Terms" class="danger "></span>
             </div>
 
             <div class="row mx-0 service-input-row btn-row justify-content-center">
-                <button class="btn btn-primary ">
-                    Get Started<img class="ms-2" src="Images/arrow-white.png" alt=""
+                <button class="btn btn-primary" type="submit">
+                    Get Started<img class="ms-2" src="~/Images/arrow-white.png" alt=""
                                     width="30">
                 </button>
             </div>

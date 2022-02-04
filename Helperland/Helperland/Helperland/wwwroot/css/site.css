@@ -203,7 +203,7 @@ a {
 
 #our-blog-section .card {
     border-radius: 0%;
-    border: 1px soild rgba(0, 0, 0, 0.125);
+    border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 #our-blog-section .card-title {
@@ -361,7 +361,7 @@ a {
 }
 
 .foot-text {
-    columns: #f1f1f1;
+    color: #f1f1f1;
     font-size: 14px;
     font-weight: 400;
 }
@@ -797,7 +797,7 @@ a {
         font-size: 24px;
         font-weight: 400;
         border-bottom: 4px solid #1d7a8c;
-        padding: auto auto;
+        /*padding: auto auto;*/
     }
 
         #faq-section3 .row1 .nav-link.active {
@@ -1205,7 +1205,7 @@ a {
     }
 
     #price-section2 .row4 .service-text2 {
-        margin-top: 5;
+        margin-top: 5px;
         font-size: 18px;
         font-weight: 700;
         color: #1D7A8C;
@@ -1576,6 +1576,21 @@ a {
 
 #contact-section3 .fm-input {
     height: 46px;
+    font-family: Roboto,sans-serif;
+}
+
+#contact-section3 .form-select {
+    font-family: Roboto,sans-serif;
+}
+
+#contact-section3 .form-control:focus {
+    box-shadow: none;
+    border: 1px solid #1d7a8c;
+}
+
+#contact-section3 .form-select:focus {
+    box-shadow: none;
+    border: 1px solid #1d7a8c;
 }
 
 
@@ -1826,12 +1841,24 @@ a {
         font-family: "Roboto", sans-serif;
         height: 46px;
         border: 1px solid #C8C8C8;
+        box-shadow: none;
+       
     }
 
+        #service-section1 .row1 .service-input:focus {
+            border: 1px solid #1D7A8C;
+        }
 
-    #service-section1 .row1 .service-check-input {
-        height: 20px;
-        width: 20px;
+
+        #service-section1 .row1 .service-check-input {
+            height: 20px;
+            width: 20px;
+            box-shadow: none;
+        }
+
+    #service-section1 .row1 .service-input-row .form-check-input:checked {
+        background-color: #1D7A8C;
+        border: 1px solid #1D7A8C;
     }
 
     #service-section1 .fm-text {
@@ -1847,7 +1874,7 @@ a {
     }
 
     #service-section1 .bl-none {
-        border-left-width: 0px solid white;
+        border-left: 0px solid white;
     }
 
     #service-section1 .row1 .service-input::placeholder {
@@ -2356,7 +2383,7 @@ a {
 #My-Ratings .select {
     width: 120px;
     font-family: "Roboto", sans-serif;
-    font-size: 14spx;
+    font-size: 14px;
     font-weight: 400;
     color: #646464;
     padding: 5px 0px;
@@ -3427,6 +3454,290 @@ a {
     margin-top: 30px;
 }
 
-
-
 /* book a service */
+
+#create-account-section1 .title {
+    font-size: 36px;
+    color: #4f4f4f;
+    font-weight: 500;
+}
+
+#create-account-section1 .text {
+    color: #646464;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+    #create-account-section1 .text a {
+        color: #1d7a8c;
+    }
+
+        #create-account-section1 .text a:hover {
+            color: rgb(42, 149, 216);
+        }
+
+#create-account-section1 .row2 .line {
+    margin: auto 0px;
+    height: 1px;
+    width: 62px;
+    background: #cccccc;
+}
+
+#create-account-section1 {
+    padding-top: 20px;
+}
+
+    #create-account-section1 .row3 {
+        margin-top: 45px;
+    }
+
+    #create-account-section1 .row3 {
+        max-width: 630px;
+    }
+
+
+        #create-account-section1 .row3 .form-group {
+            margin-bottom: 15px;
+            font-family: "Roboto", sans-serif;
+        }
+
+        #create-account-section1 .row3 .form-check {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+            #create-account-section1 .row3 .form-check .form-check-input {
+                height: 20px;
+                width: 20px;
+                box-shadow: none;
+            }
+
+            #create-account-section1 .row3 .form-check .form-check-label {
+                color: #4f4f4f;
+                font-family: "Roboto", sans-serif;
+            }
+
+                #create-account-section1 .row3 .form-check .form-check-label a {
+                    color: #1d7a8c;
+                    font-family: "Roboto", sans-serif;
+                    font-size: 14px;
+                }
+
+                    #create-account-section1 .row3 .form-check .form-check-label a:hover {
+                        color: rgb(42, 149, 216);
+                    }
+
+            #create-account-section1 .row3 .form-check .form-check-input:checked {
+                background-color: #1D798C;
+                border-color: #1D798C;
+                font-size: 14px;
+            }
+
+        #create-account-section1 .row3 .form-group .input-group-text {
+            font-size: 16px;
+            font-family: "Roboto", sans-serif;
+            background-color: #EEEEEE;
+            color: #555;
+        }
+
+        #create-account-section1 .row3 .form-control {
+            max-width: 300px;
+            font-family: "Roboto", sans-serif;
+            height: 46px;
+            padding: 12px 15px;
+            box-shadow: none;
+        }
+
+            #create-account-section1 .row3 .form-control:focus {
+                border: 1px solid #1D7A8C;
+            }
+
+.danger {
+    font-size: 14px;
+    color: #a94442;
+}
+
+#create-account-section1 .row3 .btn {
+    height: 46px;
+    padding: 9px 13px;
+    width: 160px;
+    margin: 20px auto;
+    display: block;
+    background: #1d7a8c;
+    color: white;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+    #create-account-section1 .row3 .btn:hover {
+        background: #124d58;
+    }
+
+@media(max-width:768px) {
+    #create-account-section1 .title {
+        font-size: 24px;
+    }
+
+    #create-account-section1 .row3 .form-control {
+        max-width: 100%;
+    }
+}
+
+
+/* Model designs */
+
+.modal {
+    color: #4f4f4f;
+}
+
+.modal-body {
+    padding: 25px;
+    position: relative;
+}
+
+#loginModal .modal-content {
+    max-width: 360px;
+}
+
+.modal-title {
+    margin: 0 0 25px 0;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 700;
+    padding: 0 15px 25px 0;
+}
+
+.btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px;
+    font-size: 20px;
+    box-shadow: none;
+}
+
+    .btn-close:focus {
+        box-shadow: none;
+    }
+
+.modal .form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+    .modal .form-group img {
+        position: absolute;
+        top: 11px;
+        right: 11px;
+    }
+
+.modal .form-label {
+    font-family: "Roboto", sans-serif;
+    color: #4f4f4f;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.modal .form-control {
+    font-family: "Roboto", sans-serif;
+    padding-left: 15px;
+    padding-right: 40px;
+    font-size: 16px;
+    color: #646464;
+    box-shadow: none;
+    height: 46px;
+}
+
+.modal .form-check {
+    margin-bottom: 15px;
+}
+
+.modal .form-check-input {
+    height: 20px;
+    width: 20px;
+    box-shadow: none;
+    margin-left: -24px;
+}
+
+.modal .form-control:focus {
+    border: 1px solid #1D7A8C;
+}
+
+.modal .form-check-input:checked {
+    background-color: #1D798C;
+    border-color: #1D798C;
+    font-size: 14px;
+}
+
+.modal .btn {
+    height: 54px;
+    width: 100%;
+    padding: 15px 30px;
+    margin-bottom: 25px;
+    border-radius: 50px;
+    background: #1d7a8c;
+    color: white;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 700;
+}
+
+    .modal .btn:hover {
+        background: #124d58;
+    }
+
+.modal a {
+    color: #1d7a8c;
+}
+
+    .modal a:hover {
+        color: rgb(42, 149, 216);
+    }
+
+#forgot-password-Modal .modal-content {
+    max-width: 360px;
+}
+
+#confirm-password-Modal .modal-content {
+    max-width: 360px;
+}
+
+#logout-Modal .modal-content {
+    max-width: 400px;
+}
+
+#logout-Modal .modal-body {
+    padding-top: 50px;
+}
+
+#logout-Modal span {
+    width: 76px;
+    height: 76px;
+    display: inline-block;
+    background: #67b644;
+    padding: 25px;
+    border-radius: 500px;
+    margin-bottom: 25px;
+}
+
+#logout-Modal .row p {
+    margin: 0 0 20px;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+
+#logout-Modal .btn {
+    width: 63px;
+    height: 40px;
+    padding: 9px 20px;
+    border-radius: 40px;
+}
+
+#confirm-password-Modal{
+    position: relative;
+    margin-bottom:200px;
+}

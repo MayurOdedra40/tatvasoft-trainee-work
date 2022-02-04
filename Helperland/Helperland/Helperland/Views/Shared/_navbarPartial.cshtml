@@ -1,4 +1,6 @@
-﻿<header class="wrapper" id="service-header">
+﻿@model User
+@using Microsoft.AspNetCore.Http;
+<header class="wrapper" id="service-header">
     <!-- Sidebar -->
     <nav class="sidebar ">
 
@@ -186,23 +188,29 @@
                             <a class="nav-link px-0" aria-current="page" asp-controller="Home" asp-action="ContactUs">Contact</a>
                         </li>
 
-                        <li class="nav-item btn normal-2 side-border-visible d-none">
 
-                            <a class="nav-link px-0 position-relative" aria-current="page" href="#">
+                        @if (Context.Session.GetString("isLoggedIn") != null)
+                        {
 
-                                <img src="~/Images/icon-notification.png" alt="" width="27" height="30">
-                                <span class="position-absolute translate-middle badge bg-danger">
-                                    2
-                                </span>
-                            </a>
-                        </li>
 
-                        <li class="nav-item btn normal-2 pt-0 d-none">
+
+                            <li class="nav-item btn normal-2 side-border-visible">
+
+                                <a class="nav-link px-0 position-relative" aria-current="page" href="#">
+
+                                    <img src="~/Images/icon-notification.png" alt="" width="27" height="30">
+                                    <span class="position-absolute translate-middle badge bg-danger">
+                                        2
+                                    </span>
+                                </a>
+                            </li>
+
+                        <li class="nav-item btn normal-2 pt-0">
                             <a class="nav-link px-0 d-inline" aria-current="page" href="#">
                                 <img class="img-fluid"
                                      src="~/Images/user-icon.png" alt="" width="36" height="36">
                             </a>
-                            <div class="dropdown d-inline">
+                            <div class="dropdown d-inline ">
                                 <button type="button" class="btn p-0" data-bs-toggle="dropdown">
                                     <img src="~/Images/menu-down.png" alt="">
                                 </button>
@@ -212,7 +220,7 @@
 
 
                                         <li class="row nav-item d-block w-100 py-1">
-                                            <p class="text mb-0">welcome,<br> <b>Gaurang Patel</b></p>
+                                            <p class="text mb-0">welcome,<br> <b>@Context.Session.GetString("Name")</b></p>
                                         </li>
 
 
@@ -227,8 +235,7 @@
                                         </li>
 
                                         <li class="nav-item d-block w-100 py-1">
-                                            <a class="dropdown-text dismiss" data-bs-toggle="tab"
-                                               href="#customer-fav-pro">Logout</a>
+                                            <a asp-controller="Home" asp-action="Logout" class="dropdown-text dismiss">Logout</a>
                                         </li>
 
                                     </ul>
@@ -238,13 +245,21 @@
 
                         </li>
 
+                        }
+                        else
+                        {
+
+
                         <li class="nav-item btn pas">
-                            <a class="nav-link login px-0" aria-current="page" href="#">Login</a>
+                            <a class="nav-link login px-0" aria-current="page" asp-controller="Home" asp-action="Index" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
                         </li>
 
                         <li class="nav-item btn pas">
                             <a class="nav-link px-0" asp-controller="Home" asp-action="ServiceProvider">Become a Helper</a>
                         </li>
+
+                        }
+
 
                         <li class="nav-item btn dropdown">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -278,4 +293,120 @@
     </div>
 
     <div class="overlay"></div>
-</header> 
+</header>
+
+<!-- login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+                <p class="modal-title">Login to your account</p>
+
+                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+
+                <form class="" method="post" asp-controller="Home" asp-action="Login">
+                    <div class="form-group">
+                        <input asp-for="Email" class="form-control" type="email" placeholder="Email">
+                        <img src="~/Images/login-user.png" width="20" height="21" alt="">
+                        <span asp-validation-for="Email" class="danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input asp-for="Password" class="form-control" type="password" placeholder="Password">
+                        <img src="~/Images/login-lock.png" width="20" height="21" alt="">
+                        <span asp-validation-for="Password" class="danger"></span>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input mt-0" id="terms">
+                        <label for="terms" class="form-check-label ms-2">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <button class="btn" type="submit">Login</button>
+
+                    <div class="row text-center">
+                        <a class="" asp-controller="Home" asp-action="Index" data-bs-toggle="modal" data-bs-target="#forgot-password-Modal">Forgot Password?</a>
+                    </div>
+                    <div class="row justify-content-center">
+                        Don't have an account?
+                        <a class="d-inline w-auto" asp-controller="Home" asp-action="Register"> Create an account</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</div>
+
+<!-- forgot Modal -->
+<div class="modal fade" id="forgot-password-Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+                <p class="modal-title">Forgot password</p>
+
+                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+
+                <form class="" asp-controller="Home" asp-action="ForgotPassowrd" method="post">
+                    <div class="form-group">
+                        <input asp-for="Email" class="form-control" type="Email" placeholder="Email">
+                        <span asp-validation-for="Email" class="danger"></span>
+                    </div>
+
+                    <button class="btn" type="submit">Send</button>
+
+                    <div class="row text-center">
+                        <a class="" href="" data-bs-toggle="modal" data-bs-target="#loginModal">Login Now</a>
+                    </div>
+                </form>
+                <div id="forgot-password-msg-success" class="danger"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</div>
+
+
+<div class="modal fade" id="confirm-password-Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+
+                <form class="row" method="post" asp-controller="Home" asp-action="ResetPassword">
+
+                    <input asp-for="Email" class="form-control" type="hidden" placeholder="Password" value="">
+
+                    <div class="form-group">
+                        <label asp-for="Password" class="form-label mb-1" for="">New Password</label>
+                        <input asp-for="Password" class="form-control" type="password" placeholder="Password">
+                        <span asp-validation-for="Password" class="danger">
+
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="form-label mb-1" for="">Confirm Password</label>
+                        <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="Confirm Password">
+                        <span asp-validation-for="ConfirmPassword" class="danger">
+
+                        </span>
+                    </div>
+
+                    <button class="btn" type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
