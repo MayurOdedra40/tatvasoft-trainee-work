@@ -1,0 +1,67 @@
+﻿@model UserAddress
+
+
+@{ User user = ViewBag.user;
+    City city = ViewBag.city;
+    State state = ViewBag.state;
+    Zipcode zipcode = ViewBag.zipcode;
+
+        }
+<div class="row row-2 mx-0">
+
+    <form class="row px-0" method="post" asp-controller="BookService" asp-action="AddNewAddress" data-ajax="true" data-ajax-update="#service-detials">
+        <input asp-for="UserId" type="hidden" value="@user.UserId" />
+        <input asp-for="State" type="hidden" value="@state.StateName" />
+        <input asp-for="Email" type="hidden" value="@user.Email" />
+        <input asp-for="PostalCode" type="hidden" value="@zipcode.ZipcodeValue"/>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label asp-for="AddressLine1">Street name</label>
+                <input asp-for="AddressLine1" type="text" class="form-control" placeholder="Street name" required>
+                <span asp-validation-for="AddressLine1" class="danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label asp-for="AddressLine2">House number</label>
+                <input asp-for="AddressLine2" type="text" class="form-control" placeholder="House number">
+                <span asp-validation-for="AddressLine2" class="danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>Postal code</label>
+                <input type="text" class="form-control" placeholder="@zipcode.ZipcodeValue" value="@zipcode.ZipcodeValue"
+                       disabled>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+
+                <label asp-for="City">City</label>
+                <select asp-for="City" class="form-select form-control d-inline-block text-regular fs-16"
+                        aria-label="Default select example">
+                    <option value="@city.CityName" selected>@city.CityName</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label for="">Phone number</label>
+            <div class="input-group form-group">
+                <span class="input-group-text" id="basic-addon1">+49</span>
+                <input asp-for="Mobile" type="text" class="form-control" placeholder="Phone number" value="@user.Mobile"
+                       aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <span asp-validation-for="Mobile" class="danger"></span>
+        </div>
+        <div class="col-sm-6">
+        </div>
+
+        <button class="btn" id="save" type="submit">Save</button>
+        <button class="btn" id="cancel" type="reset" onclick="hideAddAddressPartial()">Cancel</button>
+    </form>
+
+</div>
+
+

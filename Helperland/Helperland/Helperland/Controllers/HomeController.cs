@@ -25,34 +25,35 @@ namespace Helperland.Controllers
             _context = context;
         }
 
-        public ViewResult Index()
+        public IActionResult Index()
         {
             return View();
         }
 
-        public ViewResult Faq()
+        public IActionResult Faq()
         {
             return View();
         }
 
-        public ViewResult Price()
+        public IActionResult Price()
         {
             return View();
         } 
 
-        public ViewResult AboutUs()
+        public IActionResult AboutUs()
         {
             return View();
         }
 
-        public ViewResult ContactUs()
+        public IActionResult ContactUs()
         {
             return View();
         }
 
         [HttpPost]
-        public ViewResult ContactUs(ContactU contactU)
+        public IActionResult ContactUs(ContactU contactU)
         {
+
             var mailsent=false;
             contactU.Name = contactU.FirstName + " " + contactU.LastName;
 
@@ -82,54 +83,81 @@ namespace Helperland.Controllers
             contactU.CreatedOn = now;
             this._context.ContactUs.Add(contactU);
             this._context.SaveChanges();
-            }
 
-            return View("Index");
+                TempData["Message"] = "Your Issue is Registered and will be resolved soon";
+                TempData["ModalName"] = "#logout-Modal";
+
+                return RedirectToAction("ContactUs", "Home");
+
+            }
+            TempData["Message"] = "Unable to register your Problem, try again after sometime";
+            TempData["ModalName"] = "ContactU";
+            return View("ContactUs", contactU);
         }
 
-        public ViewResult ServiceProvider()
+        public IActionResult ServiceProvider()
         {
             return View();
         }
 
         [HttpPost]
-        public ViewResult ServiceProvider(User user)
+        public IActionResult ServiceProvider(User user)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("ServiceProvider", user);
+            }
+
             user.UserTypeId = 2;
             DateTime now = DateTime.Now;
             user.CreatedDate = now;
             user.ModifiedDate = now;
             this._context.Users.Add(user);
             this._context.SaveChanges();
-            return View("Index");
+
+            TempData["Message"] = "Successfully Registered";
+            TempData["ModalName"] = "#logout-Modal";
+            TempData["Modal2Name"] = "#loginModal";
+            return RedirectToAction("Index", "Home");
+
         }
 
-        public ViewResult Register()
+        public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public ViewResult Register(User user)
+        public IActionResult Register(User user)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("Register", user);
+            }
+
             user.UserTypeId = 1;
             DateTime now = DateTime.Now;
             user.CreatedDate = now;
             user.ModifiedDate = now;
-            user.ModifiedBy = 0;
             this._context.Users.Add(user);
             this._context.SaveChanges();
-            return View("Index");
+
+            TempData["Message"] = "Successfully Registered";
+            TempData["ModalName"] = "#logout-Modal";
+            TempData["Modal2Name"] = "#loginModal";
+            return RedirectToAction("Index", "Home");
+
         }
 
         [HttpPost]
-        public ViewResult ForgotPassowrd(User user)
+        public IActionResult ForgotPassowrd(User user)
         {
+
             User identity = (User)_context.Users.Where(x => x.Email == user.Email).FirstOrDefault();
 
             if (identity != null)
             {
-                var name = identity.FirstName + " " + identity.LastName;
+                var name = identity.FirstName+" "+identity.LastName;
                 var url = "http://localhost:28935/home/confirmpassword";
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress("Helperland", "helperlandindia@gmail.com"));
@@ -147,26 +175,50 @@ namespace Helperland.Controllers
                     client.Send(message);
                     client.Disconnect(true);
                 }
-                ViewBag.msg = "Use link sent to your Email to reset Password";
-                ViewBag.ModalName = "#forgot-password-Modal";
-                ViewData["ModalName"]= "#forgot-password-Modal";
+
+                TempData["Message"] = "Use link sent to your Email to reset Password";
+                TempData["ModalName"] = "#logout-Modal";
+
+                return RedirectToAction("Index", "Home");
+
             }
             else
             {
-                ViewBag.success = false;
-            }
+                TempData["Message"] = "No Account Found with this Email";
+                TempData["ModalName"] = "#forgot-password-Modal";
 
-            return View("Index");
+                return View("Index", user);
+            }
         }
 
-        public ViewResult ConfirmPassword( string email)
+        public IActionResult ConfirmPassword(string email)
         {
+            if(email!=null)
+            {
             ViewBag.email = email;
-            return View();
+                var identity = _context.Users.Where(x => x.Email == email).FirstOrDefault();
+                if (identity == null)
+                {
+                    TempData["Message"] = "Link has been expired, try again";
+                    TempData["ModalName"] = "#forgot-password-Modal";
+                    return View("Index");
+                }
+                else
+                {
+                    return View();
+                }
+
+            }
+            else
+            {
+                TempData["Message"] = "Link has been expired, try again";
+                TempData["ModalName"] = "#forgot-password-Modal";
+                return View("Index");
+            }
         }
 
         [HttpPost]
-        public ViewResult ResetPassword(User user)
+        public IActionResult ResetPassword(User user)
         {
             User identity = _context.Users.Where(x => x.Email == user.Email).FirstOrDefault();
 
@@ -175,14 +227,26 @@ namespace Helperland.Controllers
                 identity.Password = user.Password;
                 this._context.Update(identity);
                 this._context.SaveChanges();
+                TempData["ModalName"] = "#logout-Modal";
+                TempData["Message"] = "Password has been successfully reset";
+                TempData["Modal2Name"] = "#loginModal";
+                return RedirectToAction("Index", "Home", user);
+            }
+            else
+            {
+                ViewData["ModalName"] = "#forgot-password-Modal";
+                TempData["Message"] = "Unable to update Password, Try again after sometime";
+                return View("ConfirmPassword", user);
             }
 
-            return View("Index");
+
         }
 
+        
         [HttpPost]
         public IActionResult Login(User user)
         {
+
             User identity = _context.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
             
             if(identity!=null)
@@ -191,6 +255,7 @@ namespace Helperland.Controllers
                 ViewBag.userType = identity.UserTypeId;
                 HttpContext.Session.SetString("isLoggedIn", true.ToString());
                 HttpContext.Session.SetString("Name", Name);
+                HttpContext.Session.SetString("UserId", identity.UserId.ToString());
                 if (identity.UserTypeId == 1)
                 {
                     HttpContext.Session.SetString("UserTypeId", identity.UserTypeId.ToString());
@@ -202,15 +267,27 @@ namespace Helperland.Controllers
                     HttpContext.Session.SetString("UserTypeId", identity.UserTypeId.ToString());
                     return RedirectToAction("Index", "ServiceProvider");
                 }
+                else
+                {
+                    return View("Index");
+
+                }
             }
-
-            return View("Index");
-
+            else
+            {
+                TempData["Message"] = "User Not Found, Enter Correct Email and Password";
+                TempData["ModalName"] = "#loginModal";
+                return View("Index", user);
+            }
+               
+            
         }
 
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
+            TempData["Message"] = "You have successfully logged out";
+            TempData["ModalName"] = "#logout-Modal";
             return RedirectToAction("Index", "Home");
         }
     }

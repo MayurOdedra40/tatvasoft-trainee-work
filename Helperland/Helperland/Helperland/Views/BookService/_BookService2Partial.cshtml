@@ -1,0 +1,179 @@
+﻿@using Microsoft.AspNetCore.Http
+@using System
+@model ServiceRequest
+
+@{
+    String date = DateTime.Now.AddDays(1).ToString("dd/MM/yyyy");
+    date = date.Replace('-','/');
+}
+
+<form id="form2" class="contianer px-0 w-100" method="post" data-ajax="true" data-ajax-begin="validateform2" 
+      data-ajax-success="tabTwoSuccess" data-ajax-update="#service-detials" 
+      asp-controller="BookService" asp-action="TakeServiceDetails" novalidate>
+
+    <div class="row row3 mx-0 mb-0 ">
+
+        <div class="col-md-6 ps-0 mb-3 mb-md-0">
+            <p class="mb-1 px-0 text-bold fs-16">When do you need the cleaner?</p>
+
+            <input type="hidden" asp-for="ZipCode" value="@ViewBag.Zipcode" />
+
+            <input type="hidden" asp-for="ServiceHourlyRate" id="HourRate" value="25" />
+
+            <input type="hidden" asp-for="Totalhour" id="ForTotalhour" value="3">
+
+            <input asp-for="StartDate" type="text" value="@date" id="service-date"
+                   class="form-control d-inline-block text-regular fs-16"
+                   onchange="StartDateFunction()" onfocus="(this.type='date')" required>
+
+
+            <select asp-for="StartTime" id="select-service-time"
+                    class="form-select d-inline-block text-regular fs-16"
+                    aria-label="Default select example" onchange="StartTimeFunction()">
+                <option value="08:00" selected>08:00 </option>
+                <option value="08:30">08:30</option>
+                <option value="09:00">09:00</option>
+                <option value="09:30">09:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+                <option value="15:00">15:00</option>
+                <option value="16:30">15:30</option>
+                <option value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+                <option value="17:00">17:00</option>
+                <option value="17:30">17:30</option>
+                <option value="18:00">18:00</option>
+            </select>
+
+
+        </div>
+
+        <div class="col-md-6 ps-0">
+            <p class="mb-1 px-0 text-bold fs-16">
+                How long do you need your cleaner to
+                stay?
+            </p>
+
+            <select asp-for="ServiceHours" id="select-service-hour"
+                    class="form-select d-inline-block text-regular fs-16"
+                    aria-label="Default select example" onchange="HourFunction()">
+                <option value="3.0">3.0 Hrs</option>
+                <option value="3.5">3.5 Hrs</option>
+                <option value="4.0">4.0 Hrs</option>
+                <option value="4.5">4.5 Hrs</option>
+                <option value="5.0">5.0 Hrs</option>
+                <option value="5.5">5.5 Hrs</option>
+                <option value="6.0">6.0 Hrs</option>
+                <option value="6.5">6.5 Hrs</option>
+                <option value="7.0">7.0 Hrs</option>
+                <option value="7.5">7.5 Hrs</option>
+                <option value="8.0">8.0 Hrs</option>
+                <option value="8.5">8.5 Hrs</option>
+                <option value="9.0">9.0 Hrs</option>
+                <option value="9.5">9.5 Hrs</option>
+                <option value="10.0">10.0 Hrs</option>
+                <option value="10.5">10.5 Hrs</option>
+                <option value="11.0">11.0 Hrs</option>
+                <option value="11.5">11.5 Hrs</option>
+                <option value="12.0">12.0 Hrs</option>
+            </select>
+        </div>
+
+        <span asp-validation-for="StartDate" id="forstartdate" class="danger d-block mt-2"></span>
+        <span asp-validation-for="StartTime" id="forstarttime" class="danger d-block mt-2"></span>
+
+    </div>
+
+    <div class="row row4 mx-0 mb-0">
+        <p class="mb-1 px-0 text-bold fs-16">Extra Servie</p>
+
+        <div class="row extra-service px-0 d-flex">
+            <label class="" asp-for="ExtraService1" for="inside-cabinet">
+                <input asp-for="ExtraService1" type="checkbox" class="etc-service" id="inside-cabinet" name="ExtraService1" onchange="Etc1Change()">
+                <span class="img-container">
+                    <span class="img-wrapper">
+                        <img class="regular" src="~/Images/3.png" alt="">
+                        <img class="clicked" src="~/Images/3-green.png" alt="">
+                    </span>
+                </span>
+                <span class="text-regular ">Inside cabinets</span>
+
+            </label>
+
+            <label class="" asp-for="ExtraService2" for="Inside-fridge">
+                <input asp-for="ExtraService2" type="checkbox" class="etc-service" id="Inside-fridge" onchange="Etc2Change()">
+                <span class="img-container">
+                    <span class="img-wrapper">
+                        <img class="regular" src="~/Images/5.png" alt="">
+                        <img class="clicked" src="~/Images/5-green.png" alt="">
+                    </span>
+                </span>
+                <span class="text-regular ">Inside fridge</span>
+
+            </label>
+
+            <label class="" asp-for="ExtraService3" for="Inside-oven">
+                <input asp-for="ExtraService3" type="checkbox" class="etc-service" id="Inside-oven" onchange="Etc3Change()">
+                <span class="img-container">
+                    <span class="img-wrapper">
+                        <img class="regular" src="~/Images/4.png" alt="">
+                        <img class="clicked" src="~/Images/4-green.png" alt="">
+                    </span>
+                </span>
+                <span class="text-regular ">Inside oven</span>
+
+            </label>
+
+            <label class="" asp-for="ExtraService4" for="Laundry-wash">
+                <input asp-for="ExtraService4" type="checkbox" class="etc-service" id="Laundry-wash" onchange="Etc4Change()">
+                <span class="img-container">
+                    <span class="img-wrapper">
+                        <img class="regular" src="~/Images/2.png" alt="">
+                        <img class="clicked" src="~/Images/2-green.png" alt="">
+                    </span>
+                </span>
+                <span class="text-regular ">Laundry wash & dry</span>
+
+            </label>
+
+            <label class="" asp-for="ExtraService5" for="Interior-windows">
+                <input asp-for="ExtraService5" type="checkbox" class="etc-service" id="Interior-windows" onchange="Etc5Change()">
+                <span class="img-container">
+                    <span class="img-wrapper">
+                        <img class="regular" src="~/Images/1.png" alt="">
+                        <img class="clicked" src="~/Images/1-green.png" alt="">
+                    </span>
+                </span>
+                <span class="text-regular ">Interior windows</span>
+
+            </label>
+        </div>
+    </div>
+
+    <div class="row row4 mx-0 mb-0">
+        <p class="mb-1 px-0 text-bold fs-16">Comments</p>
+        <textarea asp-for="Comments" class="form-control" id="exampleFormControlTextarea1"
+                  rows="3"></textarea>
+        <span asp-validation-for="Comments" class="danger"></span>
+
+        <div class="form-check mt-2">
+            <input asp-for="HasPets" class="form-check-input " type="checkbox" id="have-pet">
+            <label class="form-check-label text-regular fs-16 mt-1" for="have-pet">
+                I have pets at home
+            </label>
+        </div>
+
+    </div>
+
+    <div class="row row5 mx-0 mb-0">
+        <button class="btn btn-rounded btns ms-auto fs-20" type="submit">Continue</button>
+    </div>
+</form>

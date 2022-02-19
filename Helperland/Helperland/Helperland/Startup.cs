@@ -26,10 +26,12 @@ namespace Helperland
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddDistributedMemoryCache();
             services.AddSession();
-            var cs = "Data source=PCI234\\SQL2017;initial catalog=Helperland;user id=sa;password=tatva123";
-            services.AddDbContext<HelperlandContext>(options => options.UseSqlServer(cs));
+
+            services.AddDbContext<HelperlandContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("HelperlandContext")));
 
         }
 

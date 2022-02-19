@@ -1,5 +1,6 @@
 ﻿@model User
 @using Microsoft.AspNetCore.Http;
+
 <header class="wrapper" id="price-header">
 
     <!-- Sidebar -->
@@ -7,69 +8,128 @@
 
         <div class="container-fluid px-0 navbar-nav-scroll">
 
-            <div class="row username mx-0 d-none">
-                <p class="px-0 mb-0 text">Welcome, <br> <b>Kavan Patel</b></p>
-            </div>
+            @if (Context.Session.GetString("isLoggedIn") != null)
+            {
+                <div class="row username mx-0">
+                    <p class="px-0 mb-0 text">Welcome, <br> <b>@Context.Session.GetString("Name")</b></p>
+                </div>
 
-            <div class="row mx-0 login-tabs d-none">
+                @if (Context.Session.GetString("UserTypeId") =="2")
+                {
 
-                <ul class="px-0 nav nav-tabs">
+                    <div class="row mx-0 login-tabs">
 
-                    <li class="nav-item">
-                        <a class="text active dismiss" data-bs-toggle="tab" href="#Service-provider-Dashboard">Dashboard</a>
-                    </li>
+                        <ul class="px-0 nav nav-tabs">
 
-                    <li class="nav-item">
-                        <a class="text dismiss" data-bs-toggle="tab" href="#new-service-request">
-                            New Service
-                            Requests
-                        </a>
-                    </li>
+                            <li class="nav-item">
+                                <a class="text active dismiss" data-bs-toggle="tab"
+                                   href="#Service-provider-Dashboard">Dashboard</a>
+                            </li>
 
-                    <li class="nav-item">
-                        <a class="text dismiss" data-bs-toggle="tab" href="#Upcoming-service-request">
-                            Upcoming
-                            Services
-                        </a>
-                    </li>
+                            <li class="nav-item">
+                                <a class="text dismiss" data-bs-toggle="tab" href="#new-service-request">
+                                    New Service
+                                    Requests
+                                </a>
+                            </li>
 
-                    <li class="nav-item">
-                        <a class="text dismiss" data-bs-toggle="tab" href="#Service-Schedule">Service Schedule</a>
-                    </li>
+                            <li class="nav-item">
+                                <a class="text dismiss" data-bs-toggle="tab" href="#Upcoming-service-request">
+                                    Upcoming
+                                    Services
+                                </a>
+                            </li>
 
-                    <li class="nav-item">
-                        <a class="text dismiss" data-bs-toggle="tab" href="#Service-History">Service History</a>
-                    </li>
+                            <li class="nav-item">
+                                <a class="text dismiss" data-bs-toggle="tab" href="#Service-Schedule">Service Schedule</a>
+                            </li>
 
-                    <li class="nav-item">
-                        <a class="text dismiss" data-bs-toggle="tab" href="#My-Ratings">My Ratings</a>
-                    </li>
+                            <li class="nav-item">
+                                <a class="text dismiss" data-bs-toggle="tab" href="#Service-History">Service History</a>
+                            </li>
 
-                    <li class="nav-item">
-                        <a class="text dismiss" data-bs-toggle="tab" href="#Block-Customer">Block Customer</a>
-                    </li>
+                            <li class="nav-item">
+                                <a class="text dismiss" data-bs-toggle="tab" href="#My-Ratings">My Ratings</a>
+                            </li>
 
-                    <li class="nav-item">
-                        <a class="text dismiss" data-bs-toggle="tab" href="#Block-Customer">My Setting</a>
-                    </li>
+                            <li class="nav-item">
+                                <a class="text dismiss" data-bs-toggle="tab" href="#Block-Customer">Block Customer</a>
+                            </li>
 
-                    <li class="nav-item">
-                        <a class="text dismiss" data-bs-toggle="tab" href="#Block-Customer">Logout</a>
-                    </li>
+                            <li class="nav-item">
+                                <a class="text dismiss" data-bs-toggle="tab" href="#Block-Customer">My Setting</a>
+                            </li>
 
-                </ul>
+                            <li class="nav-item">
+                                <a class="text dismiss" asp-controller="Home" asp-action="Logout">Logout</a>
+                            </li>
 
-            </div>
+                        </ul>
+
+                    </div>
+                }
+                else if (Context.Session.GetString("UserTypeId") =="1")
+                {
+
+                    <div class="row mx-0 login-tabs">
+
+                        <ul class="px-0 nav nav-tabs">
+
+                            <li class="nav-item">
+                                <a class="text active dismiss" data-bs-toggle="tab" href="#customer-Dashboard">Dashboard</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="text dismiss" data-bs-toggle="tab" href="#customer-Service-History">
+                                    Service
+                                    History
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="text dismiss" data-bs-toggle="tab" href="#customer-Service-Schedule">
+                                    Service
+                                    Schedule
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="text dismiss" data-bs-toggle="tab" href="#customer-fav-pro">Favourite Pros</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="text dismiss" data-bs-toggle="tab" href="#customer-My-setting">My Setting</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="text dismiss" asp-controller="Home" asp-action="Logout">Logout</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                }
+                else
+                {
+
+                }
+
+
+
+
+            }
 
             <div class="row main-menu mx-0">
 
                 <ul class="navbar-nav pe-0">
-
-                    <li class="nav-item">
-                        <a class="nav-link text dismiss" aria-current="page" href="#">
-                            Book Now
-                        </a>
-                    </li>
+                    @if (Context.Session.GetString("isLoggedIn") == null || Context.Session.GetString("UserTypeId") == "1")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text dismiss" aria-current="page" asp-controller="BookService" asp-action="Index">
+                                Book Now
+                            </a>
+                        </li>
+                    }
 
                     <li class="nav-item">
                         <a class="nav-link text dismiss" aria-current="page" asp-controller="Home" asp-action="Price">
@@ -90,21 +150,24 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link text dismiss" aria-current="page" asp-controller="Home" asp-action="AboutUs">
+                        <a class="nav-link text dismiss" aria-current="page" asp-controller="Home" asp-action="ContactUs">
                             Contact
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link text dismiss" aria-current="page" href="homepage.html">
-                            Login
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text dismiss" aria-current="page" asp-controller="Home" asp-action="ServiceProvider">
-                            Become a Helper
-                        </a>
-                    </li>
+                    @if (Context.Session.GetString("isLoggedIn") == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text dismiss" aria-current="page" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text dismiss" aria-current="page" asp-controller="Home" asp-action="ServiceProvider">
+                                Become a Helper
+                            </a>
+                        </li>
+                    }
                 </ul>
             </div>
 
@@ -164,7 +227,7 @@
 
                         <li class="nav-item btn book-now">
 
-                            <a class="nav-link  px-0" aria-current="page" href="#">
+                            <a class="nav-link  px-0" aria-current="page" asp-controller="BookService" asp-action="Index">
                                 Book-now
                             </a>
                         </li>
@@ -266,116 +329,5 @@
 
 </header>
 
-<!-- login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body container">
-                <p class="modal-title">Login to your account</p>
 
-                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
-
-                <form class="" method="post" asp-controller="Home" asp-action="Login">
-                    <div class="form-group">
-                        <input asp-for="Email" class="form-control" type="email" placeholder="Email">
-                        <img src="~/Images/login-user.png" width="20" height="21" alt="">
-                        <span asp-validation-for="Email" class="danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <input asp-for="Password" class="form-control" type="password" placeholder="Password">
-                        <img src="~/Images/login-lock.png" width="20" height="21" alt="">
-                        <span asp-validation-for="Password" class="danger"></span>
-                    </div>
-
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input mt-0" id="terms">
-                        <label for="terms" class="form-check-label ms-2">
-                            Remember me
-                        </label>
-                    </div>
-
-                    <button class="btn" type="submit">Login</button>
-
-                    <div class="row text-center">
-                        <a class="" asp-controller="Home" asp-action="Index" data-bs-toggle="modal" data-bs-target="#forgot-password-Modal">Forgot Password?</a>
-                    </div>
-                    <div class="row justify-content-center">
-                        Don't have an account?
-                        <a class="d-inline w-auto" asp-controller="Home" asp-action="Register"> Create an account</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-</div>
-
-<!-- forgot Modal -->
-<div class="modal fade" id="forgot-password-Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body container">
-                <p class="modal-title">Forgot password</p>
-
-                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
-
-                <form class="" asp-controller="Home" asp-action="ForgotPassowrd" method="post">
-                    <div class="form-group">
-                        <input asp-for="Email" class="form-control" type="Email" placeholder="Email">
-                        <span asp-validation-for="Email" class="danger"></span>
-                    </div>
-
-                    <button class="btn" type="submit">Send</button>
-
-                    <div class="row text-center">
-                        <a class="" href="" data-bs-toggle="modal" data-bs-target="#loginModal">Login Now</a>
-                    </div>
-                </form>
-                <div id="forgot-password-msg-success" class="danger"></div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-</div>
-
-
-<div class="modal fade" id="confirm-password-Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body container">
-
-                <form class="row" method="post" asp-controller="Home" asp-action="ResetPassword">
-
-                    <input asp-for="Email" class="form-control" type="hidden" placeholder="Password" value="">
-
-                    <div class="form-group">
-                        <label asp-for="Password" class="form-label mb-1" for="">New Password</label>
-                        <input asp-for="Password" class="form-control" type="password" placeholder="Password">
-                        <span asp-validation-for="Password" class="danger">
-
-                        </span>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="ConfirmPassword" class="form-label mb-1" for="">Confirm Password</label>
-                        <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="Confirm Password">
-                        <span asp-validation-for="ConfirmPassword" class="danger">
-
-                        </span>
-                    </div>
-
-                    <button class="btn" type="submit">Save</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<partial name="_ModalPartial"/>

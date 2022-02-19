@@ -13,19 +13,31 @@ namespace Helperland.Models
     {
         [Key]
         public int Id { get; set; }
+
         public int? ServiceRequestId { get; set; }
+
+        [NotMapped]
+        [Required(ErrorMessage ="Please select address")]
+        public int UserAddressId { get; set; }
+
         [StringLength(200)]
         public string AddressLine1 { get; set; }
+
         [StringLength(200)]
         public string AddressLine2 { get; set; }
+
         [StringLength(50)]
         public string City { get; set; }
+
         [StringLength(50)]
         public string State { get; set; }
+
         [StringLength(20)]
         public string PostalCode { get; set; }
+
         [StringLength(20)]
         public string Mobile { get; set; }
+
         [StringLength(100)]
         public string Email { get; set; }
 

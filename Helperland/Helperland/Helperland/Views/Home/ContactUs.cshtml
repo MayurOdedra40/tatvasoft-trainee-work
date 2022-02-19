@@ -75,10 +75,23 @@
 
 <section class="container-fluid px-0" id="contact-section3">
     <form class="container contact-form" method="post" asp-controller="Home" asp-action="ContactUs">
+
         <div class="row text-center row1">
             <p class="title m-0 p-0">Get in touch with us</p>
         </div>
+        @if (TempData.ContainsKey("Message"))
+        {
+            @if (TempData["ModalName"].ToString() == "ContactU")
+            {
+                <div class="row">
+                    <span class="danger d-block">
+                        @TempData["Message"]
+                    </span>
+                </div>
 
+            }
+
+        }
         <div class="row row2 mx-auto">
             <div class="col-sm-6 ps-sm-0 mb-3 mb-sm-0">
                 <input asp-for="FirstName" type="text" class="form-control fm-input fm-text" id="" placeholder="First Name" required>

@@ -79,7 +79,8 @@ namespace Helperland.Models
         [StringLength(200)]
         public string PaymentGatewayUserRef { get; set; }
 
-        [StringLength(20)]
+        [RegularExpression("^[1-9][0-9]{5}$", ErrorMessage ="Enter valid Zipcode`")]
+        [StringLength(6, MinimumLength =6, ErrorMessage ="Must be 6 Character Long")]
         public string ZipCode { get; set; }
 
         public bool WorksWithPets { get; set; }
