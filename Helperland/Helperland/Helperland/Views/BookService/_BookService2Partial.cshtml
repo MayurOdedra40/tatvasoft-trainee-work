@@ -4,11 +4,12 @@
 
 @{
     String date = DateTime.Now.AddDays(1).ToString("dd/MM/yyyy");
-    date = date.Replace('-','/');
+    date = date.Replace('-', '/');
 }
+@*data-ajax-update="#service-detials"*@
 
-<form id="form2" class="contianer px-0 w-100" method="post" data-ajax="true" data-ajax-begin="validateform2" 
-      data-ajax-success="tabTwoSuccess" data-ajax-update="#service-detials" 
+<form id="form2" class="contianer px-0 w-100" method="post" data-ajax="true" data-ajax-begin="validateform2"
+      data-ajax-success="tabTwoSuccess"
       asp-controller="BookService" asp-action="TakeServiceDetails" novalidate>
 
     <div class="row row3 mx-0 mb-0 ">
@@ -177,3 +178,5 @@
         <button class="btn btn-rounded btns ms-auto fs-20" type="submit">Continue</button>
     </div>
 </form>
+
+@*<partial name="_ValidationScriptsPartial" />*@

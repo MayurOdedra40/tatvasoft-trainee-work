@@ -229,7 +229,7 @@ namespace Helperland.Controllers
                 this._context.SaveChanges();
                 TempData["ModalName"] = "#logout-Modal";
                 TempData["Message"] = "Password has been successfully reset";
-                TempData["Modal2Name"] = "#loginModal";
+                //TempData["Modal2Name"] = "#loginModal";
                 return RedirectToAction("Index", "Home", user);
             }
             else

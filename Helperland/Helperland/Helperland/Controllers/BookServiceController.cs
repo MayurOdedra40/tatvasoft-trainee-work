@@ -127,6 +127,9 @@ namespace Helperland.Controllers
 
             string etc = new string(extra);
             sr.Extra = Convert.ToInt32(etc);
+
+
+
             decimal totalHour = (decimal)(sr.ServiceHours + sr.ExtraHours);
             sr.SubTotal = (decimal)(totalHour * sr.ServiceHourlyRate);
             sr.TotalCost = sr.SubTotal;
@@ -136,7 +139,7 @@ namespace Helperland.Controllers
             sr.Distance = 0;
 
 
-            List<UserAddress> userAddress = _context.UserAddresses.Where(x => x.UserId.Equals(sr.UserId)).ToList();
+            List<UserAddress> userAddress = _context.UserAddresses.Where(x => x.UserId.Equals(sr.UserId) && x.PostalCode.Equals(HttpContext.Session.GetString("Zipcode"))).ToList();
             HttpContext.Session.SetString("Zipcode", sr.ZipCode);
             ViewBag.addresses = userAddress;
 
@@ -152,7 +155,7 @@ namespace Helperland.Controllers
 
              this._context.UserAddresses.Add(userAddress);
              this._context.SaveChanges();
-            List<UserAddress> addressess = _context.UserAddresses.Where(x => x.UserId.Equals(userAddress.UserId)).ToList();
+            List<UserAddress> addressess = _context.UserAddresses.Where(x => x.UserId.Equals(userAddress.UserId) && x.PostalCode.Equals(HttpContext.Session.GetString("Zipcode"))).ToList();
 
             ViewBag.addresses = addressess;
             return PartialView("_BookService3Partial");
@@ -184,6 +187,7 @@ namespace Helperland.Controllers
             ServiceRequest newService = JsonConvert.DeserializeObject<ServiceRequest>(value);
             newService.Terms = serviceRequest.Terms;
             newService.PaymentDue = false;
+            newService.Status = 1;
             newService.CreatedDate = DateTime.Now;
             newService.ModifiedDate = DateTime.Now;
             newService.PaymentDone = true;

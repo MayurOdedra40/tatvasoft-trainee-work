@@ -1,5 +1,5 @@
 ﻿@model ServiceRequest
-<form class="contianer px-0 w-100" asp-controller="BookService"  asp-action="CompleteService">
+<form class="contianer px-0 w-100" asp-controller="BookService"  asp-action="CompleteService" novalidate>
     <div class="row row1 mx-0 mb-2">
         <p class="mb-1 px-0 text-bold fs-16">
             Pay securely with Helperland payment
@@ -17,7 +17,7 @@
 
     <div class="row row3 mx-0">
         <div class="form-check">
-            <input asp-for="Terms" type="checkbox" class="form-check-input me-1">
+            <input asp-for="Terms" type="checkbox" class="form-check-input me-1" required>
             <label asp-for="Terms" class="ps-2">
                 I accepted <a href=""> terms and conditions</a>, the <a href=""> cancellation policy</a> and
                 the <a href=""> privacy policy</a>. I confirm that Helperland starts to execute the

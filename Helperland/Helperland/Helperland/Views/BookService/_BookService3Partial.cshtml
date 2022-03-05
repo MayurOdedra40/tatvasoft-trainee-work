@@ -10,7 +10,7 @@
 
 }
 <div id="holdAddAddressForm" class="contianer mt-3 px-0 w-100">
-
+    
 </div>
 <form class="contianer px-0 w-100" method="post" asp-controller="BookService" asp-action="TakeAddressDetials" data-ajax="true" data-ajax-success="tabThreeSuccess" data-ajax-update="#service-payment">
 
@@ -61,7 +61,7 @@
 
     <div id="AddAddressButton" class="row row2 mx-0">
 
-        <button class="btn btn-rounded btna text-bold fs-16" type="submit" onclick="showAddAddressPartial()">
+        <button class="btn btn-rounded btna text-bold fs-16" id="addAddressForm" onclick="showAddAddressPartial()">
             + Add New Address
         </button>
 
@@ -79,7 +79,7 @@
     </div>
 
     <div class="row row4 mx-0 mb-0">
-        <button class="btn btn-rounded btns ms-auto fs-20">Continue</button>
+        <button class="btn btn-rounded btns ms-auto fs-20" type="submit">Continue</button>
     </div>
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 #nullable disable
@@ -52,6 +53,20 @@ namespace Helperland.Models
         public string ConfirmPassword { get; set; }
 
         [NotMapped]
+        [Required(ErrorMessage = "New Password is Required")]
+        [MinLength(6, ErrorMessage = "Password length must be more than 6 characters")]
+        [MaxLength(20, ErrorMessage = "Password length must be less than 20 characters")]
+        [RegularExpression("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", ErrorMessage = "You must have At least one Upper case, one Lower case, one Digit and one Special Character")]
+        [StringLength(20)]
+        public string NewPassword { get; set; }
+
+        [NotMapped]
+        [Required(ErrorMessage = "Confirm Password is Required")]
+        [Compare("NewPassword", ErrorMessage = "Confirm Password must be same as New Password")]
+        [StringLength(20)]
+        public string ConfirmNewPassword { get; set; }
+
+        [NotMapped]
         [Required(ErrorMessage ="Required")]
         public bool Terms { get; set; }
 
@@ -68,7 +83,20 @@ namespace Helperland.Models
 
         public int? Gender { get; set; }
 
+        [NotMapped]
+        [Range(00, 31, ErrorMessage ="Day not valid")]
+        public int Day { get; set; }
+
+        [NotMapped]
+        [Range(00, 12, ErrorMessage = "Month not valid")]
+        public int Month { get; set; }
+
+        [NotMapped]
+        [Range(0, 2012, ErrorMessage = "Year not valid")]
+        public int Year { get; set; }
+
         [Column(TypeName = "datetime")]
+        [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
 
         [StringLength(200)]

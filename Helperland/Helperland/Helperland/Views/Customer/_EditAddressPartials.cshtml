@@ -1,0 +1,163 @@
+﻿@model UserAddress
+<div class="modal fade" id="editAddress" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+                @if (ViewBag.New == true)
+                {
+                    <p class="modal-title pb-0">Add Address</p>
+                }
+                else
+                {
+                    <p class="modal-title pb-0">Edit Address</p>
+                }
+                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+
+                @if (ViewBag.New == true)
+                {
+                    <form class="row" data-ajax="true" data-ajax-success="newAddressSuccess" asp-controller="Customer" asp-action="AddNewAddress" method="post">
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label asp-for="AddressLine1"><b>Street Name</b></label>
+                                <input asp-for="AddressLine1" class="form-control" type="text" placeholder="Street Name">
+                                <span asp-validation-for="AddressLine1" class="danger">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label asp-for="AddressLine2"><b>House Number</b></label>
+                                <input asp-for="AddressLine2" class="form-control" type="text" placeholder="House Number">
+                                <span asp-validation-for="AddressLine2" class="danger">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label asp-for="PostalCode"><b>Postal Code</b></label>
+                                <input asp-for="PostalCode" class="form-control" type="text" placeholder="53113" onchange="getCity(this)">
+                                <span asp-validation-for="PostalCode" class="danger">
+                                </span>
+                                <span id="forWrongZipcode" class="danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label class="control-label">City</label>
+                                <select asp-for="City" class="form-select" name="City" id="CitySelect">
+                                    @if (ViewBag.New == true)
+                                    {
+
+                                    }
+                                    else
+                                    {
+
+                                        <option value="" selected>@Model.City</option>
+                                    }
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label class="control-label">Phone number</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">+49</span>
+                                    <input asp-for="Mobile" class="form-control" type="text" placeholder="Phone number">
+                                </div>
+                                <span asp-validation-for="Mobile" class="danger"></span>
+                            </div>
+
+                        </div>
+                        <button class="btn btn-primary mb-0">Add</button>
+                    </form>
+                }
+                else
+                {
+                    <form class="row" data-ajax="true" data-ajax-success="newAddressSuccessTwo" asp-controller="Customer" asp-action="UpdateAddress" method="post">
+
+                        <input  asp-for="AddressId" type="hidden"  value="@Model.AddressId"/>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label asp-for="AddressLine1"><b>Street Name</b></label>
+                                <input asp-for="AddressLine1" class="form-control" type="text" placeholder="Street Name">
+                                <span asp-validation-for="AddressLine1" class="danger">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label asp-for="AddressLine2"><b>House Number</b></label>
+                                <input asp-for="AddressLine2" class="form-control" type="text" placeholder="House Number">
+                                <span asp-validation-for="AddressLine2" class="danger">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label asp-for="PostalCode"><b>Postal Code</b></label>
+                                <input asp-for="PostalCode" class="form-control" type="text" placeholder="53113" onchange="getCity(this)">
+                                <span asp-validation-for="PostalCode" class="danger">
+                                </span>
+                                <span id="forWrongZipcode" class="danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label class="control-label">City</label>
+                                <select asp-for="City" class="form-select" name="City" id="CitySelect">
+                                        <option value="" selected>@Model.City</option>
+                                    
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label class="control-label">Phone number</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">+49</span>
+                                    <input asp-for="Mobile" class="form-control" type="text" placeholder="Phone number">
+                                </div>
+                                <span asp-validation-for="Mobile" class="danger"></span>
+                            </div>
+
+                        </div>
+                            <button class="btn btn-primary mb-0">Edit</button>
+                    </form>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="deleteAddress" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+                <!-- <p class="modal-title pb-0">Edit Address</p> -->
+                <p class="modal-title pb-0">Delete Address</p>
+
+                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+                <form class="row" data-ajax="true" data-ajax-success="DeleteAddressSuccess" asp-controller="Customer" asp-action="DeleteAddress">
+                    <div class="form-group">
+                        <span>Are you sure you want to delete this address?</span>
+                        @if (ViewBag.New != true)
+                        {
+                            <input asp-for="AddressId" type="hidden" value="@Model.AddressId">
+                        }
+                    </div>
+                    <button class="btn btn-primary mb-0 w-auto h-auto">Delete</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

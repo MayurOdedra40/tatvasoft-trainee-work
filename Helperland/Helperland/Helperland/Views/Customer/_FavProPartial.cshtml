@@ -1,0 +1,94 @@
+﻿@{ 
+    var ids = ViewBag.counts;
+    var serviceProviders = ViewBag.serviceProviders;
+    int i = 0;
+    var hasEntry = ViewBag.hasEntry;
+    var favs = ViewBag.favs;
+}
+
+<div class="">
+
+    <div class="row mx-0 justify-content-between tab-heading">
+        <div class="col-auto ps-0">
+            <p class="title">Favourite Pros</p>
+        </div>
+
+    </div>
+
+    <div class="row mx-0">
+
+        @foreach (User sp in serviceProviders)
+        {
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="row customer-pro-card mx-0">
+                    <div class="d-block customer-pro-img-body px-0 mx-auto text-center">
+                        <img class="customer-pro-img mx-auto" src="~/Images/cap.png" alt=""
+                             width="45" height="30">
+                    </div>
+                    <div class="row row1 text-center mx-0">
+                        <div class="col px-0">
+                            <div class="row mx-0 text-center">
+                                <p class="m-0">@sp.FirstName  @sp.LastName</p>
+                            </div>
+                            <div class="row mx-0 justify-content-center">
+                                <div class="col-auto px-2">
+                                    <img class="d-inline" src="~/Images/star1.png" alt=""
+                                         width="17" height="17">
+                                    <img class="d-inline" src="~/Images/star1.png" alt=""
+                                         width="17" height="17">
+                                    <img class="d-inline" src="~/Images/star1.png" alt=""
+                                         width="17" height="17">
+                                    <img class="d-inline" src="~/Images/star1.png" alt=""
+                                         width="17" height="17">
+                                    <img class="d-inline" src="~/Images/star2.png" alt=""
+                                         width="17" height="17">
+                                </div>
+                                <div class="col-auto px-0 pt-1">
+                                    <p class="text mb-0">3.6</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <p class="text m-0 texts-small">@ids[i] Cleanings</p>
+                        </div>
+                    </div>
+                    <div class="row row2 mx-0 mt-3 justify-content-center">
+
+                        @if (hasEntry[i] != false)
+                        {
+                            if (favs[i].IsFavorite == true)
+                            {
+                                <button class=" d-flex mx-1 btn w-auto alternate" data-id="@sp.UserId" onclick="unfav(this)">Unfavourite</button>
+                                <button class=" d-flex mx-1 btn w-auto" disabled>Block</button>
+                            }
+                            else if (favs[i].IsBlocked == true)
+                            {
+                                <button class=" d-flex mx-1 btn w-auto alternate" disabled>favourite</button>
+                                <button class=" d-flex mx-1 btn w-auto" data-id="@sp.UserId" onclick="unblock(this)">Unblock</button>
+                            }
+                            else
+                            {
+                                <button class=" d-flex mx-1 btn w-auto alternate" data-id="@sp.UserId" onclick="fav(this)">Favourite</button>
+                                <button class=" d-flex mx-1 btn w-auto" data-id="@sp.UserId" onclick="block(this)">Block</button>
+                            }
+                            
+                        }
+                        else
+                        {
+                            <button class=" d-flex mx-1 btn w-auto alternate" data-id="@sp.UserId" onclick="fav(this)">Favourite</button>
+                            <button class=" d-flex mx-1 btn w-auto" data-id="@sp.UserId" onclick="block(this)">Block</button>
+                        }
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            i = i + 1;
+        }
+          
+
+    </div>
+
+</div>

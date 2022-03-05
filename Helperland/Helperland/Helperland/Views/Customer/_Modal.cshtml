@@ -1,0 +1,188 @@
+﻿@model ServiceRequest
+@{
+
+    ServiceRequest service = null;
+    ServiceRequestAddress address = null;
+    string date = null;
+    string time = null;
+    double totalHour = 0;
+    string endTime = null;
+    string extras = null;
+
+    @if (ViewBag.serviceDetails != null)
+    {
+        service = ViewBag.serviceDetails;
+        date = ViewBag.date;
+        time = ViewBag.time;
+        totalHour = ViewBag.totalhour;
+        endTime = ViewBag.endtime;
+        extras = ViewBag.extras;
+        address = ViewBag.serviceAddress;
+    }
+
+}
+
+<!-- service Details Modal -->
+<div class="modal fade" id="serviceDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+                <p class="modal-title pb-0">Service Details</p>
+
+                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+                @if (date != null)
+                {
+                    <p class="datetime mb-0">@date @time -@endTime</p>
+                    <span class="title-text"> <b>Duration:</b> @totalHour Hrs</span>
+                }
+
+                <hr>
+
+                <span class="title-text"> <b>Extras:</b>@extras</span>
+                <span class="title-text"> <b>Service Id:</b> @service.ServiceRequestId</span>
+                <div class="content">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="title-text"> <b>Net Amount:</b></span>
+                                </td>
+                                <td class="title-text text-right">
+                                    <span class="price">@service.TotalCost €</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr>
+                <span class="title-text"><b>Service Address: </b> <span> @address.AddressLine1 @address.AddressLine2</span>, @address.PostalCode  @address.City </span>
+                <span class="title-text"><b>Billing Address: </b> Same as cleaning Address  </span>
+                <span class="title-text"><b>Phone: </b>  +49 @address.Mobile</span>
+                <span class="title-text"><b>Email: </b>  @address.Email</span>
+
+                <hr>
+                <span class="title-text"><b>Comments</b>@service.Comments </span>
+                @if (service.HasPets)
+                {
+                    <span class="title-text"> <img src="~/Images/included.png" alt="" width="25" height="25"> I have pets at home</span>
+
+                }
+                else
+                {
+                    <span class="title-text"> <img src="~/Images/not-included.png" alt="" width="25" height="25"> I don't have pets at home</span>
+
+                }
+                <hr>
+
+                <div class="action-buttons">
+                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rescheduleService">
+                        <img src="~/Images/reschedule-icon-small.png" alt="" width="21" height="21">
+                        <span>
+                            Reschedule
+                        </span>
+                    </a>
+
+                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelService">
+                        <img src="~/Images/close-icon-small.png" alt="" width="21" height="21">
+                        <span>Cancel</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- reschedule Service Modal -->
+<div class="modal fade" id="rescheduleService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+                <p class="modal-title pb-0">Reschedule Service Request</p>
+
+                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+
+                <span class="title-text">Select New Date & Time</span>
+
+                <form id="rescheduleForm" class="row mx-0" data-ajax="true" data-ajax-begin="validateform2"
+                      data-ajax-success="rescheduleDone"
+                      asp-controller="Customer" asp-action="Reschedule" novalidate>
+                    
+                    <span asp-validation-for="StartDate" id="forstartdate" class="danger d-block mb-2"></span>
+                    
+                    <span asp-validation-for="StartTime" id="forstarttime" class="danger d-block mb-2"></span>
+
+                    <input type="hidden" asp-for="Totalhour" id="ForTotalhour" value="@totalHour">
+
+                    <input type="hidden" asp-for="ServiceRequestId" value="@service.ServiceRequestId">
+
+                    <div class="col-sm-6 mb-3 px-1">
+                        <input asp-for="StartDate" type="text" id="service-date"
+                               class="form-control d-inline-block text-regular fs-16 pe-0" value="@date"
+                               onfocus="(this.type='date')">
+                    </div>
+
+                    <div class="col-sm-6 mb-3 px-1">
+                        <select asp-for="StartTime" id="select-service-time"
+                                class="form-select d-inline-block text-regular fs-16"
+                                aria-label="Default select example">
+                            <option value="08:00">08:00</option>
+                            <option value="08:30">08:30</option>
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                        </select>
+                    </div>
+
+                    <div class="col px-1">
+                        <button class="btn btn-primary mb-0" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cancelService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+                <p class="modal-title pb-0">Cancel Service Request</p>
+
+                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+
+                <span class="title-text">Why you want to cancel the service request?</span>
+                <form method="post" data-ajax="true" data-ajax-success="rescheduleDone" id="cancelForm" class="row mx-0" asp-controller="Customer" asp-action="CancelRequest">
+                    <input type="hidden" asp-for="ServiceRequestId" value="@service.ServiceRequestId">
+                    <div class="col-12 px-1">
+                        @*<textarea asp-for="Comments" id="cancelComment" class="form-control w-100" name="Comments" rows="3"></textarea>*@
+                        <textarea asp-for="Comments" class="form-control w-100" id="cancelComment"
+                                  rows="3"></textarea>
+                        <span asp-validation-for="Comments" class="danger"></span>
+                        
+                    </div>
+                    <div class="col px-1">
+                        <button class="btn btn-primary mb-0" type="submit">Cancel Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

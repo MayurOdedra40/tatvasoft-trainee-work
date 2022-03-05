@@ -1,8 +1,338 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout2.cshtml";
+
 }
 
-<h1 class="text">Cudtomer Login Page</h1>
+<!-- section 1 -->
 
+<section class="container-fluid px-0" id="customer-login-section1">
+    <div class="row row1 text-center mx-0">
+        <p class="title mb-0">
+            Welcome,
+            <b>
+                @Context.Session.GetString("Name")
+            </b>
+        </p>
+    </div>
+
+</section>
+
+<!-- section 1 -->
+<!-- section 2 -->
+
+<section class="container-fluid px-0" id="customer-login-section2">
+
+    <div class="container-fluid">
+
+        <div class="row mx-0">
+
+            <div class="col-auto submenu-col px-0">
+
+                <ul class="container sub-menu px-0 nav nav-tabs">
+
+                    <li class="row mx-0 nav-item">
+                        <a class="text-start active" data-bs-toggle="tab" href="javascript:;" id="loadDashboard">Dashboard</a>
+                    </li>
+
+                    <li class="row mx-0">
+
+                        <a class="text-start" data-bs-toggle="tab" id="loadServiceHistory" href="javascript:;">
+                            Service
+                            History
+                        </a>
+
+                    </li>
+
+                    <li class="row mx-0">
+                        <a class="text-start" data-bs-toggle="tab" href="javascript:;" id="loadServiceSchedule">
+                            Service
+                            Schedule
+                        </a>
+                    </li>
+
+
+                    <li class="row mx-0">
+                        <a class="text-start" data-bs-toggle="tab" href="javascript:;" id="loadFavPro">Favourite Pros</a>
+                    </li>
+
+                    @*<li class="row mx-0">
+                            <a class="text-start" data-bs-toggle="tab"  href="javascript:;" id="loadMySetting">My Setting</a>
+                        </li>*@
+
+
+                </ul>
+
+            </div>
+
+            <div class="col">
+
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="customer-Dashboard">
+
+
+                    </div>
+
+                    <div class="tab-pane fade" id="customer-Service-History">
+
+                    </div>
+
+
+                    <div class="tab-pane fade" id="customer-Service-Schedule">
+
+                    </div>
+
+                    <div class="tab-pane fade" id="customer-fav-pro">
+
+                    </div>
+
+                    <div class="tab-pane fade" id="customer-My-setting">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<section id="modalHolder">
+</section>
+
+<!-- section 2 -->
+@section Script{
+
+    @if (TempData.ContainsKey("Mysetting"))
+    {
+        int what = Convert.ToInt32(TempData["Mysetting"]);
+        if (what == 5)
+        {
+            <script>
+            
+                $(document).ready(function () {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/Customer/GetMySetting",
+                        success: function (response) {
+
+                            $('#customer-My-setting').html(response);
+                            $('.tab-content div').removeClass("show");
+                            $('.tab-content div').removeClass("active");
+                            $('#customer-My-setting').addClass("show");
+                            $('#customer-My-setting').addClass("active");
+
+                            $.ajax({
+                                type: "GET",
+                                url: "/Customer/GetMyDetails",
+                                success: function (response) {
+
+                                    $('#content-mydetails').html(response);
+                                    $('#content-mydetails form').data('validator', null);
+                                    $.validator.unobtrusive.parse('#content-mydetails form');
+
+                                }
+                            });
+                        }
+                    });
+                });
+            </script>
+        }
+        else if (what == 2)
+        {
+            <script>
+               
+                $(document).ready(function () {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/Customer/GetCustomerServiceHistory",
+                        success: function (response) {
+                            $('#customer-Service-History').html(response);
+                            $('.tab-content div').removeClass("show");
+                            $('.tab-content div').removeClass("active");
+                            $('#customer-Service-History').addClass("show");
+                            $('#customer-Service-History').addClass("active");
+                        }
+                    });
+                });
+            </script>
+        }
+        else if (what == 3)
+        {
+            <script>
+                $(document).ready(function () {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/Customer/GetServiceSchedule",
+                        success: function (response) {
+                            $('#customer-Service-Schedule').html(response);
+                            $('.tab-content div').removeClass("show");
+                            $('.tab-content div').removeClass("active");
+                            $('#customer-Service-Schedule').addClass("show");
+                            $('#customer-Service-Schedule').addClass("active");
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                });
+            </script>
+        }
+        else if (what == 4)
+        {
+            <script>
+           
+                $(document).ready(function () {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/Customer/GetFavPro",
+                        success: function (response) {
+                            $('#customer-fav-pro').html(response);
+                            $('.tab-content div').removeClass("show");
+                            $('.tab-content div').removeClass("active");
+                            $('#customer-fav-pro').addClass("show");
+                            $('#customer-fav-pro').addClass("active");
+                        }
+                    });
+                });
+            </script>
+        }
+
+    }
+    else
+    {
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/Customer/GetDashboard",
+                    success: function (response) {
+                        $('#customer-Dashboard').html(response);
+                        $('.tab-content div').removeClass("show");
+                        $('.tab-content div').removeClass("active");
+                        $('#customer-Dashboard').addClass("show");
+                        $('#customer-Dashboard').addClass("active");
+                    }
+                });
+            });
+        </script>
+    }
+
+    <script>
+
+
+        $("#loadDashboard").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Customer/GetDashboard",
+                success: function (response) {
+                    $('#customer-Dashboard').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#customer-Dashboard').addClass("show");
+                    $('#customer-Dashboard').addClass("active");
+                }
+            });
+        });
+
+        $("#loadServiceHistory").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Customer/GetCustomerServiceHistory",
+                success: function (response) {
+                    $('#customer-Service-History').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#customer-Service-History').addClass("show");
+                    $('#customer-Service-History').addClass("active");
+                }
+            });
+        });
+
+        $("#loadServiceSchedule").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Customer/GetServiceSchedule",
+                success: function (response) {
+                    $('#customer-Service-Schedule').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#customer-Service-Schedule').addClass("show");
+                    $('#customer-Service-Schedule').addClass("active");
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+
+        $("#loadFavPro").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Customer/GetFavPro",
+                success: function (response) {
+                    $('#customer-fav-pro').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#customer-fav-pro').addClass("show");
+                    $('#customer-fav-pro').addClass("active");
+                }
+            });
+        });
+
+        $('#customer-My-setting').on('click', '#MyDetails', function () {
+
+            $.ajax({
+                type: "GET",
+                url: "/Customer/GetMyDetails",
+                success: function (response) {
+                    $('#content-mydetails').html(response);
+                    $('#content-mydetails form').data('validator', null);
+                    $.validator.unobtrusive.parse('#content-mydetails form');
+                }
+            });
+        });
+
+        $('#customer-My-setting').on('click', '#MyAddress', function () {
+
+            $.ajax({
+                type: "GET",
+                url: "/Customer/GetMyAddress",
+                success: function (response) {
+                    $('#content-mydetails').html(response);
+                    $('#content-mydetails form').data('validator', null);
+                    $.validator.unobtrusive.parse('#content-mydetails form');
+                }
+            });
+        });
+
+
+        $('#customer-My-setting').on('click', '#Changepassword', function () {
+            $.ajax({
+                type: "GET",
+                url: "/Customer/GetChangePassword",
+                success: function (response) {
+                    $('#content-mydetails').html(response);
+                    $('#content-mydetails form').data('validator', null);
+                    $.validator.unobtrusive.parse('#content-mydetails form');
+                }
+            });
+        });
+
+       </script>
+
+}

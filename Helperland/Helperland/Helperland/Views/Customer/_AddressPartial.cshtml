@@ -1,0 +1,47 @@
+﻿
+@model IEnumerable<UserAddress>
+
+<div class="table-responsive row mx-0 mb-3">
+    <div id="SuccessAddressDetails" class="alert alert-success d-none" role="alert">
+
+    </div>
+    <table class="">
+        <thead>
+            <tr>
+
+                <th>Addresses</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (UserAddress address in Model)
+            {
+                <tr>
+                    <td class="contact">
+                        <span>
+                            <b>Address:</b> @address.AddressLine1 @address.AddressLine2, @address.PostalCode  @address.City
+                        </span>
+                        <span>
+
+                            <b>Phone number:</b> @address.Mobile
+                        </span>
+                    </td>
+                    <td class="text-center action-buttons">
+                        <a title="Edit" data-from="old" data-id="@address.AddressId" onclick="showPartial(this)">
+                            <img src="~/Images/edit-icon.png" alt="">
+                        </a>
+                        <a title="Delete" data-from="del" data-id="@address.AddressId" onclick="showPartial(this)">
+                            <img src="~/Images/delete-icon.png" alt="">
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<a class="btn btn-primary add-button" title="Add New Address" data-from="new" onclick="showPartial(this)">Add New Address</a>
+
+<div id="holdpartialForAddress">
+
+</div>

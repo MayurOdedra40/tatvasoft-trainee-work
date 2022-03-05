@@ -2635,11 +2635,7 @@ a {
     color: #67b644;
 }
 
-#customer-Service-History .cancel-badge {
-    background: #ff6b6b;
-    color: white;
-    width: auto;
-}
+
 
 
 #customer-fav-pro .customer-pro-card {
@@ -2917,6 +2913,17 @@ a {
 
 .cancel-badge {
     background: #FF6B6B;
+}
+
+.refunded-badge {
+    background: #FF6B6B;
+}
+rescheduled-badge{
+    background: #FF7335;
+}
+
+changeSP-badge{
+    background: #BBBBBB;
 }
 
 .menu-dot {
@@ -4014,4 +4021,672 @@ a {
     margin-bottom:200px;
 }
 
+
+
+.modal-content {
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}
+
+#serviceDetails .modal-content {
+    width: 750px;
+}
+
+#serviceDetails .modal-title {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+#serviceDetails .datetime {
+    font-size: 22px;
+    color: #4f4f4f;
+    font-weight: 700;
+}
+
+.title-text {
+    display: block;
+    font-size: 16px;
+    color: #4f4f4f;
+    margin-bottom: 5px;
+}
+
+#serviceDetails hr {
+    border-color: #e1e1e1;
+    margin: 12px 0;
+}
+
+#serviceDetails table {
+    width: 50%;
+}
+
+#serviceDetails .price {
+    font-size: 26px;
+    color: #1d7a8c;
+    font-weight: 700;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+#serviceDetails .action-buttons .btn {
+    width: auto !important;
+    margin-bottom: 0;
+    padding: 8px 15px !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    border: none !important;
+}
+
+    #serviceDetails .action-buttons .btn img {
+        vertical-align: top;
+        margin-right: 4px;
+    }
+
+#serviceDetails .btn-primary {
+    width: auto;
+    border-color: #1d7a8c;
+    height: 40px;
+}
+
+    #serviceDetails .btn-primary:hover {
+        background: #146371 !important;
+        border: none;
+        outline: 0 !important;
+        box-shadow: none;
+        opacity: 1;
+        color: white;
+    }
+
+#serviceDetails .btn-danger {
+    width: auto;
+    height: 40px;
+    background: #ff6b6b;
+    color: #fff !important;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 8px 15px;
+    transition: all .3s ease;
+    border: none !important;
+    line-height: 22px;
+}
+
+    #serviceDetails .btn-danger:hover {
+        color: #fff !important;
+        background: #cc5656 !important;
+        box-shadow: none !important;
+        outline: 0 !important;
+        opacity: 1;
+    }
+
+@media (min-width:576px) {
+    #serviceDetails .modal-dialog {
+        max-width: 750px;
+    }
+
+    #rescheduleService .modal-dialog {
+        max-width: 400px;
+    }
+
+    #cancelService .modal-dialog {
+        max-width: 400px;
+    }
+}
+
+#rescheduleService .modal-content {
+    max-width: 400px;
+}
+
+#cancelService .modal-content {
+    max-width: 400px;
+}
+
+#rescheduleService .form-select {
+    border: 1px solid #E1E1E1;
+    color: #646464;
+    padding: 12px 15px;
+    box-shadow: none;
+    background-image: url("../Images/layer-1025-copy-2.png");
+    background-size: 6px 6px;
+}
+
+#rescheduleService #select-service-time {
+    width: 100%;
+}
+
+#rescheduleService #service-date {
+    width: 100%;
+}
+
+#rescheduleService .form-select:focus {
+    outline: 0 !important;
+    border-color: #1d7a8c;
+}
+
+#rescheduleService .btn-primary {
+    font-weight: 400;
+    padding: 11px 34px;
+    height: auto;
+    border: none;
+}
+
+#cancelService .btn-primary {
+    font-weight: 400;
+    padding: 11px 34px;
+    height: auto;
+    border: none;
+}
+
+#cancelComment {
+    padding: 12px 15px;
+    height: 103px;
+    resize: none;
+    margin-bottom: 15px;
+    border: 1px solid #dedddd;
+    /* overflow: hidden; */
+}
+
+    #cancelComment:focus {
+        outline: 0 !important;
+        border-color: #1d7a8c;
+    }
+/* service detials modal */
+
+
+#RateSp .sp-name {
+    font-size: 18px;
+}
+
+#RateSp .rating-img {
+    border: 1px solid #aaa;
+    border-radius: 500px;
+}
+
+#RateSp .click {
+    cursor: pointer;
+    /*display:inline-block;
+    height:20px;
+    width:20px;*/
+}
+
+#Feedback {
+    padding: 12px 15px;
+    height: 103px;
+    resize: none;
+}
+
+#RateSp .btn-primary {
+    font-weight: 400;
+    padding: 11px 34px;
+    height: auto;
+    border: none;
+}
+
+.click i {
+    width: 20px;
+    height: 20px;
+}
+
+.grey{
+    color: #D4D4D4;
+}
+.yellow{
+    color: #ECB91C;
+}
+
+/* my setting */
+
+#customer-My-setting .nav-tabs {
+    margin-bottom: 25px;
+    border: none;
+}
+
+    #customer-My-setting .nav-tabs li a {
+        font-size: 16px;
+        font-weight: 700;
+        color: #646464;
+        border: none;
+        border-bottom: 4px solid #e1e1e1;
+        padding: 15px 0px;
+        margin-bottom: 0;
+    }
+
+    #customer-My-setting .nav-tabs li .active {
+        color: #1d7a8c;
+        background: 0 0;
+        border: none;
+        border-bottom: 4px solid #1d7a8c !important;
+    }
+
+    #customer-My-setting .nav-tabs li a .icon {
+        height: 26px;
+        width: 26px;
+        background-repeat: no-repeat;
+        background-size: 24px;
+        background-position: 0 0;
+    }
+
+    #customer-My-setting .nav-tabs li .active .icon,
+    #customer-My-setting .nav-tabs li a:focus .icon,
+    #customer-My-setting .nav-tabs li a:hover .icon {
+        background-position: 0 -26px;
+    }
+
+@media(max-width:768px) {
+    #customer-My-setting .nav-tabs li a .icon {
+        display: inline-block;
+    }
+
+    .first-span {
+        display: none;
+    }
+
+    #Language {
+        width: 100% !important;
+    }
+}
+
+#Language {
+    width: 115px;
+}
+
+
+#customer-My-setting .nav-tabs li a .details {
+    background-image: url("/Images/my-account-details.png");
+}
+
+#customer-My-setting .nav-tabs li a .address {
+    background-image: url("/Images/my-account-address.png");
+}
+
+#customer-My-setting .nav-tabs li a .password {
+    background-image: url("/Images/my-account-password.png");
+}
+
+#customer-My-setting .form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#customer-My-setting .control-label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+#customer-My-setting .form-control {
+    background: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    color: #646464;
+    height: auto;
+    padding: 12px 15px;
+    box-shadow: none;
+    border: 1px solid #dedddd;
+    height: 46px;
+    resize: none;
+}
+
+.form-select {
+    font-size: 16px;
+    line-height: 20px;
+    color: #646464;
+    height: auto;
+    padding: 12px 1px;
+    box-shadow: none;
+    border: 1px solid #dedddd;
+    height: 46px;
+    background-position-x: right 1px;
+    background-position-y: center;
+}
+
+
+
+    #customer-My-setting .form-control:focus,
+    .form-select:focus {
+        box-shadow: none;
+        border-color: #1d7a8c;
+        outline: 0 !important;
+    }
+
+#customer-My-setting .form-control[disabled] {
+    cursor: not-allowed;
+    background-color: #eee;
+    opacity: 1;
+}
+
+.form-group .input-group .input-group-addon {
+    font-size: 16px;
+    line-height: 30px;
+    border-color: #dedddd;
+    padding: 6px 12px;
+    font-weight: 400;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+
+.date-group .inner-wrapper {
+    display: table;
+    width: 100%;
+}
+
+.date-group .inner {
+    display: table-cell;
+}
+
+.date-group .form-control {
+    display: inline-block;
+    padding: 12px 4px;
+}
+
+.date-group .inner:nth-child(2) {
+    padding: 0 10px;
+}
+
+hr.small {
+    margin: 15px 0;
+}
+
+#customer-My-setting .btn {
+    border-radius: 50px;
+}
+
+#customer-My-setting .btn-primary {
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+}
+
+    #customer-My-setting .btn-primary:hover {
+        background: #146371 !important;
+        border: none;
+        outline: 0 !important;
+        box-shadow: none;
+        opacity: 1;
+    }
+
+#customer-My-setting .table-responsive {
+    border: 1px solid #e1e1e1 !important;
+}
+
+#customer-My-setting table {
+    border: 1px solid #e5e5e5;
+}
+
+    #customer-My-setting table thead {
+        background: #f3f3f3;
+        border-bottom: 2px solid #e1e1e1
+    }
+
+        #customer-My-setting table thead tr th {
+            padding: 10px 15px;
+            font-weight: 400;
+        }
+
+    #customer-My-setting table tbody tr td {
+        padding: 15px;
+        vertical-align: middle;
+    }
+
+    #customer-My-setting table tbody tr {
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    #customer-My-setting table .contact span {
+        padding-left: 20px;
+        display: inline-block;
+        line-height: 24px;
+    }
+
+    #customer-My-setting table thead tr th:first-child {
+        padding-left: 40px;
+    }
+
+    #customer-My-setting table .contact span:first-child {
+        display: block;
+    }
+
+    #customer-My-setting table .action-buttons a {
+        color: transparent;
+        display: inline-block;
+        position: relative;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+#customer-My-setting .show-more-block {
+    float: right;
+}
+
+#customer-My-setting .show-more {
+    padding: 8px 10px;
+    float: left;
+}
+
+#customer-My-setting .btn-default {
+    border-color: #c6c6c6;
+    color: #666;
+    transition: all .3s ease;
+    background: 0 0;
+    font-size: 16px;
+}
+
+    #customer-My-setting .btn-default:hover {
+        color: #1d7a8c !important;
+        border-color: #1d7a8c !important;
+        box-shadow: none !important;
+        background: 0 0 !important;
+        outline: 0 !important;
+        opacity: 1;
+    }
+
+#customer-My-setting .add-button {
+    float: none !important;
+    position: relative;
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+@media(min-width:576px) {
+    #editAddress .modal-dialog {
+        max-width: 600px;
+    }
+
+    #deleteAddress .modal-dialog {
+        max-width: 400px;
+    }
+}
+
+.modal .btn-primary {
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+}
+
+    .modal .btn-primary:hover {
+        background: #146371 !important;
+        border: none;
+        outline: 0 !important;
+        box-shadow: none;
+        opacity: 1;
+    }
+
+#editAddress .btn {
+    height: auto;
+}
+
+.pagination {
+    display: block;
+    /*float: right;*/
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+}
+@media(max-width:768px){
+    .pagination{
+        text-align:center;
+    }
+    .pagination li{
+       display:inline-block;
+       
+    }
+}
+
+.pagination li {
+    /*float: left;*/
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    border: none;
+    padding: 0 2px;
+    margin: 0 2px;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    background: 0 0;
+    background-color: rgba(0, 0, 0, 0);
+    display: block;
+    width: 38px;
+    height: 38px;
+    text-align: center;
+    line-height: 36px;
+    font-size: 14px;
+    padding: 0;
+    color: #646464;
+    border-radius: 40px !important;
+}
+
+    .pagination > .disabled > a,
+    .pagination > .disabled > a:focus,
+    .pagination > .disabled > a:hover,
+    .pagination > .disabled > span,
+    .pagination > .disabled > span:focus,
+    .pagination > .disabled > span:hover {
+        color: #777;
+        cursor: not-allowed;
+        background-color: #fff;
+        border-color: #ddd;
+    }
+
+    .pagination > li:first-child > a,
+    .pagination > li:first-child > span {
+        margin-left: 0;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+
+    .pagination > li.active > a,
+    .pagination > li.active > a:hover,
+    .pagination .page-item.active .page-link {
+        background: #1d7a8c;
+        color: #fff;
+        border-color: #1d7a8c;
+    }
+
+.page-link:hover {
+    z-index: 2;
+    color: #1d7a8c;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.page-link:focus {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #1d7a8c;
+    border-color: #1d7a8c;
+    box-shadow: none;
+}
+
+.pagination > li > a i {
+    position: relative;
+    top: 1px;
+}
+
+[class^="datatable-icon-"]::before,
+[class*=" datatable-icon-"]::before {
+    font-family: "data-table" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.datatable-icon-left::before {
+    content: "";
+    background-image: url("../Images/prev-page.png");
+    background-size: 9px 9px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 9px;
+    width: 6px;
+}
+
+.datatable-icon-right::before {
+    content: "";
+    background-image: url("../Images/prev-page.png");
+    transform: rotate(180deg);
+    background-size: 9px 9px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 9px;
+    width: 6px;
+}
+
+.pag-first-page {
+    background-image: url("../Images/first-page.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-position-x: 3px;
+    background-position-y: 5px;
+}
+
+.pag-last-page {
+    background-image: url("../Images/last-page.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-position-x: 3px;
+    background-position-y: 5px;
+}
+
+.pag-pre-page {
+    background-image: url("../Images/first.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-position-x: 3px;
+    background-position-y: 5px;
+}
+
+.pag-next-page {
+    background-image: url("../Images/first.png");
+    transform: rotate(180deg);
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-position-x: 3px;
+    background-position-y: 0px;
+}
 

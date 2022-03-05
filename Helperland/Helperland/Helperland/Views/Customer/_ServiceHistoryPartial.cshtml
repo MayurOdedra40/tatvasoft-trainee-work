@@ -1,0 +1,353 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<ServiceRequest>
+
+@{
+    List<User> sp = ViewBag.sp;
+    List<decimal> ratings = ViewBag.ratings;
+        var i = 0;
+
+        }
+
+<div class="">
+
+    <div class="row mx-0 justify-content-between tab-heading">
+        <div class="col-auto ps-0">
+            <p class="title">Service History</p>
+        </div>
+        <div class="col-auto pe-0">
+            <div class="dropdown sorting-dropdown">
+                <button type="button" class="btn p-0" data-bs-toggle="dropdown">
+                    <img src="~/Images/sort.png" alt="">
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service date:
+                                Latest
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service date:
+                                Oldest
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service Provider: A
+                                to Z
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service Provider: Z
+                                to A
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Payment: High to
+                                Low
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Payment: Low to
+                                High
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row row1 mx-0 justify-content-between">
+        <div class="col-12 col-md-auto text-center mb-2 mb-md-2 d-none d-md-flex">
+            <p class="mb-0 title">
+                Service History
+            </p>
+        </div>
+
+        <div class="col-12 col-md-auto">
+            <div class="text-center">
+                <a class="btn" asp-controller="Customer" asp-action="Export">Export</a>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table table-borderless ">
+
+        <thead class="table-head">
+            <tr>
+                <th class="">
+                    <a class="table-link" data-ajax="true" data-ajax-success="SortSuccess" asp-controller="Customer" asp-action="GetCustomerServiceHistory" 
+                       asp-route-pageNumber="@Model.PageNumber" asp-route-pageSize="@Model.PageSize" asp-route-sortBy="ServiceRequestId"
+                        asp-route-sortOrder="@ViewBag.ServiceRequestIdsortOrder"
+                       >
+                        Service
+                        ID
+                        @if (ViewBag.sortBy == "ServiceRequestId") { 
+                        <img class="ms-2" src="~/Images/sort.png" alt="" width="14"
+                               height="14">
+                        }
+                    </a>
+                </th>
+                <th class="">
+                    <a class="table-link" data-ajax="true" data-ajax-success="SortSuccess" asp-controller="Customer" asp-action="GetCustomerServiceHistory"
+                       asp-route-pageNumber="@Model.PageNumber" asp-route-pageSize="@Model.PageSize" asp-route-sortBy="ServiceStartDate"
+                       asp-route-sortOrder="@ViewBag.ServiceRequestDatesortOrder">
+                        Service
+                        Date
+                        @if (ViewBag.sortBy == "ServiceStartDate")
+                        {
+                            <img class="ms-2" src="~/Images/sort.png" alt="" width="14"
+                                 height="14">
+                        }
+                    </a>
+                </th>
+                <th class="">
+                    <a class="table-link" data-ajax="true" data-ajax-success="SortSuccess" asp-controller="Customer" asp-action="GetCustomerServiceHistory"
+                       asp-route-pageNumber="@Model.PageNumber" asp-route-pageSize="@Model.PageSize" asp-route-sortBy="ServiceProviderId"
+                       asp-route-sortOrder="@ViewBag.ServiceProviderIdsortOrder">
+                        Service Provider
+                        @if (ViewBag.sortBy == "ServiceProviderId")
+                        {
+                            <img class="ms-2" src="~/Images/sort.png" alt="" width="14"
+                                 height="14">
+                        }
+                    </a>
+                </th>
+                <th class="">
+                    <a class="table-link" data-ajax="true" data-ajax-success="SortSuccess" asp-controller="Customer" asp-action="GetCustomerServiceHistory"
+                       asp-route-pageNumber="@Model.PageNumber" asp-route-pageSize="@Model.PageSize" asp-route-sortBy="Payment"
+                       asp-route-sortOrder="@ViewBag.PaymentsortOrder">
+
+                        Payment
+                        @if (ViewBag.sortBy == "Payment")
+                        {
+                            <img class="ms-2" src="~/Images/sort.png" alt="" width="14"
+                                 height="14">
+                        }
+                    </a>
+                </th>
+                <th class="">
+                    <a class="table-link" href="#">Status</a>
+                </th>
+                <th class=""><a class="table-link" href="#">Rate SP</a></th>
+            </tr>
+        </thead>
+
+        <tbody class="table-body">
+            @foreach (ServiceRequest serviceRequest in Model.Data)
+            {
+
+                var startDateTime = serviceRequest.ServiceStartDate;
+                var date = startDateTime.ToString("dd/MM/yyyy").Replace("-", "/");
+                var time = startDateTime.ToString("HH:mm");
+                double totalhour = Convert.ToDouble(serviceRequest.ServiceHours + serviceRequest.ExtraHours);
+
+                var endTime = startDateTime.AddHours(totalhour).ToString("HH:mm");
+                <tr class='clickable-row' data-href='url://'>
+
+                    <td class="p-0" data-from="row" data-id="@serviceRequest.ServiceRequestId" onclick="showRate(this)">
+                        <p class="table-data">@serviceRequest.ServiceRequestId</p>
+                    </td>
+
+                    <td class="p-0" data-from="row" data-id="@serviceRequest.ServiceRequestId" onclick="showRate(this)">
+                        <div class="container-fluid table-data">
+                            <div class="row mx-0">
+                                <div class="col-auto px-0">
+                                    <img class="d-flex calender-img px-0"
+                                         src="~/Images/calendar.png" alt="">
+                                </div>
+                                <div class="col px-0 ps-1">
+                                    <p class="d-flex m-0"><b>@date</b></p>
+                                </div>
+                            </div>
+
+                            <div class="row mx-0 mt-2">
+                                <div class="col-auto px-0">
+                                    <img class="d-inline" src="~/Images/clock.png" alt=""
+                                         width="17" height="17">
+                                </div>
+                                <div class="col px-0 ps-1">
+                                    <p class="mb-0">@time - @endTime</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </td>
+
+                    <td class="p-0">
+
+                        @if (sp[i] != null)
+                        {
+                            var rat = (float)System.Math.Round(ratings[i], 2);
+
+                            <div class="container-fluid table-data">
+                                <div class="row mx-0">
+                                    <div class="col-auto px-0">
+                                        <div class="rating">
+                                            <img class="rating-img"
+                                                 src="~/Images/block-customer-hat.png" alt=""
+                                                 width="30" height="19">
+                                        </div>
+                                    </div>
+                                    <div class="col px-0">
+                                        <div class="row mx-0">
+                                            <p class="d-flex m-0">@sp[i].FirstName  @sp[i].LastName</p>
+                                        </div>
+                                        <div class="row mx-0">
+                                            @{
+                                                var n = (int)ratings[i];
+
+                                            }
+
+                                            <div class="col-auto px-2">
+                                                @for (int j = 1; j <= n; j++)
+                                                {
+                                                <span class="click"><i class='fa fa-star yellow'></i> </span>
+
+                                                }
+
+                                                @for (int j = n + 1; j <= 5; j++)
+                                                {
+
+                                            <span class="click"><i class='fa fa-star grey'></i> </span>
+                                                }
+                                                
+                                            </div>
+                                            <div class="col px-0 pt-1">
+                                                <p class="text mb-0">@rat</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </td>
+
+                    <td class="p-0">
+                        <p class="table-data payment-text">@serviceRequest.TotalCost €</p>
+                    </td>
+
+                    <td class="p-0">
+                        <div class="row mx-0 ps-3 py-3">
+                            @if (serviceRequest.Status == 4)
+                            {
+                                <div class="d-inline-block badge cancel-badge">
+                                    <p class="mb-0">Cancelled</p>
+                                </div>
+                            }
+                            else if (serviceRequest.Status == 3)
+                            {
+                                <div class="d-inline-block badge completed-badge">
+                                    <p class="mb-0">Completed</p>
+                                </div>
+                            }
+                            else if (serviceRequest.Status == 6)
+                            {
+                                <div class="d-inline-block badge rescheduled-badge">
+                                    <p class="mb-0">Refunded</p>
+                                </div>
+                            }
+                            else if (serviceRequest.Status == 8)
+                            {
+                                <div class="d-inline-block badge changeSP-badge">
+                                    <p class="mb-0">Expired</p>
+                                </div>
+                            }
+
+                        </div>
+                    </td>
+
+                    <td class="p-0 bb-none">
+                        <div class="container-fluid table-data">
+                            <div class="row mx-0">
+                                <div class="col-12 col-md-auto px-0 mb-1 text-center ">
+                                    @if (serviceRequest.Status == 3)
+                                    {
+                                        <button class="btn complete-btn" data-from="rate" data-id="@serviceRequest.ServiceRequestId" onclick="showRate(this)">Rate SP</button>
+                                    }
+                                    else
+                                    {
+
+                                        <button class="btn complete-btn disabled">Rate SP</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+                i++;
+            }
+            
+
+        </tbody>
+    </table>
+
+    <div class="row row3 mx-0 justify-content-between">
+            <div class="col-12 col-md-auto mb-2 mb-md-0">
+                <div class="row mx-0 px-0 text-center">
+                    <p class="mb-0 text d-block mx-auto">
+                        Show
+     @Html.DropDownList("PageSize", new SelectList(new Dictionary<string, int> { { "5", 5 }, { "10", 10 }, { "20", 20 }, { "100", 100 } }, "Key", "Value", Model.PageSize),
+            new { @class = "form-select select pagination-select d-inline mx-1", id = "pagesizelist", onchange = "callPageSize(this,2)"})
+
+                        entries Total Record: @Model.TotalItems
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-md-auto">
+                <cs-pager id="paging" cs-paging-pagenumber=(int)Model.PageNumber
+                          cs-paging-totalitems=(int)Model.TotalItems
+                          cs-paging-pagesize=Model.PageSize
+                          cs-pagenumber-param="pagenumber"
+                          asp-controller="Customer"
+                          asp-action="GetCustomerServiceHistory"
+                          cs-ajax-target="#customer-Service-History"
+                          cs-show-first-last=true
+                          cs-first-page-text='<span class="pag-first-page"></span>'
+                          cs-last-page-text='<span class="pag-last-page"></span>'
+                          cs-previous-page-text='<span class="pag-pre-page"></span>'
+                          cs-next-page-text='<span class="pag-next-page"></span>'
+                          cs-pager-li-current-class="page-item active"
+                          cs-pager-li-other-class="page-item"
+                          cs-pager-li-non-active-class="page-item disabled"
+                          cs-pager-link-current-class="page-link"
+                          cs-pager-link-other-class="page-link">
+
+                </cs-pager>
+                @*cs-first-page-text="⏴"*@
+            </div>
+        </div>
+
+</div>

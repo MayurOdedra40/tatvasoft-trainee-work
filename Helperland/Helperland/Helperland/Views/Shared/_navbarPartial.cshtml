@@ -56,7 +56,8 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#Block-Customer">My Setting</a>
+                               
+                                <a class="text dismiss" data-bs-toggle="tab" href="javascript:;" id="loadMySetting">My Setting</a>
                             </li>
 
                             <li class="nav-item">
@@ -75,29 +76,31 @@
                         <ul class="px-0 nav nav-tabs">
 
                             <li class="nav-item">
-                                <a class="text active dismiss" data-bs-toggle="tab" href="#customer-Dashboard">Dashboard</a>
+                                <a class="text active dismiss" asp-controller="Customer" asp-action="Index">Dashboard</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#customer-Service-History">
+                                <a class="text dismiss" asp-controller="Customer" asp-action="IndexWithCode" asp-route-id="2">
                                     Service
                                     History
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#customer-Service-Schedule">
+                                <a class="text dismiss" asp-controller="Customer" asp-action="IndexWithCode" asp-route-id="3">
                                     Service
                                     Schedule
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#customer-fav-pro">Favourite Pros</a>
+                                <a class="text dismiss" asp-controller="Customer" asp-action="IndexWithCode" asp-route-id="4">Favourite Pros</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#customer-My-setting">My Setting</a>
+                            
+                                <a class="text dismiss" asp-controller="Customer" asp-action="IndexWithCode" asp-route-id="5" id="loadMySetting">My Setting</a>
+
                             </li>
 
                             <li class="nav-item">
@@ -290,13 +293,29 @@
 
 
                                             <li class="nav-item d-block w-100 py-1">
-                                                <a class="dropdown-text active dismiss" data-bs-toggle="tab"
-                                                   href="#Service-provider-Dashboard">Dashboard</a>
+
+                                                @if (Context.Session.GetString("UserTypeId") == "1")
+                                                {
+                                                    <a class="dropdown-text active dismiss" asp-controller="Customer" asp-action="Index">Dashboard</a>
+                                                }
+
+                                                else if (Context.Session.GetString("UserTypeId") == "2")
+                                                {
+                                                    <a class="dropdown-text active dismiss" asp-controller="ServiceProvider" asp-action="Index">Dashboard</a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="dropdown-text active dismiss" data-bs-toggle="tab"
+                                                       href="#Service-provider-Dashboard">Dashboard</a>
+                                                }
+
                                             </li>
 
                                             <li class="nav-item d-block w-100 py-1">
-                                                <a class="dropdown-text dismiss" data-bs-toggle="tab"
-                                                   href="#customer-My-setting">My Setting</a>
+                                                @if (Context.Session.GetString("UserTypeId") == "1")
+                                                {
+                                                    <a class="dropdown-text dismiss" asp-controller="Customer" asp-action="IndexWithCode" asp-route-id="5">My Setting</a>
+                                                }
                                             </li>
 
                                             <li class="nav-item d-block w-100 py-1">

@@ -22,7 +22,7 @@ namespace Helperland.Models
         public string AddressLine1 { get; set; }
 
         [Required(ErrorMessage = "Street Name is required")]
-        [RegularExpression("^[0-9]$", ErrorMessage = "Only Numbers")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Only Numbers")]
         [StringLength(70, ErrorMessage = "Cannot be More than 70 Characters")]
         public string AddressLine2 { get; set; }
 
@@ -34,7 +34,7 @@ namespace Helperland.Models
         public string State { get; set; }
 
         [Required]
-        [RegularExpression("^[1-9][0-9]{5}$", ErrorMessage = "Enter valid Zipcode`")]
+        [RegularExpression("^[1-9][0-9]{5}$", ErrorMessage = "Enter valid Zipcode")]
         [StringLength(6, MinimumLength = 6, ErrorMessage = "Must be 6 Character Long")]
         public string PostalCode { get; set; }
 
