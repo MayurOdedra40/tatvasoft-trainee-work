@@ -1,0 +1,91 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<User>
+@{ 
+    var hasEntry = ViewBag.hasEntry;
+    var favs = ViewBag.favs;
+    var i = 0;
+}
+<div class="">
+
+    <div class="row mx-0 justify-content-between tab-heading">
+        <div class="col-auto ps-0">
+            <p class="title">Block Customer</p>
+        </div>
+
+    </div>
+
+    <div class="row mx-0">
+        @foreach (User user in Model.Data)
+        {
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="row block-customer-card mx-0">
+                    <div class="d-block block-customer-img-body px-0 mx-auto text-center">
+                        <img class="block-customer-img mx-auto" src="~/Images/cap.png" alt=""
+                             width="45" height="30">
+                    </div>
+                    <div class="row row1 text-center mx-0">
+                        <p class="text mb-0">@user.FirstName @user.LastName</p>
+                    </div>
+                    <div class="row row2 mx-0">
+                        @if (hasEntry[i] != false)
+                        {
+                            if (favs[i].IsBlocked == true)
+                            {
+                                <button class="d-block mx-auto btn" style="background: #1D7A8C;" data-id="@user.UserId" onclick="unblockCustomer(this)">UnBlock</button>
+                            }
+                            else
+                            {
+                                <button class="d-block mx-auto btn" data-id="@user.UserId" onclick="blockCustomer(this)">Block</button>
+                            }
+                        }
+                        else
+                        {
+
+                            <button class="d-block mx-auto btn" data-id="@user.UserId" onclick="blockCustomer(this)">Block</button>
+                        }
+                    </div>
+                </div>
+            </div>
+            i++;
+        }
+
+
+    </div>
+
+    <div class="row row3 mx-0 justify-content-between">
+        <div class="col-12 col-md-auto mb-2 mb-md-0">
+            <div class="row mx-0 px-0 text-center">
+                <p class="mb-0 text d-block mx-auto">
+                    Show
+                    @Html.DropDownList("PageSize", new SelectList(new Dictionary<string, int> { { "5", 5 }, { "10", 10 }, { "20", 20 }, { "100", 100 } }, "Key", "Value", Model.PageSize),
+                           new { @class = "form-select select pagination-select d-inline mx-1", id = "pagesizelist", onchange = "callSpPageSize(this,7)" })
+
+                    entries Total Record: @Model.TotalItems
+                </p>
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-auto">
+            <cs-pager id="paging" cs-paging-pagenumber=(int)Model.PageNumber
+                      cs-paging-totalitems=(int)Model.TotalItems
+                      cs-paging-pagesize=Model.PageSize
+                      cs-pagenumber-param="pagenumber"
+                      asp-controller="ServiceProvider"
+                      asp-action="GetBlockCustomer"
+                      cs-ajax-target="#Block-Customer"
+                      cs-show-first-last=true
+                      cs-first-page-text='<span class="pag-first-page"></span>'
+                      cs-last-page-text='<span class="pag-last-page"></span>'
+                      cs-previous-page-text='<span class="pag-pre-page"></span>'
+                      cs-next-page-text='<span class="pag-next-page"></span>'
+                      cs-pager-li-current-class="page-item active"
+                      cs-pager-li-other-class="page-item"
+                      cs-pager-li-non-active-class="page-item disabled"
+                      cs-pager-link-current-class="page-link"
+                      cs-pager-link-other-class="page-link">
+
+            </cs-pager>
+
+        </div>
+    </div>
+</div>

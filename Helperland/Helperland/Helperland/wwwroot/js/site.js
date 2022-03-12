@@ -851,7 +851,7 @@ function showPartial(data) {
 }
 
 function getCity(data) {
-
+    debugger;
     var postalcode = data.value;
     $("#forWrongZipcode").html("");
     $("#CitySelect").html("");

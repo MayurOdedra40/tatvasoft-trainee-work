@@ -1,0 +1,246 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<ServiceRequest>
+
+@{
+    List<User> users = ViewBag.users;
+    List<ServiceRequestAddress> addresses = ViewBag.addresses;
+    var i = 0;
+
+}
+<div class="">
+
+    <div class="row mx-0 justify-content-between tab-heading">
+        <div class="col-auto ps-0">
+            <p class="title">Service History</p>
+        </div>
+        <div class="col-auto pe-0">
+            <div class="dropdown sorting-dropdown">
+                <button type="button" class="btn p-0" data-bs-toggle="dropdown">
+                    <img src="~/Images/sort.png" alt="">
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service Id:
+                                Ascending
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service Id:
+                                Descending
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service date:
+                                Latest
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service date:
+                                Oldest
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Customer details: A
+                                to Z
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Customer details: Z
+                                to A
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row row1 mx-0 justify-content-between">
+        <div class="col-12 col-md-auto text-center mb-2 mb-md-2">
+
+        </div>
+
+        <div class="col-12 col-md-auto">
+            <div class="text-center">
+                <a class="btn" asp-controller="ServiceProvider" asp-action="Export">Export</a>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-borderless mt-2">
+        <thead class="table-head">
+            <tr>
+                <th class="" style="width: 33.3%;">
+                    <a class="table-link" data-ajax="true" data-ajax-success="SpTab5Success" asp-controller="ServiceProvider" asp-action="GetServiceHistory"
+                       asp-route-pageNumber="@Model.PageNumber" asp-route-pageSize="@Model.PageSize" asp-route-sortBy="ServiceRequestId"
+                       asp-route-sortOrder="@ViewBag.ServiceRequestIdsortOrder">
+                        Service
+                        ID
+                        @if (ViewBag.sortBy == "ServiceRequestId")
+                        {
+                            <img class="ms-2" src="~/Images/sort.png" alt="" width="14"
+                                 height="14">
+                        }
+                    </a>
+                </th>
+                <th class="" style="width: 33.3%;">
+                    <a class="table-link" data-ajax="true" data-ajax-success="SpTab5Success" asp-controller="ServiceProvider" asp-action="GetServiceHistory"
+                       asp-route-pageNumber="@Model.PageNumber" asp-route-pageSize="@Model.PageSize" asp-route-sortBy="ServiceStartDate"
+                       asp-route-sortOrder="@ViewBag.ServiceRequestDatesortOrder">
+                        Service
+                        Date
+                        @if (ViewBag.sortBy == "ServiceStartDate")
+                        {
+                            <img class="ms-2" src="~/Images/sort.png" alt="" width="14"
+                                 height="14">
+                        }
+                    </a>
+                </th>
+                <th class="" style="width: 33.3%;">
+                    <a class="table-link" data-ajax="true" data-ajax-success="SpTab5Success" asp-controller="ServiceProvider" asp-action="GetServiceHistory"
+                       asp-route-pageNumber="@Model.PageNumber" asp-route-pageSize="@Model.PageSize" asp-route-sortBy="Distance"
+                       asp-route-sortOrder="@ViewBag.ServiceRequestDistancesortOrder">
+                        Customer Details
+                        @if (ViewBag.sortBy == "Distance")
+                        {
+                            <img class="ms-2" src="~/Images/sort.png" alt="" width="14"
+                                 height="14">
+                        }
+                    </a>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody class="table-body">
+            @foreach (ServiceRequest serviceRequest in Model.Data)
+            {
+                var ids = serviceRequest.ServiceRequestId;
+                var startDateTime = serviceRequest.ServiceStartDate;
+                var date = startDateTime.ToString("dd/MM/yyyy").Replace("-", "/");
+                var time = startDateTime.ToString("HH:mm");
+                double totalhour = Convert.ToDouble(serviceRequest.ServiceHours + serviceRequest.ExtraHours);
+
+                var endTime = startDateTime.AddHours(totalhour).ToString("HH:mm");
+                <tr class='clickable-row p-0' id="@ids" data-id="@ids" data-from="row" onclick="showSpDetails(this)">
+
+                    <td class="p-0">
+                        <p class="table-data">@serviceRequest.ServiceRequestId</p>
+                    </td>
+
+                    <td class="p-0">
+                        <div class="container-fluid table-data">
+                            <div class="row mx-0">
+                                <div class="col-auto px-0">
+                                    <img class="d-flex calender-img px-0"
+                                         src="~/Images/calendar.png" alt="">
+                                </div>
+                                <div class="col px-0 ps-1">
+                                    <p class="d-flex m-0"><b>@date</b></p>
+                                </div>
+                            </div>
+
+                            <div class="row mx-0 mt-2">
+                                <div class="col-auto px-0">
+                                    <img class="d-inline" src="~/Images/clock.png" alt=""
+                                         width="17" height="17">
+                                </div>
+                                <div class="col px-0 ps-1">
+                                    <p class="mb-0">@time - @endTime</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </td>
+
+                    <td class="p-0">
+                        <div class="container-fluid table-data">
+                            <div class="row mx-0">
+                                <div class="col px-0">
+                                    <p class="d-flex m-0">@users[i].FirstName @users[i].LastName</p>
+                                </div>
+                            </div>
+                            <div class="row mx-0 mt-2">
+                                <div class="col-auto px-0">
+                                    <img class="d-inline" src="~/Images/home.png" alt=""
+                                         width="22" height="22">
+                                </div>
+                                <div class="col px-0 ps-1">
+                                    <p class="mb-0 mt-1">@addresses[i].AddressLine1 @addresses[i].AddressLine2, @addresses[i].City @addresses[i].PostalCode</p>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+
+
+    <div class="row row3 mx-0 justify-content-between">
+        <div class="col-12 col-md-auto mb-2 mb-md-0">
+            <div class="row mx-0 px-0 text-center">
+                <p class="mb-0 text d-block mx-auto">
+                    Show
+                    @Html.DropDownList("PageSize", new SelectList(new Dictionary<string, int> { { "5", 5 }, { "10", 10 }, { "20", 20 }, { "100", 100 } }, "Key", "Value", Model.PageSize),
+                           new { @class = "form-select select pagination-select d-inline mx-1", id = "pagesizelist", onchange = "callSpPageSize(this,5)" })
+
+                    entries Total Record: @Model.TotalItems
+                </p>
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-auto">
+            <cs-pager id="paging" cs-paging-pagenumber=(int)Model.PageNumber
+                      cs-paging-totalitems=(int)Model.TotalItems
+                      cs-paging-pagesize=Model.PageSize
+                      cs-pagenumber-param="pagenumber"
+                      asp-controller="ServiceProvider"
+                      asp-action="GetServiceHistory"
+                      cs-ajax-target="#Service-History"
+                      cs-show-first-last=true
+                      cs-first-page-text='<span class="pag-first-page"></span>'
+                      cs-last-page-text='<span class="pag-last-page"></span>'
+                      cs-previous-page-text='<span class="pag-pre-page"></span>'
+                      cs-next-page-text='<span class="pag-next-page"></span>'
+                      cs-pager-li-current-class="page-item active"
+                      cs-pager-li-other-class="page-item"
+                      cs-pager-li-non-active-class="page-item disabled"
+                      cs-pager-link-current-class="page-link"
+                      cs-pager-link-other-class="page-link">
+
+            </cs-pager>
+
+        </div>
+    </div>
+</div>

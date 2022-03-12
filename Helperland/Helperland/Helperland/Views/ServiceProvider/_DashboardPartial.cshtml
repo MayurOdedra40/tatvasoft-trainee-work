@@ -1,0 +1,70 @@
+﻿<div class="">
+
+    <div class="row mx-0 justify-content-center tab-heading ">
+        <div class="col text-center">
+            <p class="title"> Dashboard</p>
+        </div>
+
+    </div>
+
+    <div class="row mx-0 nav nav-tabs">
+        <div class="col-12 col-sm-6 col-md-4 nav-item">
+
+            <a class="row nav-link" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="2">
+                <div class="count col1 px-0 mx-auto mb-2">
+                    @if (ViewBag.NewServiceCount==null)
+                    {
+                        <p class="mb-0">0</p>
+                    }
+                    else
+                    {
+                    <p class="mb-0">@ViewBag.NewServiceCount</p>
+                    }
+
+                </div>
+                <p class="text mb-2 text-center">New Service Requests</p>
+                <div class="btn mx-auto">View All</div>
+            </a>
+
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4 border-x nav-item">
+
+            <a class="row nav-link" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="3">
+                <div class="count col2 px-0 mx-auto mb-2">
+                    @if (ViewBag.UpComingServicet == null)
+                    {
+                        <p class="mb-0">0</p>
+                    }
+                    else
+                    {
+                        <p class="mb-0">@ViewBag.UpComingService</p>
+                    }
+                </div>
+                <p class="text mb-2 text-center">Upcoming Services</p>
+                <div class="btn mx-auto">View All</div>
+            </a>
+
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4 nav-item">
+
+            <a class="row nav-link" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="5">
+                <div class="count col3 px-0 mx-auto mb-2">
+                    @if (ViewBag.ServiceHistory == null)
+                    {
+                        <p class="mb-0">0</p>
+                    }
+                    else
+                    {
+                        <p class="mb-0">@ViewBag.ServiceHistory</p>
+                    }
+                </div>
+                <p class="text mb-2 text-center">Service History</p>
+                <div class="btn mx-auto">View All</div>
+            </a>
+
+        </div>
+    </div>
+
+</div>

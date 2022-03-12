@@ -1,0 +1,109 @@
+﻿@model ServiceRequest
+@{
+
+    ServiceRequest service = null;
+    ServiceRequestAddress address = null;
+    User user = null;
+    string date = null;
+    string time = null;
+    double totalHour = 0;
+    string endTime = null;
+    string extras = null;
+
+    @if (ViewBag.serviceDetails != null)
+    {
+        service = ViewBag.serviceDetails;
+        date = ViewBag.date;
+        time = ViewBag.time;
+        totalHour = ViewBag.totalhour;
+        endTime = ViewBag.endtime;
+        extras = ViewBag.extras;
+        address = ViewBag.serviceAddress;
+        user = ViewBag.user;
+    }
+
+}
+<div class="modal fade" id="spServiceDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+                <p class="modal-title pb-0">Service Details</p>
+
+                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+                @if (date != null)
+                {
+                    <p class="datetime mb-0">@date @time -@endTime</p>
+                    <span class="title-text"> <b>Duration: </b> @totalHour Hrs</span>
+                }
+                <hr>
+                <span class="title-text"> <b>Service Id: </b>@service.ServiceRequestId</span>
+                <span class="title-text"> <b>Extras: </b>@extras</span>
+                <div class="content">
+                    <span class="title-text d-inline"><b>Total Payment: </b></span>
+                    <span class="price d-inline">@service.TotalCost €</span>
+                </div>
+
+                <hr>
+                <span class="title-text"><b>Customer Name: </b>@user.FirstName @user.LastName</span>
+                <span class="title-text"><b>Service Address: </b> <span> @address.AddressLine1 @address.AddressLine2</span>, @address.PostalCode  @address.City </span>
+                <span class="title-text"><b>Phone: </b> +49  @address.Mobile</span>
+                <span class="title-text"><b>Email: </b> @address.Email </span>
+                <span class="title-text"><b>Distance: </b> @service.Distance km </span>
+
+                <hr>
+                <span class="title-text"><b>Comments: </b>@service.Comments </span>
+                @if (service.HasPets)
+                {
+                    <span class="title-text"> <img src="~/Images/included.png" alt="" width="25" height="25"> I have pets at home</span>
+
+                }
+                else
+                {
+                    <span class="title-text"> <img src="~/Images/not-included.png" alt="" width="25" height="25"> I don't have pets at home</span>
+
+                }
+                <hr>
+
+                <div class="action-buttons">
+
+
+                    @if (ViewBag.tab == 2)
+                    {
+                        <a class="btn btn-primary" style="background-color: #67B644" data-bs-dismiss="modal" data-ajax="true" data-ajax-method="get" data-ajax-success="AcceptSuccess" data-ajax-failure="AcceptFailure"
+                           asp-controller="ServiceProvider" asp-action="Accept" asp-route-serviceRequestid="@service.ServiceRequestId">
+                            <span>
+                                <img class="d-inline" src="~/Images/tickicon.png" />
+                                Accept
+                            </span>
+                        </a>
+                    }
+                    else if (ViewBag.tab == 3)
+                    {
+                        <a class="btn btn-danger" data-bs-dismiss="modal" data-ajax="true" data-ajax-method="get" data-ajax-success="SpTab3Success" data-ajax-failure="CompleteFailure"
+                                           asp-controller="ServiceProvider" asp-action="Cancel" asp-route-serviceRequestid="@service.ServiceRequestId">
+                            <img class="d-inline" src="~/Images/closeicon.png" />
+                            <span>Cancel</span>
+                        </a>
+
+                        @if (service.ServiceStartDate.AddHours(totalHour) < DateTime.Now)
+                        {
+                            <a class="btn btn-primary" data-bs-dismiss="modal" data-ajax="true" data-ajax-method="get" data-ajax-success="SpTab3Success" data-ajax-failure="CompleteFailure"
+                                           asp-controller="ServiceProvider" asp-action="Complete" asp-route-serviceRequestid="@service.ServiceRequestId">
+                                <span>
+                                    <img class="d-inline" src="~/Images/tickicon.png" />
+                                    Complete
+                                </span>
+                            </a>    
+                        }
+
+                    }
+
+                </div>
+
+                <div class="sp-map">
+                    <iframe allowfullscreen="" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAag-Mf1I5xbhdVHiJmgvBsPfw7mCqwBKU&amp;origin=18,test street,Troisdorf-53844, Germany&amp;destination=45,Abcd,Bonn,53225, Germany&amp;language=en" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,772 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+<section class="container-fluid px-0" id="service-login-section1">
+    <div class="row row1 text-center mx-0">
+        <p class="title mb-0">Welcome, <b>@Context.Session.GetString("Name")!</b></p>
+    </div>
 
-<h1 class="text">Service Provider Login</h1>
+</section>
 
+<!-- section 1 -->
+<!-- section 2 -->
+
+<section class="container-fluid px-0" id="service-login-section2">
+
+    <div class="container-fluid">
+
+        <div class="row mx-0">
+
+            <div class="col-auto submenu-col px-0">
+
+                <ul class="container sub-menu px-0 nav nav-tabs">
+
+                    <li class="row mx-0 nav-item">
+                        <a class="text-start" data-bs-toggle="tab" href="javascript:;" id="loadSpDashboard">Dashboard</a>
+                    </li>
+
+                    <li class="row mx-0 nav-item">
+                        <a class="text-start " data-bs-toggle="tab" href="javascript:;" id="loadNewService">
+                            New Service
+                            Requests
+                        </a>
+                    </li>
+
+                    <li class="row mx-0">
+                        <a class="text-start" data-bs-toggle="tab" href="javascript:;" id="loadUpcomingService">
+                            Upcoming
+                            Services
+                        </a>
+                    </li>
+
+                    <li class="row mx-0">
+                        <a class="text-start" data-bs-toggle="tab" href="javascript:;" id="loadSpServiceSchedule">
+                            Service Schedule
+                        </a>
+                    </li>
+
+                    <li class="row mx-0">
+                        <a class="text-start" data-bs-toggle="tab" href="javascript:;" id="loadSpServiceHistory">
+                            Service History
+                        </a>
+                    </li>
+
+                    <li class="row mx-0">
+                        <a class="text-start" data-bs-toggle="tab" href="javascript:;" id="loadMyRatings">My Ratings</a>
+                    </li>
+
+                    <li class="row mx-0">
+                        <a class="text-start " data-bs-toggle="tab" href="javascript:;" id="loadBlockCustomer">
+                            Block Customer
+                        </a>
+                    </li>
+
+                    @*<li class="row mx-0">
+                        <a class="text-start" data-bs-toggle="tab" href="javascript:;" id="loadSpMySetting">
+                            My Setting
+                        </a>
+                    </li>*@
+
+                </ul>
+
+            </div>
+
+            <div class="col">
+
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="Service-provider-Dashboard">
+
+                    </div>
+
+                    <div class="tab-pane fade" id="new-service-request">
+
+
+                    </div>
+
+                    <div class="tab-pane fade" id="Upcoming-service-request">
+
+                    </div>
+
+                    <div class="tab-pane fade" id="Service-Schedule">
+
+                    </div>
+
+                    <div class="tab-pane fade" id="Service-History">
+
+                    </div>
+
+                    <div class="tab-pane fade" id="My-Ratings">
+
+                    </div>
+
+                    <div class="tab-pane fade" id="Block-Customer">
+
+                    </div>
+
+                    <div class="tab-pane fade" id="customer-My-setting">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<div id="modalSpHolder"> 
+
+</div>
+
+<!-- section 2 -->
+
+
+@section Script{
+
+    @if (TempData.ContainsKey("Mysetting"))
+    {
+        int what = Convert.ToInt32(TempData["Mysetting"]);
+
+        if (what == 2)
+        {
+            <script>
+
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/ServiceProvider/GetNewServices",
+                        success: function (response) {
+                            $('#new-service-request').html(response);
+                            $('.tab-content div').removeClass("show");
+                            $('.tab-content div').removeClass("active");
+                            $('#new-service-request').addClass("show");
+                            $('#new-service-request').addClass("active");
+                            $('.sub-menu li a').removeClass("active");
+                            $('#loadNewService').addClass("active");
+                        }
+                    });
+
+                });
+            </script>
+        }
+        else if (what == 3)
+        {
+            <script>
+                $(document).ready(function () {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/ServiceProvider/GetUpcomingService",
+                        success: function (response) {
+                            $('#Upcoming-service-request').html(response);
+                            $('.tab-content div').removeClass("show");
+                            $('.tab-content div').removeClass("active");
+                            $('#Upcoming-service-request').addClass("show");
+                            $('#Upcoming-service-request').addClass("active");
+                            $('.sub-menu li a').removeClass("active");
+                            $('#loadUpcomingService').addClass("active");
+                        }
+                    });
+                });
+            </script>
+        }
+        else if (what == 4)
+        {
+            <script>
+
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/ServiceProvider/GetServiceSchedule",
+                        success: function (response) {
+                            $('#Service-Schedule').html(response);
+                            $('.tab-content div').removeClass("show");
+                            $('.tab-content div').removeClass("active");
+                            $('#Service-Schedule').addClass("show");
+                            $('#Service-Schedule').addClass("active");
+                            $('.sub-menu li a').removeClass("active");
+                            $('#loadSpServiceSchedule').addClass("active");
+                        }
+                    });
+
+                });
+            </script>
+        }
+        else if (what == 5)
+        {
+            <script>
+
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/ServiceProvider/GetServiceHistory",
+                        success: function (response) {
+                            $('#Service-History').html(response);
+                            $('.tab-content div').removeClass("show");
+                            $('.tab-content div').removeClass("active");
+                            $('#Service-History').addClass("show");
+                            $('#Service-History').addClass("active");
+                            $('.sub-menu li a').removeClass("active");
+                            $('#loadSpServiceHistory').addClass("active");
+                        }
+                    });
+
+                });
+            </script>
+        }
+        else if (what == 6)
+        {
+            <script>
+
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/ServiceProvider/GetMyRattings",
+                        success: function (response) {
+                            debugger;
+                            $('#My-Ratings').html(response);
+                            $('.tab-content div').removeClass("show");
+                            $('.tab-content div').removeClass("active");
+                            $('#My-Ratings').addClass("show");
+                            $('#My-Ratings').addClass("active");
+                            $('.sub-menu li a').removeClass("active");
+                            $('#loadMyRatings').addClass("active");
+                        }
+                    });
+
+                });
+            </script>
+        }
+        else if (what == 7)
+        {
+            <script>
+
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/ServiceProvider/GetBlockCustomer",
+                        success: function (response) {
+                            $('#Block-Customer').html(response);
+                            $('.tab-content div').removeClass("show");
+                            $('.tab-content div').removeClass("active");
+                            $('#Block-Customer').addClass("show");
+                            $('#Block-Customer').addClass("active");
+                            $('.sub-menu li a').removeClass("active");
+                            $('#loadBlockCustomer').addClass("active");
+                        }
+                    });
+
+                });
+            </script>
+        }
+        else if (what == 8)
+        {
+            <script>
+
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/ServiceProvider/GetMySetting",
+                        success: function (response) {
+                            $('#customer-My-setting').html(response);
+                            $('.tab-content div').removeClass("show");
+                            $('.tab-content div').removeClass("active");
+                            $('#customer-My-setting').addClass("show");
+                            $('#customer-My-setting').addClass("active");
+                            $('.sub-menu li a').removeClass("active");
+                            $('#loadSpMySetting').addClass("active");
+
+                            $.ajax({
+                                type: "GET",
+                                url: "/ServiceProvider/LoadMyDetails",
+                                success: function (response) {
+
+                                    $('#content-mydetails').html(response);
+                                    $('#content-mydetails form').data('validator', null);
+                                    $.validator.unobtrusive.parse('#content-mydetails form');
+
+                                }
+                            });
+                        }
+                    });
+                });
+            </script>
+        }
+
+    }
+    else
+    {
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/ServiceProvider/GetSpDashboardDetails",
+                    success: function (response) {
+                        $('#Service-provider-Dashboard').html(response);
+                        $('.tab-content div').removeClass("show");
+                        $('.tab-content div').removeClass("active");
+                        $('#Service-provider-Dashboard').addClass("show");
+                        $('#Service-provider-Dashboard').addClass("active");
+                        $('.sub-menu li a').removeClass("active");
+                        $('#loadSpDashboard').addClass("active");
+                    }
+                });
+            });
+
+        </script>
+    }
+   
+ <script>
+
+        $("#loadSpDashboard").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/ServiceProvider/GetSpDashboardDetails",
+                success: function (response) {
+                    $('#Service-provider-Dashboard').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#Service-provider-Dashboard').addClass("show");
+                    $('#Service-provider-Dashboard').addClass("active");
+                    $('.sub-menu li a').removeClass("active");
+                    $('#loadSpDashboard').addClass("active");
+                }
+            });
+        });
+
+        $("#loadNewService").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/ServiceProvider/GetNewServices",
+                success: function (response) {
+                    $('#new-service-request').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#new-service-request').addClass("show");
+                    $('#new-service-request').addClass("active");
+                    $('.sub-menu li a').removeClass("active");
+                    $('#loadNewService').addClass("active");
+                }
+            });
+        });
+
+        $("#loadUpcomingService").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/ServiceProvider/GetUpcomingService",
+                success: function (response) {
+                    $('#Upcoming-service-request').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#Upcoming-service-request').addClass("show");
+                    $('#Upcoming-service-request').addClass("active");
+                    $('.sub-menu li a').removeClass("active");
+                    $('#loadUpcomingService').addClass("active");
+                }
+            });
+        });
+
+        $("#loadSpServiceSchedule").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/ServiceProvider/GetServiceSchedule",
+                success: function (response) {
+                    $('#Service-Schedule').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#Service-Schedule').addClass("show");
+                    $('#Service-Schedule').addClass("active");
+                    $('.sub-menu li a').removeClass("active");
+                    $('#loadSpServiceSchedule').addClass("active");
+                }
+            });
+        });
+
+        $("#loadSpServiceHistory").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/ServiceProvider/GetServiceHistory",
+                success: function (response) {
+                    $('#Service-History').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#Service-History').addClass("show");
+                    $('#Service-History').addClass("active");
+                    $('.sub-menu li a').removeClass("active");
+                    $('#loadSpServiceHistory').addClass("active");
+                }
+            });
+        });
+
+        $("#loadMyRatings").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/ServiceProvider/GetMyRattings",
+                success: function (response) {
+                    
+                    $('#My-Ratings').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#My-Ratings').addClass("show");
+                    $('#My-Ratings').addClass("active");
+                    $('.sub-menu li a').removeClass("active");
+                    $('#loadMyRatings').addClass("active");
+                }
+            });
+        });
+
+        $("#loadBlockCustomer").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/ServiceProvider/GetBlockCustomer",
+                success: function (response) {
+                    $('#Block-Customer').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#Block-Customer').addClass("show");
+                    $('#Block-Customer').addClass("active");
+                    $('.sub-menu li a').removeClass("active");
+                    $('#loadBlockCustomer').addClass("active");
+                }
+            });
+        });
+
+        //$("#loadSpMySetting").click(function () {
+        //    $.ajax({
+        //        type: "GET",
+        //        url: "/ServiceProvider/GetMySetting",
+        //        success: function (response) {
+        //            $('#customer-My-setting').html(response);
+        //            $('.tab-content div').removeClass("show");
+        //            $('.tab-content div').removeClass("active");
+        //            $('#customer-My-setting').addClass("show");
+        //            $('#customer-My-setting').addClass("active");
+        //            $('.sub-menu li a').removeClass("active");
+        //            $('#loadSpMySetting').addClass("active");
+
+        //            $.ajax({
+        //                type: "GET",
+        //                url: "/ServiceProvider/LoadMyDetails",
+        //                success: function (response) {
+
+        //                    $('#content-mydetails').html(response);
+        //                    $('#content-mydetails form').data('validator', null);
+        //                    $.validator.unobtrusive.parse('#content-mydetails form');
+
+        //                }
+        //            });
+        //        }
+        //    });
+        //});
+
+     $('#customer-My-setting').on('click', '#Mydetails', function () {
+         $.ajax({
+             type: "GET",
+             url: "/ServiceProvider/LoadMyDetails",
+             success: function (response) {
+                 $('#content-mydetails').html(response);
+                 $('#content-mydetails form').data('validator', null);
+                 $.validator.unobtrusive.parse('#content-mydetails form');
+             }
+         });
+     });
+
+     $('#customer-My-setting').on('click', '#Changepassword', function () {
+         $.ajax({
+             type: "GET",
+             url: "/ServiceProvider/LoadChangePassword",
+             success: function (response) {
+                 $('#content-mydetails').html(response);
+                 $('#content-mydetails form').data('validator', null);
+                 $.validator.unobtrusive.parse('#content-mydetails form');
+             }
+         });
+     });
+
+
+     function showSpDetails(sr) {
+            var id = sr.getAttribute("data-id");
+            var from = sr.getAttribute("data-from");
+            var tab = sr.getAttribute("data-tab");
+
+            $.ajax({
+                type: "GET",
+                url: "/ServiceProvider/GetServiceDetails?serviceRequestId=" + id + "&tab=" + tab,
+                success: function (response) {
+                    $("#modalSpHolder").html(response);
+                    if (from == "row") {
+                        $("#spServiceDetails").modal("show");
+
+                    }
+                }
+            });
+     }
+
+     function blockCustomer(btn) {
+         var id = btn.getAttribute("data-id");
+
+         $.ajax({
+             type: "GET",
+             url: "/ServiceProvider/Block?Id=" + id,
+             success: function (response) {
+
+                 $('#Block-Customer').html(response);
+                 $('.tab-content div').removeClass("show");
+                 $('.tab-content div').removeClass("active");
+                 $('#Block-Customer').addClass("show");
+                 $('#Block-Customer').addClass("active")
+                 $('.sub-menu li a').removeClass("active");
+                 $('#loadBlockCustomer').addClass("active");
+             }
+         });
+     }
+
+     function unblockCustomer(btn) {
+         var id = btn.getAttribute("data-id");
+
+         $.ajax({
+             type: "GET",
+             url: "/ServiceProvider/UnBlock?Id=" + id,
+             success: function (response) {
+
+                 $('#Block-Customer').html(response);
+                 $('.tab-content div').removeClass("show");
+                 $('.tab-content div').removeClass("active");
+                 $('#Block-Customer').addClass("show");
+                 $('#Block-Customer').addClass("active")
+                 $('.sub-menu li a').removeClass("active");
+                 $('#loadBlockCustomer').addClass("active");
+             }
+         });
+     }
+
+     function callSpPageSize(data, what) {
+         
+         var no = data.value;
+         if (what == 7) {
+             $.ajax({
+                 type: "GET",
+                 url: "/ServiceProvider/GetBlockCustomer?pageSize=" + no,
+                 success: function (response) {
+
+                     $('#Block-Customer').html(response);
+                     $('.tab-content div').removeClass("show");
+                     $('.tab-content div').removeClass("active");
+                     $('#Block-Customer').addClass("show");
+                     $('#Block-Customer').addClass("active")
+                     $('.sub-menu li a').removeClass("active");
+                     $('#loadBlockCustomer').addClass("active");
+                 }
+             });
+         }
+         else if (what == 6) {
+            
+             var rateBy = document.getElementById("rateBylist").value;
+             $.ajax({
+                 type: "GET",
+                 url: "/ServiceProvider/GetMyRattings?pageSize=" + no + "&rateBy=" + rateBy,
+                 success: function (response) {
+                     $('#My-Ratings').html(response);
+                     $('.tab-content div').removeClass("show");
+                     $('.tab-content div').removeClass("active");
+                     $('#My-Ratings').addClass("show");
+                     $('#My-Ratings').addClass("active");
+                     $('.sub-menu li a').removeClass("active");
+                     $('#loadMyRatings').addClass("active");
+                 }
+             });
+         }
+         else if (what == 5) {
+             $.ajax({
+                 type: "GET",
+                 url: "/ServiceProvider/GetServiceHistory?pageSize=" + no,
+                 success: function (response) {
+
+                     $('#Service-History').html(response);
+                     $('.tab-content div').removeClass("show");
+                     $('.tab-content div').removeClass("active");
+                     $('#Service-History').addClass("show");
+                     $('#Service-History').addClass("active");
+                     $('.sub-menu li a').removeClass("active");
+                     $('#loadSpServiceHistory').addClass("active");
+                 }
+             });
+         }
+         else if (what == 3) {
+             $.ajax({
+                 type: "GET",
+                 url: "/ServiceProvider/GetUpcomingService?pageSize=" + no,
+                 success: function (response) {
+
+                     $('#Upcoming-service-request').html(response);
+                     $('.tab-content div').removeClass("show");
+                     $('.tab-content div').removeClass("active");
+                     $('#Upcoming-service-request').addClass("show");
+                     $('#Upcoming-service-request').addClass("active");
+                     $('.sub-menu li a').removeClass("active");
+                     $('#loadUpcomingService').addClass("active");
+                 }
+             });
+         }
+         else if (what == 2) {
+             debugger;
+             var hasPet = $('#hasPetCheck').getAttribute("data-hasPet");
+             $.ajax({
+                 type: "GET",
+                 url: "/ServiceProvider/GetNewServices?pageSize=" + no + "&hasPet" + hasPet,
+                 success: function (response) {
+
+                     $('#new-service-request').html(response);
+                     $('.tab-content div').removeClass("show");
+                     $('.tab-content div').removeClass("active");
+                     $('#new-service-request').addClass("show");
+                     $('#new-service-request').addClass("active");
+                     $('.sub-menu li a').removeClass("active");
+                     $('#loadNewService').addClass("active");
+                 }
+             });
+         }
+
+     }
+
+     function callSpRateBy(rateBy) {
+         var rateBy = rateBy.value;
+         var no = document.getElementById("pagesizelist").value;
+         $.ajax({
+             type: "GET",
+             url: "/ServiceProvider/GetMyRattings?pageSize=" + no + "&rateBy=" + rateBy,
+             success: function (response) {
+                 $('#My-Ratings').html(response);
+                 $('.tab-content div').removeClass("show");
+                 $('.tab-content div').removeClass("active");
+                 $('#My-Ratings').addClass("show");
+                 $('#My-Ratings').addClass("active");
+                 $('.sub-menu li a').removeClass("active");
+                 $('#loadMyRatings').addClass("active");
+             }
+         });
+     }
+
+     function SpTab5Success(data) {
+
+         $("#Service-History").html(data);
+         $('.tab-content div').removeClass("show");
+         $('.tab-content div').removeClass("active");
+         $('#Service-History').addClass("show");
+         $('#Service-History').addClass("active");
+         $('.sub-menu li a').removeClass("active");
+         $('#loadSpServiceHistory').addClass("active");
+     }
+
+     function SpTab3Success(data) {
+         $('#Upcoming-service-request').html(data);
+         $('.tab-content div').removeClass("show");
+         $('.tab-content div').removeClass("active");
+         $('#Upcoming-service-request').addClass("show");
+         $('#Upcoming-service-request').addClass("active");
+         $('.sub-menu li a').removeClass("active");
+         $('#loadUpcomingService').addClass("active");
+     }
+
+     function SpTab2Success(data) {
+         $('#new-service-request').html(data);
+         $('.tab-content div').removeClass("show");
+         $('.tab-content div').removeClass("active");
+         $('#new-service-request').addClass("show");
+         $('#new-service-request').addClass("active");
+         $('.sub-menu li a').removeClass("active");
+         $('#loadNewService').addClass("active");
+     }
+     function AcceptSuccess(response) {
+         debugger;
+         $('#new-service-request').html(response);
+         $('.tab-content div').removeClass("show");
+         $('.tab-content div').removeClass("active");
+         $('#new-service-request').addClass("show");
+         $('#new-service-request').addClass("active");
+         $('.sub-menu li a').removeClass("active");
+         $('#loadNewService').addClass("active");
+     }
+
+     function AcceptFailure(data) {
+         debugger;
+         var val = JSON.parse(data.responseText);
+         var msg = val.message;
+         $('#errorAccept').removeClass("d-none");
+         $('#errorAccept').html(msg);
+         setTimeout(
+             function () {
+                 $("#errorAccept").addClass("d-none");
+             }, 5000);
+     }
+
+     function getAvtar(element) {
+         debugger;
+         var id = element.getAttribute("data-id");
+         $("#spAvtarDefault").attr("class","d-none");
+         $("#avtar-list div img").removeClass("active");
+         element.classList.add("active");
+         $(".av").removeClass("d-none");
+         $(".av").addClass("d-none");
+         if (id == 1)
+             $("#spAvtar1").removeClass("d-none");
+         else if (id == 2)
+             $("#spAvtar2").removeClass("d-none");
+         else if (id == 3)
+             $("#spAvtar3").removeClass("d-none");
+         else if (id == 4)
+             $("#spAvtar4").removeClass("d-none");
+         else if (id == 5)
+             $("#spAvtar5").removeClass("d-none");
+         else if (id == 6)
+             $("#spAvtar6").removeClass("d-none");
+
+         $("#UserProfilePicture").val(id);
+     }
+
+     function AddPet(hasPet) {
+         debugger;
+         var haspet = hasPet.getAttribute("data-hasPet");
+         var PageSize = $('#pagesizelist').val();
+       
+         if (haspet == "True") {
+             $.ajax({
+                 type: "GET",
+                 url: "/ServiceProvider/GetNewServices?pageSize=" + PageSize + "&hasPet=" + haspet,
+                 success: function (response) {
+                     $('#new-service-request').html(response);
+                     $('.tab-content div').removeClass("show");
+                     $('.tab-content div').removeClass("active");
+                     $('#new-service-request').addClass("show");
+                     $('#new-service-request').addClass("active");
+                     $('.sub-menu li a').removeClass("active");
+                     $('#loadNewService').addClass("active");
+                     $('#hasPetCheck').prop('checked', true);
+                 }
+             });
+         }
+         else {
+             $.ajax({
+                 type: "GET",
+                 url: "/ServiceProvider/GetNewServices?pageSize=" + PageSize + "&hasPet=" + haspet,
+                 success: function (response) {
+                     $('#new-service-request').html(response);
+                     $('.tab-content div').removeClass("show");
+                     $('.tab-content div').removeClass("active");
+                     $('#new-service-request').addClass("show");
+                     $('#new-service-request').addClass("active");
+                     $('.sub-menu li a').removeClass("active");
+                     $('#loadNewService').addClass("active");
+                     $('#hasPetCheck').prop('checked', false);
+                 }
+             });
+         }
+     }
+    </script>
+
+}

@@ -158,3 +158,40 @@
     </div>
 </div>
 
+
+@*error Modal*@
+<div class="modal fade" id="error-Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+                <div class="row justify-content-center text-center">
+                    <span>
+                        <img src="~/Images/close-icon-small.png" height="26" width="26" alt="">
+                    </span>
+                    @if (TempData.ContainsKey("Message"))
+                    {
+                        @if (TempData["ModalName"].ToString() == "#logout-Modal"|| TempData["ModalName"].ToString() == "#error-Modal")
+                        {
+                            <p>
+                                @TempData["Message"]
+                            </p>
+                        }
+
+                    }
+                    <p class="p-0 pb-1 m-0" id="text-message">
+                        @if (TempData.ContainsKey("Message2"))
+                        {
+                            @if (TempData["ModalName"].ToString() == "#logout-Modal" || TempData["ModalName"].ToString() == "#error-Modal")
+                            {
+                                @TempData["Message2"]
+
+                            }
+
+                        }
+                    </p>
+                    <button class="btn" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

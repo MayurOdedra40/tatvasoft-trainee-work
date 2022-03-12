@@ -1,0 +1,335 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<ServiceRequest>
+@{
+    List<User> users = ViewBag.users;
+    List<Rating> ratings = ViewBag.ratings;
+    var i = 0;
+}
+
+<div>
+    <div class="row mx-0 justify-content-between tab-heading">
+        <div class="col-auto ps-0">
+            <p class="title">My Ratings</p>
+        </div>
+        <div class="col-auto pe-0">
+            <div class="dropdown sorting-dropdown">
+                <button type="button" class="btn p-0" data-bs-toggle="dropdown">
+                    <img src="~/Images/sort.png" alt="">
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Customer name:
+                                Ascending
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Customer name:
+                                Descending
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service date:
+                                Latest
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service date:
+                                Oldest
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">Rating: High to Low</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">Rating: Low to High</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row row1 mx-0 justify-content-between">
+        <div class="col-auto">
+            <p class="mb-0 text">
+                Rating
+                @Html.DropDownList("rateBy", new SelectList(new Dictionary<int, string> {
+               {  0,"All"},
+               { 5,"Excellent"},
+               { 4,"Very Good"},
+               { 3, "Good"},
+               { 2, "Poor"},
+               { 1, "Very Poor"}}, "Key", "Value", ViewBag.rateBy),
+                           new { @class = "form-select select d-inline mx-1", id = "rateBylist", onchange = "callSpRateBy(this)" })
+            </p>
+        </div>
+
+        <div class="col-auto">
+            <div class="dropdown sorting-dropdown">
+                <button type="button" class="btn" data-bs-toggle="dropdown">
+                    Sorting <img src="Images/sort.png" alt="">
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Customer name:
+                                Ascending
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Customer name:
+                                Descending
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service date:
+                                Latest
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Service date:
+                                Oldest
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Rating: High to
+                                Low
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="radio1"
+                                   name="optradio" value="option1" checked>
+                            <label class="form-check-label" for="radio1">
+                                Rating: Low to
+                                High
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row2 mx-0">
+
+        @foreach (ServiceRequest service in Model.Data)
+        {
+            var ids = service.ServiceRequestId;
+            var startDateTime = service.ServiceStartDate;
+            var date = startDateTime.ToString("dd/MM/yyyy").Replace("-", "/");
+            var time = startDateTime.ToString("HH:mm");
+            double totalhour = Convert.ToDouble(service.ServiceHours + service.ExtraHours);
+
+            var endTime = startDateTime.AddHours(totalhour).ToString("HH:mm");
+            <div class="clickable-row container-fluid rating-card mb-2 mx-0" id="@ids" data-id="@ids" data-from="row" onclick="showSpDetails(this)">
+
+                <div class="row row-1 mx-0">
+                    <div class="col-12 col-sm-6 col-md-auto mb-2 mb-md-0 bb-1">
+                        <div class="container-fluid px-0">
+                            <div class="row mx-0">
+                                <p class="text d-flex px-0 m-0">8318</p>
+                            </div>
+
+                            <div class="row mx-0 mt-2">
+                                <p class="text mb-0 px-0"><b>@users[i].FirstName @users[i].LastName</b></p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col mb-2 mb-md-0 bb-1">
+                        <div class="container-fluid table-data px-0">
+                            <div class="row mx-0">
+                                <div class="col-auto px-0">
+                                    <img class="d-flex calender-img px-0"
+                                         src="Images/calendar.png" alt="">
+                                </div>
+                                <div class="col px-0 ps-1">
+                                    <p class="text d-flex m-0"><b>@date</b></p>
+                                </div>
+                            </div>
+
+                            <div class="row mx-0 mt-2">
+                                <div class="col-auto px-0">
+                                    <img class="d-inline" src="Images/clock.png" />
+                                </div>
+                                <div class="col px-0 ps-1">
+                                    <p class="text mb-0">@time - @endTime</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-auto pe-md-5">
+                        <div class="container-fluid table-data px-0">
+                            <div class="row mx-0">
+                                <p class="text d-flex m-0 px-0"><b>Ratings</b></p>
+                            </div>
+
+                            <div class="row mx-0 mt-2">
+                                <div class="col-auto px-0">
+
+                                    @{
+                                        var n = (int)ratings[i].Ratings;
+
+                                    }
+
+
+                                    @for (int j = 1; j <= n; j++)
+                                    {
+                                        <span class="click"><i class='fa fa-star yellow'></i> </span>
+
+                                    }
+
+                                    @for (int j = n + 1; j <= 5; j++)
+                                    {
+
+                                        <span class="click"><i class='fa fa-star grey'></i> </span>
+                                    }
+                                </div>
+
+                                <div class="col px-0 ps-1">
+                                    @if (n == 1)
+                                    {
+                                        <p class="text mb-0">Very Poor</p>
+                                    }
+                                    else if (n == 2)
+                                    {
+                                        <p class="text mb-0">Poor</p>
+                                    }
+                                    else if (n == 3)
+                                    {
+                                        <p class="text mb-0">Good</p>
+                                    }
+                                    else if (n == 4)
+                                    {
+                                        <p class="text mb-0">Very Good</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text mb-0">Excellent</p>
+
+                                    }
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-2 mx-2 mt-2">
+                        <div class="container-fluid px-0">
+                            <div class="row mx-0 mt-2">
+                                <p class="text d-flex px-0 m-0"><b>Customer Comment</b></p>
+                            </div>
+
+                            <div class="row mx-0">
+                                <p class="text mb-0 px-0">
+                                    @ratings[i].Comments
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            i++;
+        }
+
+
+
+    </div>
+
+
+    <div class="row row3 mx-0 justify-content-between">
+        <div class="col-12 col-md-auto mb-2 mb-md-0">
+            <div class="row mx-0 px-0 text-center">
+                <p class="mb-0 text d-block mx-auto">
+                    Show
+                    @Html.DropDownList("PageSize", new SelectList(new Dictionary<string, int> { { "5", 5 }, { "10", 10 }, { "20", 20 }, { "100", 100 } }, "Key", "Value", Model.PageSize),
+                           new { @class = "form-select select pagination-select d-inline mx-1", id = "pagesizelist", onchange = "callSpPageSize(this,6)" })
+
+                    entries Total Record: @Model.TotalItems
+                </p>
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-auto">
+            <cs-pager id="paging" cs-paging-pagenumber=(int)Model.PageNumber
+                      cs-paging-totalitems=(int)Model.TotalItems
+                      cs-paging-pagesize=Model.PageSize
+                      cs-pagenumber-param="pagenumber"
+                      asp-controller="ServiceProvider"
+                      asp-action="GetMyRattings"
+                      cs-ajax-target="#My-Ratings"
+                      cs-show-first-last=true
+                      cs-first-page-text='<span class="pag-first-page"></span>'
+                      cs-last-page-text='<span class="pag-last-page"></span>'
+                      cs-previous-page-text='<span class="pag-pre-page"></span>'
+                      cs-next-page-text='<span class="pag-next-page"></span>'
+                      cs-pager-li-current-class="page-item active"
+                      cs-pager-li-other-class="page-item"
+                      cs-pager-li-non-active-class="page-item disabled"
+                      cs-pager-link-current-class="page-link"
+                      cs-pager-link-other-class="page-link">
+
+            </cs-pager>
+
+        </div>
+    </div>
+</div>

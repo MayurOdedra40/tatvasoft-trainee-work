@@ -471,3 +471,14 @@ D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\
 D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Customer\_EditAddressPartials.cshtml.g.cs
 D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\cloudscribe.Pagination.Models.dll
 D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\cloudscribe.Web.Pagination.dll
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_DashboardPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_NewServicePartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_UpcomingServicePartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_ServiceSchedulePartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_ServiceHistoryPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_MyRattingsPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_BlockCustomerPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_MySettingPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_DetailsModalPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_DetailsPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_ChangePasswordPartial.cshtml.g.cs

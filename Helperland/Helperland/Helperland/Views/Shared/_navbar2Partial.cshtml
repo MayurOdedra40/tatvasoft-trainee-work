@@ -22,43 +22,52 @@
                         <ul class="px-0 nav nav-tabs">
 
                             <li class="nav-item">
-                                <a class="text active dismiss" data-bs-toggle="tab"
-                                   href="#Service-provider-Dashboard">Dashboard</a>
+                                <a class="text active dismiss" asp-controller="ServiceProvider" asp-action="Index">Dashboard</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#new-service-request">
+                                <a class="text dismiss" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="2">
                                     New Service
                                     Requests
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#Upcoming-service-request">
+                                <a class="text dismiss" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="3">
                                     Upcoming
                                     Services
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#Service-Schedule">Service Schedule</a>
+                                <a class="text dismiss" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="4">
+                                    Service Schedule
+                                </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#Service-History">Service History</a>
+                                <a class="text dismiss" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="5">
+                                    Service History
+                                </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#My-Ratings">My Ratings</a>
+                                <a class="text dismiss" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="6">
+                                    My Ratings
+                                </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#Block-Customer">Block Customer</a>
+                                <a class="text dismiss" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="7">
+                                    Block Customer
+                                </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="text dismiss" data-bs-toggle="tab" href="#Block-Customer">My Setting</a>
-                              
+                                <a class="text dismiss" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="8">
+                                    My Setting
+                                </a>
+
                             </li>
 
                             <li class="nav-item">
@@ -228,13 +237,15 @@
 
                     <ul class="navbar-nav mb-2 mb-lg-0 menu w-auto">
 
-                        <li class="nav-item btn book-now">
+                        @if (Context.Session.GetString("isLoggedIn") == null || Context.Session.GetString("UserTypeId") == "1")
+                        {
+                            <li class="nav-item btn pas">
 
-                            <a class="nav-link  px-0" aria-current="page" asp-controller="BookService" asp-action="Index">
-                                Book-now
-                            </a>
-                        </li>
-
+                                <a class="nav-link  px-0" aria-current="page" asp-controller="BookService" asp-action="Index">
+                                    Book a cleaner
+                                </a>
+                            </li>
+                        }
                         <li class="nav-item btn pas d-none">
                             <a class="nav-link px-0" aria-current="page" asp-controller="Home" asp-action="Price">Price & services</a>
                         </li>
@@ -310,11 +321,14 @@
                                                 {
                                                     <a class="dropdown-text dismiss" asp-controller="Customer" asp-action="IndexWithCode" asp-route-id="5">My Setting</a>
                                                 }
+                                                else if (Context.Session.GetString("UserTypeId") == "2")
+                                                {
+                                                    <a class="dropdown-text dismiss" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="8">My Setting</a>
+                                                }
                                             </li>
 
                                             <li class="nav-item d-block w-100 py-1">
-                                                <a class="dropdown-text dismiss" asp-controller="Home" asp-action="Logout"
-                                                   >Logout</a>
+                                                <a class="dropdown-text dismiss" asp-controller="Home" asp-action="Logout">Logout</a>
                                             </li>
 
                                         </ul>

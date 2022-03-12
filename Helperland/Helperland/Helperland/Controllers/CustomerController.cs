@@ -34,7 +34,8 @@ namespace Helperland.Controllers
             return View("Index");
         }
 
-        public PagedResult<ServiceRequest> GetDashboardDetails(int pageNumber = 1, int pageSize = 5, string sortBy = "ServiceRequestId", string sortOrder = "Asc")
+        public PagedResult<ServiceRequest> GetDashboardDetails(int pageNumber = 1, int pageSize = 5, 
+            string sortBy = "ServiceRequestId", string sortOrder = "Asc")
         {
                 
                 HttpContext.Session.SetInt32("pageNumber", pageNumber);
@@ -261,7 +262,8 @@ namespace Helperland.Controllers
             return PartialView("_DashboardPartial", result);
         }
 
-        public  PagedResult<ServiceRequest> GetCustomerServiceHistoryDetails(int pageNumber = 1, int pageSize = 5, string sortBy = "ServiceRequestId", string sortOrder = "Asc")
+        public  PagedResult<ServiceRequest> GetCustomerServiceHistoryDetails(int pageNumber = 1, int pageSize = 5, 
+                    string sortBy = "ServiceRequestId", string sortOrder = "Asc")
         {
             HttpContext.Session.SetInt32("pageNumber", pageNumber);
             HttpContext.Session.SetInt32("pageSize", pageSize);
@@ -449,11 +451,6 @@ namespace Helperland.Controllers
 
         public IActionResult GetCustomerServiceHistory( int pageNumber=1, int pageSize=5, string sortBy="ServiceRequestId", string sortOrder="Asc")
         {
-            ViewBag.sortBy = sortBy;
-            HttpContext.Session.SetInt32("pageNumber", pageNumber);
-            HttpContext.Session.SetInt32("pageSize", pageSize);
-            HttpContext.Session.SetString("sortBy", sortBy);
-            HttpContext.Session.SetString("sortOrder", sortOrder);
 
             PagedResult<ServiceRequest> result = GetCustomerServiceHistoryDetails(pageNumber, pageSize, sortBy, sortOrder);
 
@@ -1390,6 +1387,7 @@ namespace Helperland.Controllers
             int pageSize = (int)HttpContext.Session.GetInt32("pageSize");
 
             PagedResult<ServiceRequest> result = GetCustomerServiceHistoryDetails(pageNumber, pageSize, sortBy, sortOrder);
+            
             List<User> sp = (List<User>)TempData["sp"];
 
             List<decimal> ratings = (List<decimal>)TempData["ratings"];

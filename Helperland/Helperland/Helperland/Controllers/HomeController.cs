@@ -265,6 +265,16 @@ namespace Helperland.Controllers
                 else if (identity.UserTypeId == 2)
                 {
                     HttpContext.Session.SetString("UserTypeId", identity.UserTypeId.ToString());
+                    if(identity.ZipCode!=null)
+                    {
+                    HttpContext.Session.SetString("code", identity.ZipCode);
+
+                    }
+                    else
+                    {
+                        HttpContext.Session.SetString("code", "0");
+
+                    }
                     return RedirectToAction("Index", "ServiceProvider");
                 }
                 else

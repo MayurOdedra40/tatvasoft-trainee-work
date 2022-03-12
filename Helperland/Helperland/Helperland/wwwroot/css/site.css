@@ -4016,6 +4016,38 @@ changeSP-badge{
     border-radius: 40px;
 }
 
+#error-Modal .modal-content {
+    max-width: 400px;
+}
+
+#error-Modal .modal-body {
+    padding-top: 50px;
+}
+
+#error-Modal span {
+    width: 76px;
+    height: 76px;
+    display: inline-block;
+    background: #D52F2F;
+    padding: 25px;
+    border-radius: 500px;
+    margin-bottom: 25px;
+}
+
+#error-Modal .row p {
+    margin: 0 0 20px;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+
+#error-Modal .btn {
+    width: 63px;
+    height: 40px;
+    padding: 9px 20px;
+    border-radius: 40px;
+}
 #confirm-password-Modal{
     position: relative;
     margin-bottom:200px;
@@ -4499,6 +4531,10 @@ hr.small {
     #deleteAddress .modal-dialog {
         max-width: 400px;
     }
+
+    #spServiceDetails .modal-dialog {
+        max-width: 900px;
+    }
 }
 
 .modal .btn-primary {
@@ -4689,4 +4725,186 @@ hr.small {
     background-position-x: 3px;
     background-position-y: 0px;
 }
+
+
+
+
+#spServiceDetails .modal-content {
+    width: 900px;
+}
+
+#spServiceDetails .modal-body {
+    position: relative;
+    padding-right: 390px;
+}
+
+#spServiceDetails .modal-title {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+#spServiceDetails .datetime {
+    font-size: 22px;
+    color: #4f4f4f;
+    font-weight: 700;
+}
+
+#spServiceDetails .price {
+    font-size: 26px;
+    color: #1d7a8c;
+    font-weight: 700;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+#spServiceDetails .action-buttons .btn {
+    width: auto !important;
+    margin-bottom: 0;
+    padding: 8px 15px !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    border: none !important;
+}
+
+    #spServiceDetails .action-buttons .btn img {
+        vertical-align: top;
+        margin-right: 4px;
+    }
+
+#spServiceDetails .btn-primary {
+    width: auto;
+    border-color: #1d7a8c;
+    height: 40px;
+}
+
+    #spServiceDetails .btn-primary:hover {
+        background: #146371 !important;
+        border: none;
+        outline: 0 !important;
+        box-shadow: none;
+        opacity: 1;
+        color: white;
+    }
+
+#spServiceDetails .btn-danger {
+    width: auto;
+    height: 40px;
+    background: #ff6b6b;
+    color: #fff !important;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 8px 15px;
+    transition: all .3s ease;
+    border: none !important;
+    line-height: 22px;
+}
+
+    #spServiceDetails .btn-danger:hover {
+        color: #fff !important;
+        background: #cc5656 !important;
+        box-shadow: none !important;
+        outline: 0 !important;
+        opacity: 1;
+    }
+
+#spServiceDetails hr {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+#spServiceDetails .sp-map {
+    background: #e1e1e1;
+    position: absolute;
+    right: 20px;
+    top: 68px;
+    bottom: 25px;
+    width: 340px;
+    border: 1px solid #e1e1e1;
+}
+
+    #spServiceDetails .sp-map iframe {
+        height: 100%;
+        width: 100%;
+    }
+
+#customer-My-setting .account-status {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 25px;
+}
+
+    #customer-My-setting .account-status span {
+        color: #67b644;
+        font-weight: 400;
+    }
+
+.radio.inline {
+    display: inline-block;
+    position: relative;
+}
+
+.radio label {
+    font-size: 16px;
+    line-height: 46px;
+    font-weight: 400;
+    cursor: pointer;
+    padding-left: 25px;
+    margin-right: 15px;
+}
+
+.radio input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.radio span {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 18px;
+    width: 18px;
+    border-radius: 500px;
+    padding: 3px;
+    border: 1px solid #c8c8c8;
+    margin-top: -10px;
+}
+
+    .radio span::after {
+        background: #1d7a8c;
+        content: "";
+        border-radius: 500px;
+        height: 10px;
+        width: 10px;
+        display: block;
+        opacity: 0;
+        transition: all .2s ease;
+    }
+
+.radio input:checked + label span {
+    border-color: #1d7a8c;
+}
+
+    .radio input:checked + label span::after {
+        opacity: 1;
+    }
+
+.columnAvatar {
+    float: left;
+    cursor: pointer;
+    padding: 5px;
+}
+
+    .columnAvatar .avatar {
+        height: 85px;
+        border-radius: 85px;
+    }
+
+    .columnAvatar .active {
+        border: 3px solid #1D7A8c;
+    }
+
+
+
 
