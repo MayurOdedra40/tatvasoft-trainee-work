@@ -213,9 +213,53 @@
                                 <div class="row mx-0">
                                     <div class="col-auto px-0">
                                         <div class="rating">
-                                            <img class="rating-img"
-                                                 src="~/Images/block-customer-hat.png" alt=""
-                                                 width="30" height="19">
+
+                                            @if (sp[i].UserProfilePicture != null)
+                                            {
+
+                                                if (sp[i].UserProfilePicture == "1")
+                                                {
+                                                    <img class="rating-img"
+                                                         src="~/Images/avatar-car.png" alt=""
+                                                         width="42" height="42">
+                                                }
+                                                if (sp[i].UserProfilePicture == "2")
+                                                {
+                                                    <img class="rating-img"
+                                                         src="~/Images/avatar-female.png" alt=""
+                                                         width="42" height="42">
+                                                }
+                                                if (sp[i].UserProfilePicture == "3")
+                                                {
+                                                    <img class="rating-img"
+                                                         src="~/Images/avatar-hat.png" alt=""
+                                                         width="42" height="42">
+                                                }
+                                                if (sp[i].UserProfilePicture == "4")
+                                                {
+                                                    <img class="rating-img"
+                                                         src="~/Images/avatar-iron.png" alt=""
+                                                         width="42" height="42">
+                                                }
+                                                if (sp[i].UserProfilePicture == "5")
+                                                {
+                                                    <img class="rating-img"
+                                                         src="~/Images/avatar-male.png" alt=""
+                                                         width="42" height="42">
+                                                }
+                                                if (sp[i].UserProfilePicture == "6")
+                                                {
+                                                    <img class="rating-img"
+                                                         src="~/Images/avatar-ship.png" alt=""
+                                                         width="42" height="42">
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <img class="rating-img"
+                                                     src="~/Images/block-customer-hat.png" alt=""
+                                                     width="30" height="19">
+                                            }
                                         </div>
                                     </div>
                                     <div class="col px-0">

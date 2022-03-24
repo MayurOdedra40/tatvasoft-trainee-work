@@ -31,6 +31,7 @@
     ".NETCoreApp,Version=v3.1": {
       "Helperland/1.0.0": {
         "dependencies": {
+          "FoolProof.Core": "1.1.10",
           "MailKit": "3.1.1",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "3.1.22",
           "Microsoft.AspNetCore.Session": "2.2.0",
@@ -341,6 +342,20 @@
         },
         "compile": {
           "lib/netcoreapp3.1/cloudscribe.Web.Pagination.dll": {}
+        }
+      },
+      "FoolProof.Core/1.1.10": {
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/FoolProof.Core.dll": {
+            "assemblyVersion": "1.1.30.0",
+            "fileVersion": "1.1.30.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/FoolProof.Core.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -4135,6 +4150,13 @@
       "sha512": "sha512-i1ADAqCerdmbe/4YHkIV5kwkAhoEanaSr3PGsPw5r6IzHZLorpNCq3dZXNOGlJmc6Fq1f02y9wpYD/b9ZF2ysA==",
       "path": "cloudscribe.web.pagination/3.1.0",
       "hashPath": "cloudscribe.web.pagination.3.1.0.nupkg.sha512"
+    },
+    "FoolProof.Core/1.1.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sFr1I9i9AqFJQiDWcIf00Gu7SXgl8yyAQJBOEKN2Gd6xVn6cWdcwzfOiyNINhI6KeOxAWJlubDUx8ppIPgr/NA==",
+      "path": "foolproof.core/1.1.10",
+      "hashPath": "foolproof.core.1.1.10.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

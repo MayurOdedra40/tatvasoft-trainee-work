@@ -1,0 +1,463 @@
+﻿@{
+    Layout ="";
+ }
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Bootstrap Icon CDN LInl -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
+    <!-- External CSS File -->
+    @*<link rel="stylesheet" href="CSS/style.css">*@
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <title>@ViewData["Title"]</title>
+</head>
+<body class="">
+
+    <!-- header -->
+
+    <header class="wrapper" id="admin-login-header">
+
+        <!-- Sidebar -->
+        <nav class="sidebar ">
+
+            <div class="container-fluid px-0 navbar-nav-scroll">
+
+                <div class="row mx-0 login-tabs">
+
+                    <ul class="px-0 nav nav-tabs">
+
+                        <li class="nav-item">
+                            <a class="text active dismiss" data-bs-toggle="tab" href="#Service-request">
+                                Service
+                                Requests
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="row mx-0 login-tabs">
+
+                    <ul class="px-0 nav nav-tabs">
+
+                        <li class="nav-item">
+                            <a class="text dismiss" data-bs-toggle="tab" href="#User-managment">
+                                User
+                                managment
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+        </nav>
+
+        <!-- Page Content -->
+        <div class="content">
+
+            <div class="container-fluid admin-navbar px-0 " id="">
+
+                <nav class="navbar navbar-expand-xl py-0">
+
+                    <div class="container-fluid row1 d-flex">
+
+                        <button class="navbar-toggler btn py-0 mt-0 sidebarCollapse px-0" type="button">
+
+                            <i class="bi bi-list bi-2x text-white ham"></i>
+                        </button>
+
+                        <a class="navbar-brand ms-2 p-0" href="#">
+                            <p class="text mb-0 px-0">helperland</p>
+                        </a>
+
+                        <ul class="navbar-nav mb-0 ms-auto menu w-auto">
+                            <li class="nav-item pt-0 align-center">
+                                <a class="px-0" aria-current="page" disabled>
+                                    <img class="img-fluid"
+                                         src="~/Images/user-icon.png" alt="" width="36" height="36">
+                                </a>
+
+                                <p class="d-inline mb-0 text ms-2">TatvaSoft Admin</p>
+                            </li>
+
+                            <li class="nav-item mx-3">
+                                <a class="px-0" asp-controller="Home" asp-action="Logout">
+                                    <img class="img-fluid"
+                                         src="~/Images/logout.png" alt="" width="26" height="29">
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- </div> -->
+            </div>
+        </div>
+
+        <div class="overlay"></div>
+
+    </header>
+    <!-- header -->
+
+    <section class="container-fluid px-0" id="admin-panal-section">
+        <div class="row mx-0">
+
+            <div class="col-auto px-0 col1 d-none d-xl-block admin-menu-body">
+                <ul class="container admin-menu px-0 nav nav-tabs">
+
+                    <li class="row mx-0 nav-item w-100">
+                        <a class="text-start active pe-0" data-bs-toggle="tab" 
+                           href="javascript:;"  id="service-manage">
+                            Service
+                            Requests
+                        </a>
+                    </li>
+
+                    <li class="row mx-0 nav-item w-100">
+                        <a class="text-start pe-0" data-bs-toggle="tab" 
+                           href="javascript:;" id="user-manage" >
+                            User
+                            managment
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="col px-0">
+                <div class="tab-content admin-content">
+                    <div class="tab-pane active" id="Service-request">
+                       
+                    </div>
+
+                    <div class="tab-pane fade" id="User-managment">
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <partial name="_Scripts" />
+
+    <script>
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Admin/GetServiceManage",
+            success: function (response) {
+                $('#Service-request').html(response);
+                $('.tab-content div').removeClass("show");
+                $('.tab-content div').removeClass("active");
+                $('#Service-request').addClass("show");
+                $('#Service-request').addClass("active");
+                $('.admin-menu li a').removeClass("active");
+                $('#service-manage').addClass("active");
+                $('#Service-request form').data('validator', null);
+                $.validator.unobtrusive.parse('#Service-request form');
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/DefaultServiceManage",
+                    success: function (data) {
+                        $("#serviceHolder").html(data);
+                    }
+
+                });
+            }
+        });
+
+        });
+
+        $("#service-manage").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/GetServiceManage",
+                success: function (response) {
+                    $('#Service-request').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#Service-request').addClass("show");
+                    $('#Service-request').addClass("active");
+                    $('.admin-menu li a').removeClass("active");
+                    $('#service-manage').addClass("active");
+                    $('#Service-request form').data('validator', null);
+                    $.validator.unobtrusive.parse('#Service-request form');
+                    $.ajax({
+                        type: "GET",
+                        url: "/Admin/DefaultServiceManage",
+                        success: function (data) {
+                            $("#serviceHolder").html(data);
+                        }
+
+                    });
+                }
+            });
+        });
+
+        $("#user-manage").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/GetUserManage",
+                success: function (response) {
+                    $('#User-managment').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#User-managment').addClass("show");
+                    $('#User-managment').addClass("active");
+                    $('.admin-menu li a').removeClass("active");
+                    $('#user-manage').addClass("active");
+                    $.ajax({
+                        type: "GET",
+                        url: "/Admin/DefaultUserManage",
+                        success: function (data) {
+                            $("#user-holder").html(data);
+                        }
+
+                    });
+                }
+            });
+        });
+
+        function callAdminPageSize(data, what) {
+
+            var no = data.value;
+            if (what == 1) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/DefaultServiceManage?pageSize=" + no,
+                    success: function (response) {
+                        debugger;
+                        $("#serviceHolder").html(response);
+                    }
+                });
+            }
+            else if (what == 2) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/DefaultUserManage?pageSize=" + no,
+                    success: function (response) {
+                        $("#user-holder").html(response);
+                    }
+                });
+            }
+           
+        }
+
+        function showAdminDetails(sr) {
+
+            var id = sr.getAttribute("data-id");
+            var from = sr.getAttribute("data-from");
+
+            $.ajax({
+                type: "GET",
+                url: "/Admin/GetServiceDetails?serviceRequestId=" + id,
+                success: function (response) {
+
+                    $("#modalAdminHolder").html(response);
+
+                    if (from == "Edit") {
+                        debugger;
+                        $("#EditReschdule").modal("show");
+                        //$('#EditReschdule form').data('validator', null);
+                        //$.validator.unobtrusive.parse('#EditReschdule form');
+
+                    }
+                    else if (from == "Refund") {
+
+                        $("#Refund").modal("show");
+                    }
+                }
+            });
+        }
+
+        function getAdminCity(data) {
+            debugger;
+            var postalcode = data.value;
+            $("#AdminZipcodeError").html("");
+            $("#AdminCity").html("");
+            $("#AdminCityError").html("");
+
+            if (/^[1-9][0-9]{5}$/.test(postalcode)) {
+                if (postalcode.length == 6) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Customer/GetCity?postalCode=" + postalcode,
+                        success: function (response) {
+
+                            if (response == "empty") {
+                                $("#AdminZipcodeError").html("No City with this Postal Code")
+                                $("#AdminCity").html("");
+                                $("#AdminUpdate").addClass("disabled");
+                            }
+                            else {
+                                $("#AdminCity").html('<option value="' + response + '" selected>' + response + '</option>');
+                                $("#AdminUpdate").removeClass("disabled");
+                            }
+                        }
+                    });
+                }
+                else {
+                    document.getElementById("AdminZipcodeError").innerHTML = "Must be 6 Character Old";
+                    $("#AdminUpdate").addClass("disabled");
+                    return false;
+                }
+            }
+            else {
+                document.getElementById("AdminZipcodeError").innerHTML = "Invalid PostalCode";
+                $("#AdminUpdate").addClass("disabled");
+                return false;
+            }
+        }
+
+
+        function AdminEdit() {
+
+            debugger;
+
+            var selectedTime = document.getElementById("AdminStartTime").value;
+            var selectedDate = document.getElementById("AdminStartDate").value;
+            var totalHour = parseFloat(document.getElementById("ForTotalhour").value);
+            var selecteddate = new Date(selectedDate + "T" + selectedTime);
+
+            if (!isValidDate(selecteddate)) {
+                selecteddate = new Date();
+                selecteddate.setDate(selecteddate.getDate() + 1);
+                var tt = selectedTime.split(":");
+                selecteddate.setHours(tt[0]);
+                selecteddate.setMinutes(tt[1]);
+                selecteddate.setSeconds(00);
+
+            }
+
+
+            var selecteddate2 = new Date(selecteddate);
+            var currentdate = new Date();
+            /*  if (selecteddate.getDate() < currentdate.getDate())*/
+            if (selecteddate - currentdate <= 0) {
+                document.getElementById("forstartdate").innerHTML = "Select future date";
+                return false;
+            }
+            if (selecteddate.getDate() == currentdate.getDate()) {
+                document.getElementById("forstartdate").innerHTML = "Cannot Book Service on Same day";
+                return false;
+            }
+
+            selecteddate2.setHours(selecteddate2.getHours() + totalHour);
+            if (selecteddate.getDate() == selecteddate2.getDate()) {
+                var hrs = selecteddate2.getHours();
+                if (hrs > 21) {
+                    document.getElementById("forstarttime").innerHTML = "Service booking request is must be completed within 21:00 time";
+                    return false;
+                }
+                else {
+                    var add1 = document.getElementById("AdminAddress1").value;
+                    var add2 = document.getElementById("AdminAddress2").value;
+
+                    if (add1 == "") {
+                        document.getElementById("AdminAddress1Error").innerHTML = "Enter Street Name";
+                        return false;
+                    }
+                    else if (add1.length > 70) {
+                        document.getElementById("AdminAddress1Error").innerHTML = "Cannot be More than 70 Character";
+                        return false;
+                    }
+                    else if (add2 == "") {
+                        document.getElementById("AdminAddress2Error").innerHTML = "Enter House Number";
+                        return false;
+                    }
+                    else if (!/^[0-9]+$/.test(add2)) {
+                        document.getElementById("AdminAddress2Error").innerHTML = "Only Number";
+                        return false;
+                    }
+                    else if (add2.length > 70) {
+                        document.getElementById("AdminAddress2Error").innerHTML = "Cannot be More than 70 Character";
+                        return false;
+                    }
+                    else {
+                        var postalcode = document.getElementById("AdminZipcode").value;
+                        if (postalcode == "") {
+                            document.getElementById("AdminZipcodeError").innerHTML = "Enter Postal Code";
+                            return false;
+
+                        }
+                        else {
+                            var feedback = document.getElementById("Feedback").value;
+                            if (feedback == "") {
+                                document.getElementById("FeedbackError").innerHTML = "Enter Reason for Cancel";
+                                return false;
+                            }
+                            else if (!/^[0-9a-zA-Z _]+$/.test(feedback)) {
+                                document.getElementById("FeedbackError").innerHTML = "Only Character";
+                                return false;
+                            }
+                            else if (feedback.length>500) {
+                                document.getElementById("FeedbackError").innerHTML = "Only 500 Character";
+                                return false;
+                            }
+                            else {
+
+                            return true;
+                            }
+                        }
+                    }
+                }
+
+            }
+            else {
+                document.getElementById("forstarttime").innerHTML = "Service booking request is must be completed within 21:00 time";
+                return false;
+            }
+        }
+
+        function emptyValidation(id) {
+            $(id).html("");
+        }
+
+        function AdminEditSuccess(response) {
+            $("#EditReschdule").modal("toggle");
+            $("#serviceHolder").html(response);
+        }
+
+        function AdminUserSuccess(data) {
+
+            $("#user-holder").html(data);
+        }
+
+        function AdminServiceSuccess(data) {
+            $("#serviceHolder").html(data);
+        }
+    </script>
+
+</body>
+
+</html>

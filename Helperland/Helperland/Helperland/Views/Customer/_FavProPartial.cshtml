@@ -22,8 +22,53 @@
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="row customer-pro-card mx-0">
                     <div class="d-block customer-pro-img-body px-0 mx-auto text-center">
-                        <img class="customer-pro-img mx-auto" src="~/Images/cap.png" alt=""
-                             width="45" height="30">
+
+                        @if (sp.UserProfilePicture != null)
+                        {
+
+                            if (sp.UserProfilePicture == "1")
+                            {
+                            
+                                <img class="customer-pro-img mx-auto" src="~/Images/avatar-car.png" alt=""
+                                     width="86" height="86">
+                            }
+                            if (sp.UserProfilePicture == "2")
+                            {
+                               
+                                <img class="customer-pro-img mx-auto" src="~/Images/avatar-female.png" alt=""
+                                     width="86" height="86">
+                            }
+                            if (sp.UserProfilePicture == "3")
+                            {
+                               
+                                <img class="customer-pro-img mx-auto" src="~/Images/avatar-hat.png" alt=""
+                                     width="86" height="86">
+                            }
+                            if (sp.UserProfilePicture == "4")
+                            {
+                               
+                                <img class="customer-pro-img mx-auto" src="~/Images/avatar-iron.png" alt=""
+                                     width="86" height="86">
+                            }
+                            if (sp.UserProfilePicture == "5")
+                            {
+                               
+                                <img class="customer-pro-img mx-auto" src="~/Images/avatar-male.png" alt=""
+                                     width="86" height="86">
+                            }
+                            if (sp.UserProfilePicture == "6")
+                            {
+                               
+                                <img class="customer-pro-img mx-auto" src="~/Images/avatar-ship.png" alt=""
+                                     width="86" height="86">
+                            }
+                        }
+                        else
+                        {
+
+                            <img class="customer-pro-img mx-auto" src="~/Images/cap.png" alt=""
+                                 width="45" height="30">
+                        }
                     </div>
                     <div class="row row1 text-center mx-0">
                         <div class="col px-0">

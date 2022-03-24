@@ -254,9 +254,11 @@ function validateform2() {
 
     }
 
+
     var selecteddate2 = new Date(selecteddate);
     var currentdate = new Date();
-    if (selecteddate.getDate() < currentdate.getDate()) {
+    /*  if (selecteddate.getDate() < currentdate.getDate())*/
+    if (selecteddate-currentdate <=0) {
         document.getElementById("forstartdate").innerHTML = "Select future date";
         return false;
     }

@@ -309,6 +309,7 @@ namespace Helperland.Controllers
         {
 
             PagedResult<ServiceRequest> result = GetNewServicesDetails(pageNumber, pageSize, sortBy, sortOrder, hasPet);
+
             if (hasPet == true)
                 hasPet = false;
             else hasPet = true;
@@ -391,7 +392,7 @@ namespace Helperland.Controllers
                             var BST = s.ServiceStartDate;
                             var BET = BST.AddHours((double)(s.ServiceHours + s.ExtraHours));
 
-                            if (AST >= BST)
+                            if (AST >= BST) // ast is larger
                             {
                                 if (AET < BET || (BET.AddHours(1) > AST))
                                 {
@@ -402,7 +403,8 @@ namespace Helperland.Controllers
                                 else
                                     continue;
                             }
-                            else
+                            
+                            else // bst larger
                             {
                                 if(BET<AET||(AET.AddHours(1)>BST))
                                 {
@@ -478,7 +480,7 @@ namespace Helperland.Controllers
             else
             {
                 Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                return Json(new { message = "This service request is no more available. It has been assigned to another provider." });
+                return Json(new { message = "This service request is no more available. It has been assigned to another Service provider." });
             }
         }
         
@@ -1443,6 +1445,7 @@ namespace Helperland.Controllers
 
             this._context.Users.Update(olduser);
 
+            HttpContext.Session.SetString("code", olduser.ZipCode);
             UserAddress add = new UserAddress();
 
             add = await _context.UserAddresses.Where(x => x.UserId.Equals(id)).FirstOrDefaultAsync();

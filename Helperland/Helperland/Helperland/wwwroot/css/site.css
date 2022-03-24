@@ -2563,6 +2563,10 @@ a {
     color: #278091;
 }
 
+.dropdown-menu > ul > li > .dropdown-text:hover {
+    color: #1FB6FF!important;
+}
+
 #customer-login-header .sidebar .dropdown-text {
     font-size: 14px;
     color: #4F4F4F;
@@ -2918,12 +2922,16 @@ a {
 .refunded-badge {
     background: #FF6B6B;
 }
-rescheduled-badge{
+.rescheduled-badge{
     background: #FF7335;
 }
 
-changeSP-badge{
+.changeSP-badge{
     background: #BBBBBB;
+}
+
+.expired-badge {
+    background: #646464;
 }
 
 .menu-dot {
@@ -2939,9 +2947,11 @@ changeSP-badge{
     font-size: 16px;
     color: #A0A0A0;
     font-weight: 400;
-    padding: 14px 0px 14px 11px;
+    padding: 12px 0px 12px 10px;
     border: 1px solid #DEDDDD;
     margin-bottom: 20px;
+    height: 46px;
+    border-radius: 0px;
 }
 
 #admin-panal-section .search-button {
@@ -2949,9 +2959,10 @@ changeSP-badge{
     font-size: 16px;
     color: #A0A0A0;
     font-weight: 400;
-    padding: 14px 18px;
+    padding: 11px 15px;
     border: 1px solid #DEDDDD;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    height: 46px;
 }
 
 #admin-panal-section input::placeholder, #admin-panal-section select::placeholder {
@@ -4904,6 +4915,310 @@ hr.small {
     .columnAvatar .active {
         border: 3px solid #1D7A8c;
     }
+
+
+#postal-code {
+    width: 140px;
+}
+
+#Email-id{
+    width: 240px;
+}
+
+#customer-select {
+    width: 220px;
+}
+
+#service-provider-select {
+    width: 220px;
+}
+
+#status-select {
+    width: 140px;
+}
+
+#from-date {
+    width: 165px;
+    padding: 12px 0px 12px 40px !important;
+    background-image: url("/Images/admin-calendar-blue.png");
+    background-repeat: no-repeat;
+    background-position-x: 11px;
+    background-position-y: center;
+}
+
+#to-date {
+    width: 165px;
+    padding: 12px 0px 12px 40px !important;
+    background-image: url("/Images/admin-calendar-blue.png");
+    background-repeat: no-repeat;
+    background-position-x: 11px;
+    background-position-y: center;
+}
+
+#has-iisue {
+    position: relative;
+}
+
+    #has-iisue input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        opacity: 0;
+        height: auto;
+    }
+
+    #has-iisue span {
+        padding-left: 30px;
+        position: relative;
+        color: #4f4f4f;
+        font-size: 14px;
+    }
+
+        #has-iisue span::before {
+            position: absolute;
+            content: "";
+            left: 0;
+            top: -1px;
+            border: solid 1px #c7c7c7;
+            border-radius: 4px;
+            width: 20px;
+            height: 20px;
+        }
+
+    #has-iisue input:checked + span::before {
+        border-color: #1fb6ff !important;
+        background: #1fb6ff url("/Images/correct-white-medium.png") center center no-repeat;
+        background-size: 12px;
+    }
+
+
+#customer-name {
+    width: 240px;
+}
+
+#user-role {
+    width: 200px;
+}
+
+#phone-number-body div span {
+    height: 46px !important;
+}
+
+#phone-number {
+    width: 148px;
+}
+
+#Search:hover {
+    background: #1f9edb;
+}
+
+#Export {
+    background: #1fb6ff;
+    width: auto;
+    color: white !important;
+}
+
+    #Export:hover {
+        background: #1f9edb;
+    }
+
+/*.admin-page .pagination > li > a {
+    background: 0 0;
+    background-color: rgba(0, 0, 0, 0);
+    display: block;
+    width: 38px;
+    text-align: center;
+    line-height: 36px;
+    font-size: 14px;
+    padding: 0;
+    color: #646464;
+    border-radius: 0px !important;
+}
+
+.admin-page .pagination li {
+    padding: 0px;
+}*/
+
+
+.admin-page .pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+}
+
+@media(max-width:768px) {
+    .admin-page .pagination {
+        text-align: center;
+    }
+
+        .admin-page .pagination li {
+            display: flex;
+        }
+}
+
+.admin-page .pagination li {
+    float: left;
+    width: 40px;
+    height: 40px;
+    border: none;
+    padding: 0 0;
+    margin: 0 0;
+}
+
+.admin-page .pagination > li > a,
+.admin-page .pagination > li > span {
+    background: 0 0;
+    background-color: rgba(0, 0, 0, 0);
+    display: block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 36px;
+    font-size: 14px;
+    padding: 0;
+    color: #646464;
+    border-radius: 0px !important;
+}
+
+.admin-page .pagination > .disabled > a,
+.admin-page .pagination > .disabled > a:focus,
+.admin-page .pagination > .disabled > a:hover,
+.admin-page .pagination > .disabled > span,
+.admin-page .pagination > .disabled > span:focus,
+.admin-page .pagination > .disabled > span:hover {
+    color: #777;
+    cursor: not-allowed;
+    background-color: #fff;
+    border-color: #ddd;
+}
+
+.admin-page .pagination > li:first-child > a,
+.admin-page .pagination > li:first-child > span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.admin-page .pagination > li.active > a,
+.admin-page .pagination > li.active > a:hover,
+.admin-page .pagination .page-item.active .page-link {
+    background: #646464;
+    color: #fff;
+    border-color: #646464;
+}
+
+.admin-page .page-link:hover {
+    z-index: 2;
+    color: #646464;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.admin-page .page-link:focus {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    box-shadow: none;
+}
+
+.admin-page .pagination > li > a i {
+    position: relative;
+    top: 1px;
+}
+
+#admin-panal-section .pagination > li > a:hover, #admin-panal-section .pagination > li > a:focus, #admin-panal-section .pagination .page-item.active > a {
+    color: #646464;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    box-shadow: none;
+}
+
+
+@media (min-width:576px) {
+    #EditReschdule .modal-dialog {
+        max-width: 600px;
+    }
+
+    #Refund .modal-dialog {
+        max-width: 600px;
+    }
+}
+
+#EditReschdule .form-control,
+#EditReschdule .form-select,
+#Refund .form-control,
+#Refund .form-select {
+    border-radius: 0px !important;
+    padding: 6px 6px 6px 15px;
+}
+
+    #EditReschdule .form-control:focus,
+    #EditReschdule .form-select:focus,
+    #Refund .form-control:focus,
+    #Refund .form-select:focus {
+        border: 1px solid #1fb6ff !important;
+    }
+
+#EditReschdule #startDate {
+    padding: 6px 6px 6px 40px;
+    background-image: url("/Images/admin-calendar-blue.png");
+    background-repeat: no-repeat;
+    background-position: 11px center;
+}
+
+#EditReschdule button,
+#Refund button {
+    border-radius: 4px;
+    background: #1fb6ff;
+}
+
+
+    #EditReschdule button:hover,
+    #Refund button:hover {
+        border-radius: 4px;
+        background: #1f9edb !important;
+    }
+
+#Refund form .payment-text {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    color: #646464;
+}
+
+#Refund .input-group.form-control-group .form-control {
+    width: 50%;
+}
+
+#Refund .input-group.form-control-group select.form-control {
+    background: #eee;
+}
+
+#Refund .refundCalculator {
+    border-radius: 0 !important;
+    width: 50% !important;
+    float: left !important;
+    line-height: 1.6 !important;
+}
+
+#Refund .input-group.form-control-group button {
+    height: 46px;
+    padding: 11px 20px;
+    margin-bottom: 25px;
+    color: #646464;
+    font-weight: 400;
+    font-size: 16px;
+    background: #E9E9ED;
+    border: 1px solid #ced4da;
+}
+
+    #Refund .input-group.form-control-group button:hover {
+        background: #D0D0D7 !important;
+    }
+
+
 
 
 

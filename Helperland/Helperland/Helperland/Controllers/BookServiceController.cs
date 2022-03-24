@@ -83,7 +83,7 @@ namespace Helperland.Controllers
         }
 
         [HttpPost]
-        public IActionResult TakeServiceDetails(ServiceRequest sr)
+        public async Task<IActionResult> TakeServiceDetails(ServiceRequest sr)
         {
 
             char[] extra = { '0', '0', '0', '0', '0' };
@@ -139,7 +139,7 @@ namespace Helperland.Controllers
             sr.Distance = 0;
 
 
-            List<UserAddress> userAddress = _context.UserAddresses.Where(x => x.UserId.Equals(sr.UserId) && x.PostalCode.Equals(HttpContext.Session.GetString("Zipcode"))).ToList();
+            List<UserAddress> userAddress = await _context.UserAddresses.Where(x => x.UserId.Equals(sr.UserId) && x.PostalCode.Equals(HttpContext.Session.GetString("Zipcode"))).ToListAsync();
             HttpContext.Session.SetString("Zipcode", sr.ZipCode);
             ViewBag.addresses = userAddress;
 

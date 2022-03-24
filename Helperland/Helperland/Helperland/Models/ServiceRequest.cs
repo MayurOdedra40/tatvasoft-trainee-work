@@ -45,6 +45,9 @@ namespace Helperland.Models
         public string ExtraService1 { get; set; }
 
         [NotMapped]
+        public string TimeStart { get; set; }
+        
+        [NotMapped]
         public string ExtraService2 { get; set; }
 
         [NotMapped]

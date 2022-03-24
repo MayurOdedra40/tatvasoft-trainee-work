@@ -1,0 +1,52 @@
+﻿@model FilterServices
+<form class="row" ajax-form="true" asp-controller="Admin" asp-action="FilterService">
+    <input asp-for="ServiceRequestId" class="form-control" type="text" id="service-id-input"
+           placeholder="Service Id">
+
+    <input asp-for="PostalCode" class="form-control ms-2" type="text" placeholder="Postal Code" id="postal-code">
+
+    <input asp-for="Email" class="form-control ms-2" type="text" placeholder="Email" id="Email-id">
+
+    <select asp-for="CustomerId" class="form-select ms-2" aria-label="Default select example"
+            id="customer-select" asp-items="@ViewBag.ServiceProviderSelect">
+    </select>
+
+    <select asp-for="ServiceProviderId" class="form-select ms-2" aria-label="Default select example"
+            id="service-provider-select" asp-items="@ViewBag.customerSelect">
+    </select>
+
+    <select asp-for="Status" class="form-select ms-2" aria-label="Default select example"
+            id="status-select">
+        <option value="0">Select Status</option>
+        <option value="1">New</option>
+        <option value="2">Pending</option>
+        <option value="3">Completed</option>
+        <option value="4">Cancelled</option>
+        <option value="5">Reschedulled</option>
+        <option value="6">Refunded</option>
+        <option value="7">ChangeSP</option>
+        <option value="8">Expired</option>
+    </select>
+
+    <label class="d-flex w-auto ms-2 mt-3" for="hasIisue" id="has-iisue">
+        <input asp-for="HasIssue" type="checkbox" id="hasIisue">
+        <span>
+            Has Issue
+        </span>
+    </label>
+    <input asp-for="FromDate" type="text" class="form-control ms-2" id="from-date" placeholder="From date"
+           onfocus="(this.type='date')">
+
+
+
+    <input asp-for="ToDate" type="text" class="form-control ms-2" id="to-date" placeholder="To date"
+           onfocus="(this.type='date')">
+
+    <button type="submit" class="btn ms-2 search-button" style="color: white;" id="Search">
+        Search
+    </button>
+
+    <button type="reset" class="btn ms-2 search-button" id="clear">
+        Clear
+    </button>
+</form>

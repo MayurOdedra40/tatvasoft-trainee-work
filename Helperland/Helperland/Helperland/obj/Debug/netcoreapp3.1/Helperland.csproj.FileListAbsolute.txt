@@ -482,3 +482,11 @@ D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\
 D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_DetailsModalPartial.cshtml.g.cs
 D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_DetailsPartial.cshtml.g.cs
 D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\ServiceProvider\_ChangePasswordPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Admin\_ServiceManagmentPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Admin\_UserManagmentPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Admin\_ServiceResultPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Admin\_ServiceFilterPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Admin\_UserResultPartial.cshtml.g.cs
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\FoolProof.Core.dll
+D:\Mayur\work\tatvasoft-trainee-work\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Admin\_ModalPartial.cshtml.g.cs

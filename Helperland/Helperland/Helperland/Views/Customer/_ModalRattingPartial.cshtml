@@ -78,133 +78,181 @@
                     <span class="title-text"> <img src="~/Images/not-included.png" alt="" width="25" height="25"> I don't have pets at home</span>
 
                 }
-                
+
             </div>
         </div>
     </div>
 </div>
 
+@if (user != null)
+{
+    <div class="modal fade" id="RateSp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body container">
+                    <!-- <p class="modal-title pb-0">Cancel Service Request</p> -->
 
-<div class="modal fade" id="RateSp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body container">
-                <!-- <p class="modal-title pb-0">Cancel Service Request</p> -->
+                    <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
 
-                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
-
-                <div class="row mx-0">
                     <div class="row mx-0">
-                        <div class="col-auto px-0">
-                            <div class="rating">
-                                <img class="rating-img"
-                                     src="~/Images/avatar-car.png" alt=""
-                                     width="68" height="68   ">
-                            </div>
-                        </div>
-                        <div class="col px-0 pt-2">
-                            <div class="row mx-0">
-                                <p class="d-flex m-0 titel-text sp-name">@user.FirstName @user.LastName</p>
-                            </div>
-                            <div class="row mx-0">
+                        <div class="row mx-0">
+                            <div class="col-auto px-0">
+                                <div class="rating">
 
-                                @{
-                                    var n = (int)ratings;
-                                    var rat = (float)System.Math.Round(ratings, 2);
-
-                                }
-                                <div class="col-auto px-2">
-
-                                    @for (int j = 1; j <= n; j++)
-                                    { 
-                                        <span class="click"><i class='fa fa-star yellow'></i> </span>
-                                    }
-
-                                    @for (int j = n + 1; j <= 5; j++)
+                                    if (user.UserProfilePicture != null)
                                     {
 
-                                        <span class="click"><i class='fa fa-star grey'></i> </span>
+                                    if (user.UserProfilePicture == "1")
+                                    {
+                                    <img class="rating-img"
+                                         src="~/Images/avatar-car.png" alt=""
+                                         width="68" height="68   ">
                                     }
-                                   
+                                    if (user.UserProfilePicture == "2")
+                                    {
+                                    <img class="rating-img"
+                                         src="~/Images/avatar-female.png" alt=""
+                                         width="68" height="68   ">
+                                    }
+                                    if (user.UserProfilePicture == "3")
+                                    {
+                                    <img class="rating-img"
+                                         src="~/Images/avatar-hat.png" alt=""
+                                         width="68" height="68   ">
+                                    }
+                                    if (user.UserProfilePicture == "4")
+                                    {
+                                    <img class="rating-img"
+                                         src="~/Images/avatar-iron.png" alt=""
+                                         width="68" height="68   ">
+                                    }
+                                    if (user.UserProfilePicture == "5")
+                                    {
+                                    <img class="rating-img"
+                                         src="~/Images/avatar-male.png" alt=""
+                                         width="68" height="68   ">
+                                    }
+                                    if (user.UserProfilePicture == "6")
+                                    {
+                                    <img class="rating-img"
+                                         src="~/Images/avatar-ship.png" alt=""
+                                         width="68" height="68   ">
+                                    }
+                                    }
+                                    else
+                                    {
+                                    <img class="rating-img"
+                                         src="~/Images/avatar-hat.png" alt=""
+                                         width="68" height="68">
+                                    }
+
+
 
                                 </div>
-                                <div class="col px-0 pt-1">
-                                    <p class="titel-text mb-0">@rat</p>
+                            </div>
+                            <div class="col px-0 pt-2">
+                                <div class="row mx-0">
+                                    <p class="d-flex m-0 titel-text sp-name">@user.FirstName @user.LastName</p>
+                                </div>
+                                <div class="row mx-0">
+
+                                    @{
+                                        var n = (int)ratings;
+                                        var rat = (float)System.Math.Round(ratings, 2);
+
+                                    }
+                                    <div class="col-auto px-2">
+
+                                        @for (int j = 1; j <= n; j++)
+                                        {
+                                            <span class="click"><i class='fa fa-star yellow'></i> </span>
+                                        }
+
+                                        @for (int j = n + 1; j <= 5; j++)
+                                        {
+
+                                            <span class="click"><i class='fa fa-star grey'></i> </span>
+                                        }
+
+
+                                    </div>
+                                    <div class="col px-0 pt-1">
+                                        <p class="titel-text mb-0">@rat</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <span class="modal-title mt-3 mb-0 pb-0"> <b>Rate your service provider</b></span>
+                        <span class="modal-title mt-3 mb-0 pb-0"> <b>Rate your service provider</b></span>
 
-                    <hr>
+                        <hr>
 
-                    <span class="title-text py-2">
-                        On time arrival
-                        <span class="col-auto px-2" onmouseout="TRateSelected()">
+                        <span class="title-text py-2">
+                            On time arrival
+                            <span class="col-auto px-2" onmouseout="TRateSelected()">
 
-                            <span class="click"><i class='fa fa-star grey' id="TRate1" onclick="TRate(1)" onmouseover="TRateOver(1)" onmouseout="TRateOut(1)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="TRate2" onclick="TRate(2)" onmouseover="TRateOver(2)" onmouseout="TRateOut(2)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="TRate3" onclick="TRate(3)" onmouseover="TRateOver(3)" onmouseout="TRateOut(3)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="TRate4" onclick="TRate(4)" onmouseover="TRateOver(4)" onmouseout="TRateOut(4)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="TRate5" onclick="TRate(5)" onmouseover="TRateOver(5)" onmouseout="TRateOut(5)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="TRate1" onclick="TRate(1)" onmouseover="TRateOver(1)" onmouseout="TRateOut(1)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="TRate2" onclick="TRate(2)" onmouseover="TRateOver(2)" onmouseout="TRateOut(2)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="TRate3" onclick="TRate(3)" onmouseover="TRateOver(3)" onmouseout="TRateOut(3)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="TRate4" onclick="TRate(4)" onmouseover="TRateOver(4)" onmouseout="TRateOut(4)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="TRate5" onclick="TRate(5)" onmouseover="TRateOver(5)" onmouseout="TRateOut(5)"></i> </span>
+                            </span>
+
                         </span>
-
-                    </span>
-                    <span asp-validation-for="OnTimeArrival" id="forOnTime" class="danger d-block"></span>
-                    <span class="title-text py-2">
-                        Friendly
-                        <span class="col-auto px-2" onmouseout="FRateSelected()">
-                            <span class="click"><i class='fa fa-star grey' id="FRate1" onclick="FRate(1)" onmouseover="FRateOver(1)" onmouseout="FRateOut(1)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="FRate2" onclick="FRate(2)" onmouseover="FRateOver(2)" onmouseout="FRateOut(2)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="FRate3" onclick="FRate(3)" onmouseover="FRateOver(3)" onmouseout="FRateOut(3)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="FRate4" onclick="FRate(4)" onmouseover="FRateOver(4)" onmouseout="FRateOut(4)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="FRate5" onclick="FRate(5)" onmouseover="FRateOver(5)" onmouseout="FRateOut(5)"></i> </span>
+                        <span asp-validation-for="OnTimeArrival" id="forOnTime" class="danger d-block"></span>
+                        <span class="title-text py-2">
+                            Friendly
+                            <span class="col-auto px-2" onmouseout="FRateSelected()">
+                                <span class="click"><i class='fa fa-star grey' id="FRate1" onclick="FRate(1)" onmouseover="FRateOver(1)" onmouseout="FRateOut(1)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="FRate2" onclick="FRate(2)" onmouseover="FRateOver(2)" onmouseout="FRateOut(2)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="FRate3" onclick="FRate(3)" onmouseover="FRateOver(3)" onmouseout="FRateOut(3)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="FRate4" onclick="FRate(4)" onmouseover="FRateOver(4)" onmouseout="FRateOut(4)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="FRate5" onclick="FRate(5)" onmouseover="FRateOver(5)" onmouseout="FRateOut(5)"></i> </span>
+                            </span>
                         </span>
-                    </span>
-                    <span asp-validation-for="Friendly" id="forFriendly" class="danger d-block"></span>
-                    <span class="title-text py-2">
-                        Quality of service
-                        <span class="col-auto px-2" onmouseout="QRateSelected()">
-                            <span class="click"><i class='fa fa-star grey' id="QRate1" onclick="QRate(1)" onmouseover="QRateOver(1)" onmouseout="QRateOut(1)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="QRate2" onclick="QRate(2)" onmouseover="QRateOver(2)" onmouseout="QRateOut(2)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="QRate3" onclick="QRate(3)" onmouseover="QRateOver(3)" onmouseout="QRateOut(3)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="QRate4" onclick="QRate(4)" onmouseover="QRateOver(4)" onmouseout="QRateOut(4)"></i> </span>
-                            <span class="click"><i class='fa fa-star grey' id="QRate5" onclick="QRate(5)" onmouseover="QRateOver(5)" onmouseout="QRateOut(5)"></i> </span>
+                        <span asp-validation-for="Friendly" id="forFriendly" class="danger d-block"></span>
+                        <span class="title-text py-2">
+                            Quality of service
+                            <span class="col-auto px-2" onmouseout="QRateSelected()">
+                                <span class="click"><i class='fa fa-star grey' id="QRate1" onclick="QRate(1)" onmouseover="QRateOver(1)" onmouseout="QRateOut(1)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="QRate2" onclick="QRate(2)" onmouseover="QRateOver(2)" onmouseout="QRateOut(2)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="QRate3" onclick="QRate(3)" onmouseover="QRateOver(3)" onmouseout="QRateOut(3)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="QRate4" onclick="QRate(4)" onmouseover="QRateOver(4)" onmouseout="QRateOut(4)"></i> </span>
+                                <span class="click"><i class='fa fa-star grey' id="QRate5" onclick="QRate(5)" onmouseover="QRateOver(5)" onmouseout="QRateOut(5)"></i> </span>
+                            </span>
                         </span>
-                    </span>
-                    <span asp-validation-for="QualityOfService" id="forQuality" class="danger d-block"></span>
+                        <span asp-validation-for="QualityOfService" id="forQuality" class="danger d-block"></span>
 
-                    <span class="title-text py-1">Feedback on Service Provider</span>
-                    <form class="row mx-0" method="post" data-ajax="true" data-ajax-begin="validateRating" data-ajax-success="ratingSuccess" asp-controller="Customer" asp-action="RateSp">
-                        @if (rating != null)
-                        {
-                            <input asp-for="ServiceRequestId" type="hidden" value="@service.ServiceRequestId" />
-                            <input asp-for="RatingTo" type="hidden" value="@service.ServiceProviderId" />
-                            <input asp-for="OnTimeArrival" type="hidden" id="TRatting" value="@rating.OnTimeArrival">
-                            <input asp-for="Friendly" type="hidden" id="FRatting" value="@rating.Friendly">
-                            <input asp-for="QualityOfService" type="hidden" id="QRatting" value="@rating.QualityOfService">
+                        <span class="title-text py-1">Feedback on Service Provider</span>
+                        <form class="row mx-0" method="post" data-ajax="true" data-ajax-begin="validateRating" data-ajax-success="ratingSuccess" asp-controller="Customer" asp-action="RateSp">
+                            @if (rating != null)
+                            {
+                                <input asp-for="ServiceRequestId" type="hidden" value="@service.ServiceRequestId" />
+                                <input asp-for="RatingTo" type="hidden" value="@service.ServiceProviderId" />
+                                <input asp-for="OnTimeArrival" type="hidden" id="TRatting" value="@rating.OnTimeArrival">
+                                <input asp-for="Friendly" type="hidden" id="FRatting" value="@rating.Friendly">
+                                <input asp-for="QualityOfService" type="hidden" id="QRatting" value="@rating.QualityOfService">
 
-                            <textarea asp-for="Comments" name="Comments" id="Feedback" cols="8" class="form-control" placeholder="@rating.Comments">
+                                <textarea asp-for="Comments" name="Comments" id="Feedback" cols="8" class="form-control" placeholder="@rating.Comments">
                             
                             </textarea>
 
-                            <button class="btn btn-primary w-auto mt-2">Submit</button>
-                        }
-                        else
-                        {
-                            <input asp-for="ServiceRequestId" type="hidden" value="@service.ServiceRequestId" />
-                            <input asp-for="RatingTo" type="hidden" value="@service.ServiceProviderId" />
-                            <input asp-for="OnTimeArrival" type="hidden" id="TRatting" value="0">
-                            <input asp-for="Friendly" type="hidden" id="FRatting" value="0">
-                            <input asp-for="QualityOfService" type="hidden" id="QRatting" value="0">
-                            <textarea asp-for="Comments" name="Comments" id="Feedback" cols="8" class="form-control"></textarea>
-                            <button class="btn btn-primary w-auto mt-2">Submit</button>
-                        }
+                                <button class="btn btn-primary w-auto mt-2">Submit</button>
+                            }
+                            else
+                            {
+                                <input asp-for="ServiceRequestId" type="hidden" value="@service.ServiceRequestId" />
+                                <input asp-for="RatingTo" type="hidden" value="@service.ServiceProviderId" />
+                                <input asp-for="OnTimeArrival" type="hidden" id="TRatting" value="0">
+                                <input asp-for="Friendly" type="hidden" id="FRatting" value="0">
+                                <input asp-for="QualityOfService" type="hidden" id="QRatting" value="0">
+                                <textarea asp-for="Comments" name="Comments" id="Feedback" cols="8" class="form-control"></textarea>
+                                <button class="btn btn-primary w-auto mt-2">Submit</button>
+                            }
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+                                        }

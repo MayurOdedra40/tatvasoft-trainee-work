@@ -1,0 +1,170 @@
+﻿@model ServiceAllDetails
+@{ 
+    var totalHour = ViewBag.totalhour;
+
+   }
+<div class="modal fade" id="EditReschdule" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+                <p class="modal-title pb-0">Edit Service Request</p>
+
+                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+
+                <form class="row" data-ajax="true" data-ajax-begin="AdminEdit" data-ajax-success="AdminEditSuccess" asp-controller="Admin" asp-action="Reschdule" method="post" novalidate>
+
+                    <input type="hidden" asp-for="Service.Totalhour" id="ForTotalhour" value="@totalHour">
+                    <input type="hidden" asp-for="Service.ServiceRequestId" name="Service.ServiceRequestId">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="Service.StartDate"><b>Date</b></label>
+                            <input asp-for="Service.StartDate" name="Service.StartDate"
+                                   class="form-control" type="text" id="AdminStartDate"
+                                   placeholder="DD/MM/YYYY" onfocus="(this.type='date')" onchange="emptyValidation('#forstartdate')">
+                            <span asp-validation-for="Service.StartDate" id="forstartdate" class="danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label"><b>Time</b></label>
+                            <select asp-for="Service.TimeStart" class="form-select" id="AdminStartTime" onchange="emptyValidation('#forstarttime')">
+                                <option value="08:00">08:00</option>
+                                <option value="08:30">08:30</option>
+                                <option value="09:00">09:00</option>
+                                <option value="09:30">09:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:30">15:30</option>
+                                <option value="16:00">16:00</option>
+                                <option value="16:30">16:30</option>
+                                <option value="17:00">17:00</option>
+                                <option value="17:30">17:30</option>
+                                <option value="18:00">18:00</option>
+                            </select>
+                            <span asp-validation-for="Service.TimeStart" id="forstarttime" class="danger mb-2"></span>
+                        </div>
+                    </div>
+                    <label class="control-label mb-1"><b>Service Address</b></label>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="ServiceAddress.AddressLine1">Street Name</label>
+                            <input asp-for="ServiceAddress.AddressLine1" name="ServiceAddress.AddressLine1"
+                                   onchange="emptyValidation('#AdminAddress1Error')" class="form-control"
+                                   id="AdminAddress1"
+                                   type="text" placeholder="Street Name">
+                            <span id="AdminAddress1Error" class="danger">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="ServiceAddress.AddressLine2">House Number</label>
+                            <input asp-for="ServiceAddress.AddressLine2" name="ServiceAddress.AddressLine2"
+                                   id="AdminAddress2" onchange="emptyValidation('#AdminAddress2Error')"
+                                   class="form-control" type="text" placeholder="House Number">
+                            <span id="AdminAddress2Error" asp-validation-for="ServiceAddress.AddressLine2" class="danger">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="ServiceAddress.PostalCode">Postal Code</label>
+                            <input asp-for="ServiceAddress.PostalCode" name="ServiceAddress.PostalCode"
+                                   id="AdminZipcode"
+                                   class="form-control" type="text" placeholder="53113" onchange="getAdminCity(this)">
+                            <span id="AdminZipcodeError" asp-validation-for="ServiceAddress.PostalCode" class="danger">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="ServiceAddress.City" class="control-label">City</label>
+                            <select asp-for="ServiceAddress.City" name="ServiceAddress.City" class="form-select"
+                                    id="AdminCity">
+                                <option value="@Model.ServiceAddress.City">@Model.ServiceAddress.City</option>
+                            </select>
+                            <span id="AdminCityError" asp-validation-for="ServiceAddress.City" class="danger">
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Service.Comments" class="control-label mb-1"><b>Why do you want to reschedule service request?</b></label>
+                        <textarea asp-for="Service.Comments" name="Service.Comments" id="Feedback" cols="8" class="form-control mb-3"
+                                  placeholder="Why do you want to reschedule service request?"></textarea>
+                        <span id="FeedbackError" asp-validation-for="ServiceAddress.City" class="danger">
+                        </span>
+                        <button class="btn btn-primary mb-0" id="AdminUpdate">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="Refund" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body container">
+
+                <p class="modal-title pb-0">Refund Amount</p>
+
+                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+
+                <form class="row">
+                    <div class="col-6">
+                        <p class="payment-text mb-0">Paid Amount</p>
+
+                        <p class="payment-text mb-2">72,00&nbsp;€</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="payment-text mb-0">Refunded Amount</p>
+                        <p class="payment-text mb-2">0,00&nbsp;€</p>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for=""><b>Amount</b></label>
+                            <div class="input-group form-control-group">
+                                <input class="form-control" formcontrolname="AmountToRefund" name="AmountToRefund" type="text">
+                                <select class="form-control" formcontrolname="defaultRefundOption">
+                                    <option value="1" label="Percentage">Percentage</option>
+                                    <option _ngcontent-c4="" value="2" label="Fixed">Fixed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label"><b>Calculate</b></label>
+                            <div class="input-group form-control-group">
+                                <button class="btn refundCalculator" type="button">Calculate</button>
+                                <input class="form-control ng-untouched ng-pristine ng-invalid" disabled="" formcontrolname="AmountToRefund" name="AmountToRefund" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="control-label mb-1"><b>Why you want to refund amount?</b></label>
+                        <textarea name="" id="Feedback" cols="8" class="form-control mb-3"
+                                  placeholder="Why you want to refund amount?"></textarea>
+                        <button class="btn btn-primary mb-0" disabled>Refund</button>
+                    </div>
+
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

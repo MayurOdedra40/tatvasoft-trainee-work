@@ -1174,6 +1174,9 @@ namespace Helperland.Controllers
             ViewBag.sp = TempData["sp"];
             ViewBag.ratings = TempData["ratings"];
 
+            TempData["Message"] = "";
+            TempData["ModalName"] = "";
+
             return PartialView("_ServiceHistoryPartial", result);
         }
 
@@ -1330,7 +1333,11 @@ namespace Helperland.Controllers
             address.Email = user.Email;
 
             await _context.UserAddresses.AddAsync(address);
+
+            user.ZipCode = address.PostalCode;
+
             await _context.SaveChangesAsync();
+
 
             List<UserAddress> addressess = await _context.UserAddresses.Where(x => x.UserId.Equals(id)).ToListAsync();
             return PartialView("_AddressPartial", addressess);

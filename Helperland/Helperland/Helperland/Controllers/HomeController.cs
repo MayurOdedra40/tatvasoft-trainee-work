@@ -27,6 +27,7 @@ namespace Helperland.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
@@ -103,19 +104,21 @@ namespace Helperland.Controllers
         [HttpPost]
         public IActionResult ServiceProvider(User user)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("ServiceProvider", user);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View("ServiceProvider", user);
+            //}
 
             user.UserTypeId = 2;
             DateTime now = DateTime.Now;
             user.CreatedDate = now;
             user.ModifiedDate = now;
+            user.IsActive = false;
+            user.IsApproved = false;
             this._context.Users.Add(user);
             this._context.SaveChanges();
 
-            TempData["Message"] = "Successfully Registered";
+            TempData["Message"] = "Successfully Registered, wait for Admin to approve your Acccount";
             TempData["ModalName"] = "#logout-Modal";
             TempData["Modal2Name"] = "#loginModal";
             return RedirectToAction("Index", "Home");
@@ -130,15 +133,14 @@ namespace Helperland.Controllers
         [HttpPost]
         public IActionResult Register(User user)
         {
-            if(!ModelState.IsValid)
-            {
-                return View("Register", user);
-            }
+           
 
             user.UserTypeId = 1;
             DateTime now = DateTime.Now;
             user.CreatedDate = now;
             user.ModifiedDate = now;
+            user.IsApproved = true;
+            user.IsActive = true;
             this._context.Users.Add(user);
             this._context.SaveChanges();
 
@@ -252,20 +254,25 @@ namespace Helperland.Controllers
             if(identity!=null)
             {
                 var Name = identity.FirstName + " " + identity.LastName;
-                ViewBag.userType = identity.UserTypeId;
-                HttpContext.Session.SetString("isLoggedIn", true.ToString());
-                HttpContext.Session.SetString("Name", Name);
-                HttpContext.Session.SetString("UserId", identity.UserId.ToString());
+                
                 if (identity.UserTypeId == 1)
                 {
+                    ViewBag.userType = identity.UserTypeId;
+                    HttpContext.Session.SetString("isLoggedIn", true.ToString());
                     HttpContext.Session.SetString("UserTypeId", identity.UserTypeId.ToString());
+                    HttpContext.Session.SetString("Name", Name);
+                    HttpContext.Session.SetString("UserId", identity.UserId.ToString());
                     return RedirectToAction("Index", "Customer");
                    
                 }
-                else if (identity.UserTypeId == 2)
+                else if (identity.UserTypeId == 2 && identity.IsApproved==true)
                 {
+                    ViewBag.userType = identity.UserTypeId;
+                    HttpContext.Session.SetString("isLoggedIn", true.ToString());
                     HttpContext.Session.SetString("UserTypeId", identity.UserTypeId.ToString());
-                    if(identity.ZipCode!=null)
+                    HttpContext.Session.SetString("Name", Name);
+                    HttpContext.Session.SetString("UserId", identity.UserId.ToString());
+                    if (identity.ZipCode!=null)
                     {
                     HttpContext.Session.SetString("code", identity.ZipCode);
 
@@ -277,10 +284,28 @@ namespace Helperland.Controllers
                     }
                     return RedirectToAction("Index", "ServiceProvider");
                 }
+                else if (identity.UserTypeId == 2 && identity.IsApproved == false)
+                {
+
+                    TempData["Message"] = "Your account is Not Yet approved by Admin";
+                    TempData["ModalName"] = "#loginModal";
+                    return View("Index", user);
+                }
+                else if (identity.UserTypeId == 3)
+                {
+                    ViewBag.userType = identity.UserTypeId;
+                    HttpContext.Session.SetString("isLoggedIn", true.ToString());
+                    HttpContext.Session.SetString("UserTypeId", identity.UserTypeId.ToString());
+                    HttpContext.Session.SetString("Name", Name);
+                    HttpContext.Session.SetString("UserId", identity.UserId.ToString());
+                    return RedirectToAction("Index","Admin");
+
+                }
                 else
                 {
-                    return View("Index");
-
+                    TempData["Message"] = "Some error occured, try after some time";
+                    TempData["ModalName"] = "#loginModal";
+                    return View("Index", user);
                 }
             }
             else
@@ -298,7 +323,9 @@ namespace Helperland.Controllers
             HttpContext.Session.Clear();
             TempData["Message"] = "You have successfully logged out";
             TempData["ModalName"] = "#logout-Modal";
-            return RedirectToAction("Index", "Home");
+            //return RedirectPermanent("Index", "Home"); 
+            //TempData["IsLoggedOut"] = true;
+            return RedirectToAction("Index","Home");
         }
     }
 }

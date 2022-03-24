@@ -30,6 +30,43 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "FoolProof.Core/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/FoolProof.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/FoolProof.Core.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ],
+        "contentFiles": {
+          "contentFiles/any/netcoreapp3.1/Scripts/mvcfoolproof.core.js": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/netcoreapp3.1/Scripts/mvcfoolproof.jquery.validation.js": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/netcoreapp3.1/Scripts/mvcfoolproof.msajax.validation.js": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/netcoreapp3.1/Scripts/mvcfoolproof.unobtrusive.js": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          }
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -2956,6 +2993,42 @@
         "cloudscribe.web.pagination.3.1.0.nupkg.sha512",
         "cloudscribe.web.pagination.nuspec",
         "lib/netcoreapp3.1/cloudscribe.Web.Pagination.dll"
+      ]
+    },
+    "FoolProof.Core/1.1.10": {
+      "sha512": "sFr1I9i9AqFJQiDWcIf00Gu7SXgl8yyAQJBOEKN2Gd6xVn6cWdcwzfOiyNINhI6KeOxAWJlubDUx8ppIPgr/NA==",
+      "type": "package",
+      "path": "foolproof.core/1.1.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Scripts/mvcfoolproof.core.js",
+        "content/Scripts/mvcfoolproof.jquery.validation.js",
+        "content/Scripts/mvcfoolproof.msajax.validation.js",
+        "content/Scripts/mvcfoolproof.unobtrusive.js",
+        "contentFiles/any/net472/Scripts/mvcfoolproof.core.js",
+        "contentFiles/any/net472/Scripts/mvcfoolproof.jquery.validation.js",
+        "contentFiles/any/net472/Scripts/mvcfoolproof.msajax.validation.js",
+        "contentFiles/any/net472/Scripts/mvcfoolproof.unobtrusive.js",
+        "contentFiles/any/net5.0/Scripts/mvcfoolproof.core.js",
+        "contentFiles/any/net5.0/Scripts/mvcfoolproof.jquery.validation.js",
+        "contentFiles/any/net5.0/Scripts/mvcfoolproof.msajax.validation.js",
+        "contentFiles/any/net5.0/Scripts/mvcfoolproof.unobtrusive.js",
+        "contentFiles/any/netcoreapp3.1/Scripts/mvcfoolproof.core.js",
+        "contentFiles/any/netcoreapp3.1/Scripts/mvcfoolproof.jquery.validation.js",
+        "contentFiles/any/netcoreapp3.1/Scripts/mvcfoolproof.msajax.validation.js",
+        "contentFiles/any/netcoreapp3.1/Scripts/mvcfoolproof.unobtrusive.js",
+        "contentFiles/any/netstandard2.0/Scripts/mvcfoolproof.core.js",
+        "contentFiles/any/netstandard2.0/Scripts/mvcfoolproof.jquery.validation.js",
+        "contentFiles/any/netstandard2.0/Scripts/mvcfoolproof.msajax.validation.js",
+        "contentFiles/any/netstandard2.0/Scripts/mvcfoolproof.unobtrusive.js",
+        "foolproof.core.1.1.10.nupkg.sha512",
+        "foolproof.core.nuspec",
+        "lib/net472/FoolProof.Core.dll",
+        "lib/net5.0/FoolProof.Core.dll",
+        "lib/netcoreapp3.1/FoolProof.Core.dll",
+        "lib/netstandard2.0/FoolProof.Core.dll",
+        "license.txt"
       ]
     },
     "Humanizer.Core/2.8.26": {
@@ -9340,6 +9413,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "FoolProof.Core >= 1.1.10",
       "MailKit >= 3.1.1",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 3.1.22",
       "Microsoft.AspNetCore.Session >= 2.2.0",
@@ -9398,6 +9472,10 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "FoolProof.Core": {
+            "target": "Package",
+            "version": "[1.1.10, )"
+          },
           "MailKit": {
             "target": "Package",
             "version": "[3.1.1, )"

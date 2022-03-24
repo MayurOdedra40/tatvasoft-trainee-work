@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "0qhIa1PHLrVVjUMWxlx4Uz7nWNhrEhC5igb1gHdK5pdNdmTVFEh+ZQmVPWNlS1MtmCmAtacTe3eH4qy23J6sug==",
+  "dgSpecHash": "PAtmGT3npRYIAzhuCzyelxTlUsUbAD1T/oB2eYghaxx+b4pQbAW2/9wfyaPvLO5uk29oF34uYcKobCZ6wL8+GQ==",
   "success": true,
   "projectFilePath": "D:\\Mayur\\work\\tatvasoft-trainee-work\\Helperland\\Helperland\\Helperland\\Helperland.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pci234\\.nuget\\packages\\cloudscribe.pagination.models\\1.1.0\\cloudscribe.pagination.models.1.1.0.nupkg.sha512",
     "C:\\Users\\pci234\\.nuget\\packages\\cloudscribe.web.pagination\\3.1.0\\cloudscribe.web.pagination.3.1.0.nupkg.sha512",
+    "C:\\Users\\pci234\\.nuget\\packages\\foolproof.core\\1.1.10\\foolproof.core.1.1.10.nupkg.sha512",
     "C:\\Users\\pci234\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\pci234\\.nuget\\packages\\jquery\\1.4.4\\jquery.1.4.4.nupkg.sha512",
     "C:\\Users\\pci234\\.nuget\\packages\\jquery.ajax.unobtrusive\\2.0.20505\\jquery.ajax.unobtrusive.2.0.20505.nupkg.sha512",
