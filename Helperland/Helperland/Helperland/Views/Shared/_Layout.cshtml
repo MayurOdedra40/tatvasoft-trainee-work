@@ -43,6 +43,7 @@
             </script>
         }*@
 
+   
 </head>
 <body class="">
 
@@ -56,8 +57,8 @@
 
     @RenderSection("cookies", required: false)
 
-<partial name="_Scripts" />
-    
+    <partial name="_Scripts" />
+
     <script>
         $(function () {
             $(document).scroll(function () {
@@ -91,6 +92,8 @@
         </script>
     }
 
+
+    @RenderSection("LogoutScript", required: false)
 </body>
 
 </html>

@@ -338,13 +338,11 @@
                                             <div class="menu-dot mb-1"></div>
                                             <div class="menu-dot mb-1"></div>
                                         </button>
-                                        @if (
-                                            ((serviceRequest.Status == 1 || serviceRequest.Status == 2 || serviceRequest.Status == 5) && serviceRequest.ServiceStartDate > DateTime.Now) ||
-                                            
-                                            (serviceRequest.Status != 6)
+                                        @*@if (
+                                            ((serviceRequest.Status == 1 || serviceRequest.Status == 2 || serviceRequest.Status == 5) && serviceRequest.ServiceStartDate > DateTime.Now)
                                             
                                         )
-                                        {
+                                        {*@
                                             <div class="dropdown-menu">
 
                                                 <ul class="nav nab-tabs">
@@ -361,17 +359,17 @@
                                                            asp-route-id="@serviceRequest.ServiceRequestId" asp-route-pageNumber="@Model.PageNumber" asp-route-pageSize="@Model.PageSize">Cancel SR by Cust</a>
                                                         </li>
                                                     }
-                                                    @if (serviceRequest.Status != 6)
-                                                    {
+                                                   
+                                                   
                                                         <li class="nav-item d-block w-100 py-1">
                                                             <a class="dropdown-text active dismiss"
                                                                href="#Service-provider-Dashboard" data-id="@ids" data-from="Refund" onclick="showAdminDetails(this)">Refund</a>
                                                         </li>
-                                                    }
+                                                   
 
                                                 </ul>
                                             </div>
-                                        }
+                                        @* } *@
 
 
                                     </div>

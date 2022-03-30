@@ -2,7 +2,8 @@
 @{ 
     var totalHour = ViewBag.totalhour;
 
-   }
+   }@{ Model.Service.Comments = "";
+           }
 <div class="modal fade" id="EditReschdule" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -123,46 +124,64 @@
 
                 <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
 
-                <form class="row">
+                <form class="row" data-ajax="true" method="post" asp-controller="Admin" asp-action="Refund" data-ajax-success="refundSuccess" data-ajax-update="#serviceHolder" novalidate>
                     <div class="col-6">
                         <p class="payment-text mb-0">Paid Amount</p>
 
-                        <p class="payment-text mb-2">72,00&nbsp;€</p>
+                        <p class="payment-text mb-2">@Model.Service.TotalCost&nbsp;€</p>
+
+                        <input type="hidden" asp-for="Service.TotalCost" id="totalCostRefund" value="@Model.Service.TotalCost"/>
+                   
+                        <input type="hidden" asp-for="Service.ServiceRequestId" value="@Model.Service.ServiceRequestId"/>
+                    
+                     
                     </div>
                     <div class="col-6">
                         <p class="payment-text mb-0">Refunded Amount</p>
-                        <p class="payment-text mb-2">0,00&nbsp;€</p>
+                        @if (Model.Service.RefundedAmount != null)
+                        {
+
+                        <p class="payment-text mb-2">@Model.Service.RefundedAmount&nbsp;€</p>
+
+                        }
+                        else
+                        {
+
+                        <p class="payment-text mb-2">0&nbsp;€</p>
+
+                        }
                     </div>
 
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for=""><b>Amount</b></label>
                             <div class="input-group form-control-group">
-                                <input class="form-control" formcontrolname="AmountToRefund" name="AmountToRefund" type="text">
-                                <select class="form-control" formcontrolname="defaultRefundOption">
-                                    <option value="1" label="Percentage">Percentage</option>
-                                    <option _ngcontent-c4="" value="2" label="Fixed">Fixed</option>
+                                <input class="form-control" id="AmountToRefund" type="text" onkeydown="emptyerror()">
+                                <select class="form-control" id="typeOfCalculation" >
+                                    <option value="1" selected>Percentage</option>
+                                    <option value="2" >Fixed</option>
                                 </select>
                             </div>
+                            <span class="danger" id="amountError"></span>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label"><b>Calculate</b></label>
                             <div class="input-group form-control-group">
-                                <button class="btn refundCalculator" type="button">Calculate</button>
-                                <input class="form-control ng-untouched ng-pristine ng-invalid" disabled="" formcontrolname="AmountToRefund" name="AmountToRefund" type="text">
+                                <button class="btn refundCalculator" type="button" onclick="calculateRefund()">Calculate</button>
+                                <input asp-for="Service.RefundedAmount" name="Service.RefundedAmount" class="form-control" id="RefundAmount" type="text" readonly>
+                                <input type="hidden" id="oldRefund"/>
                             </div>
                         </div>
                     </div>
                     <div class="col-12">
                         <label class="control-label mb-1"><b>Why you want to refund amount?</b></label>
-                        <textarea name="" id="Feedback" cols="8" class="form-control mb-3"
-                                  placeholder="Why you want to refund amount?"></textarea>
-                        <button class="btn btn-primary mb-0" disabled>Refund</button>
+                        <textarea asp-for="Service.Comments" name="Service.Comments" id="RedundComment" cols="8" class="form-control mb-3" style="height: 100px;"
+                                  placeholder="Why you want to refund amount?" onkeypress="checkFeedbackValidity()"></textarea>
+                        <span asp-validation-for="Service.Comments" id="feedbackerror" class="danger"></span>
+                        <button class="btn btn-primary mb-0 disabled" id="refundd">Refund</button>
                     </div>
-
-                    
                 </form>
             </div>
         </div>

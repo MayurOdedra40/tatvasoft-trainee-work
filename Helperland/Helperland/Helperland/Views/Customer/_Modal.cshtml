@@ -106,7 +106,7 @@
                 <span class="title-text">Select New Date & Time</span>
 
                 <form id="rescheduleForm" class="row mx-0" data-ajax="true" data-ajax-begin="validateform2"
-                      data-ajax-success="rescheduleDone"
+                      data-ajax-success="rescheduleDone" data-ajax-failure="rescheduleFail"
                       asp-controller="Customer" asp-action="Reschedule" novalidate>
                     
                     <span asp-validation-for="StartDate" id="forstartdate" class="danger d-block mb-2"></span>
@@ -150,6 +150,7 @@
                             <option value="18:00">18:00</option>
                         </select>
                     </div>
+                    <p class="danger my-1" id=reError></p>
 
                     <div class="col px-1">
                         <button class="btn btn-primary mb-0" type="submit">Update</button>

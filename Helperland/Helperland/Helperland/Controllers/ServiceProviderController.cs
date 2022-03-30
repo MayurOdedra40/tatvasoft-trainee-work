@@ -420,7 +420,6 @@ namespace Helperland.Controllers
                     }
 
 
-
                     service.ServiceProviderId = id;
                     service.SpacceptedDate = DateTime.Now;
                     service.Status = 2;

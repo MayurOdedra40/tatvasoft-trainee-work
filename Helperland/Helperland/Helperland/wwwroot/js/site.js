@@ -217,6 +217,8 @@ function tabOneSuccess() {
 
     $('#schedule-service form').data('validator', null);
     $.validator.unobtrusive.parse('#schedule-service form');
+
+    
 }
 
 function tabOnefaliure(xhr, status) {
@@ -291,16 +293,56 @@ function rescheduleDone(response) {
 
 }
 
+function rescheduleFail(data) {
+    debugger;
+    var msg = JSON.parse(data.responseText);
+    $("#reError").html(msg.message);
+}
+
 function tabTwoSuccess(response) {
-    $("#schedule-service-tab").removeClass("active");
-    $("#schedule-service").removeClass("active");
-    $("#schedule-service").addClass("fade");
-    $("#service-detials").addClass("active");
-    $("#service-detials").removeClass("fade");
-    $("#service-detials-tab").addClass("active");
-    $("#service-detials-tab").addClass("activen");
-    $("#service-detials-tab").prop("disabled", false);
-    $("#service-detials").html(response);
+    debugger;
+
+        $("#schedule-service-tab").removeClass("active");
+        $("#schedule-service").removeClass("active");
+        $("#schedule-service").addClass("fade");
+        $("#service-detials").addClass("active");
+        $("#service-detials").removeClass("fade");
+        $("#service-detials-tab").addClass("active");
+        $("#service-detials-tab").addClass("activen");
+        $("#service-detials-tab").prop("disabled", false);
+
+
+    //setTimeout(
+    //    function () {
+    //        debugger;
+    //        $("#service-detials").html(response);
+    //        $("#service-detials-tab").removeClass("active");
+    //        $("#service-payment-tab").removeClass("active");
+    //        $("#service-detials-tab").removeClass("activen");
+    //        $("#service-payment-tab").removeClass("activen");
+    //        $("#service-detials-tab").prop("disabled", true);
+    //        $("#service-payment-tab").prop("disabled", true);
+    //        $("#service-detials").removeClass("active");
+    //        $("#service-detials").removeClass("show");
+    //        $("#schedule-service").addClass("active");
+    //        $("#schedule-service").addClass("show");
+    //        printTotalPayment(true);
+
+    //       /* $("#form2").submit();*/
+
+    //        $("#schedule-service-tab").removeClass("active");
+    //        $("#schedule-service").removeClass("active");
+    //        $("#schedule-service").addClass("fade");
+    //        $("#service-detials").addClass("active");
+    //        $("#service-detials").removeClass("fade");
+    //        $("#service-detials-tab").addClass("active");
+    //        $("#service-detials-tab").addClass("activen");
+    //        $("#service-detials-tab").prop("disabled", false);
+
+    //        $('#service-detials form').data('validator', null);
+    //        $.validator.unobtrusive.parse('#service-detials form');
+    //   }, 3000);
+    //$("#service-detials").html(response);
 
 
     $('#service-detials form').data('validator', null);
@@ -945,13 +987,30 @@ function callPageSize(data, what) {
 }
 
 function SortSuccess(data) {
-
     $("#customer-Service-History").html(data);
 }
 
 function SortSuccess2(data) {
-
     $("#customer-Dashboard").html(data);
+}
+
+
+function UserFail(data) {
+    var msg = JSON.parse(data.responseText);
+    $("#UsertodateError").html(msg.message);
+
+    setTimeout(function () {
+        $("#UsertodateError").html("");
+    }, 3000);
+}
+
+function ServiceFail(data) {
+    var msg = JSON.parse(data.responseText);
+    $("#todateError").html(msg.message);
+
+    setTimeout(function () {
+        $("#todateError").html("");
+    }, 3000);
 }
 
 

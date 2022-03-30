@@ -14,7 +14,7 @@
 
     <div class="row mx-0 row2">
 
-        <form class="row" method="post" data-ajax="true" data-ajax-update="#user-holder" asp-controller="Admin" asp-action="FilterUser">
+        <form class="row" method="post" data-ajax="true" data-ajax-update="#user-holder" asp-controller="Admin" asp-action="FilterUser" data-ajax-failure="UserFail">
 
             <select asp-for="UserId" class="form-select ms-2" aria-label="Default select example" asp-items="@ViewBag.userName"
                     id="customer-name">
@@ -60,7 +60,7 @@
             <span asp-validation-for="Mobile" class="danger d-block"></span>
             <span asp-validation-for="Email" class="danger d-block"></span>
             <span asp-validation-for="PostalCode" class="danger d-block"></span>
-            <span asp-validation-for="ToDate" class="danger d-block"></span>
+            <span id="UsertodateError" asp-validation-for="ToDate" class="danger d-block"></span>
         </form>
 
     </div>

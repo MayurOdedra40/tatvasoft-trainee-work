@@ -253,6 +253,13 @@ namespace Helperland.Controllers
             
             if(identity!=null)
             {
+                if (identity.IsActive == false)
+                {
+                    TempData["Message"] = "Your account is not active,Contact Admin for help";
+                    TempData["ModalName"] = "#loginModal";
+                    return View("Index", user);
+                }
+
                 var Name = identity.FirstName + " " + identity.LastName;
                 
                 if (identity.UserTypeId == 1)
@@ -325,6 +332,8 @@ namespace Helperland.Controllers
             TempData["ModalName"] = "#logout-Modal";
             //return RedirectPermanent("Index", "Home"); 
             //TempData["IsLoggedOut"] = true;
+
+            HttpContext.Session.SetString("isLoggedIn", false.ToString());
             return RedirectToAction("Index","Home");
         }
     }

@@ -11,11 +11,11 @@ namespace Helperland.Models
     {
         public int? ServiceRequestId { get; set; }
 
-        [RegularExpression("^[1-9][0-9]{5}$", ErrorMessage = "Enter valid Zipcode")]
-        [StringLength(6, MinimumLength = 6, ErrorMessage = "Must be 6 Character Long")]
+        [RegularExpression("^[1-9]+$", ErrorMessage = "Enter valid Zipcode")]
+        [StringLength(6)]
         public string? PostalCode { get; set; }
 
-        [EmailAddress(ErrorMessage = "Please enter valid emial")]
+        //[EmailAddress(ErrorMessage = "Please enter valid emial")]
         [StringLength(100)]
         public string? Email { get; set; }
 
@@ -27,7 +27,7 @@ namespace Helperland.Models
 
         public int UserTypeId { get; set; }
 
-        [Range(1111111111, 9999999999, ErrorMessage = "Must be a valid number")]
+        //[Range(1111111111, 9999999999, ErrorMessage = "Must be a valid number")]
         [StringLength(10)]
         public string? Mobile { get; set; }
         public int Status { get; set; }

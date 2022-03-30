@@ -8,7 +8,7 @@
 
         <div class="container-fluid px-0 navbar-nav-scroll">
 
-            @if (Context.Session.GetString("isLoggedIn") != null)
+            @if (Context.Session.GetString("isLoggedIn") == true.ToString())
             {
                 <div class="row username mx-0">
                     <p class="px-0 mb-0 text">Welcome, <br> <b>@Context.Session.GetString("Name")</b></p>
@@ -134,7 +134,7 @@
             <div class="row main-menu mx-0">
 
                 <ul class="navbar-nav pe-0">
-                    @if (Context.Session.GetString("isLoggedIn") == null || Context.Session.GetString("UserTypeId") == "1")
+                    @if (Context.Session.GetString("isLoggedIn") == null || Context.Session.GetString("isLoggedIn") == false.ToString() || Context.Session.GetString("UserTypeId") == "1")
                     {
                         <li class="nav-item">
                             <a class="nav-link text dismiss" aria-current="page" asp-controller="BookService" asp-action="Index">
@@ -167,7 +167,7 @@
                         </a>
                     </li>
 
-                    @if (Context.Session.GetString("isLoggedIn") == null)
+                    @if (Context.Session.GetString("isLoggedIn") == null || Context.Session.GetString("isLoggedIn") == false.ToString())
                     {
                         <li class="nav-item">
                             <a class="nav-link text dismiss" aria-current="page" data-bs-toggle="modal" data-bs-target="#loginModal">
@@ -237,7 +237,7 @@
 
                     <ul class="navbar-nav mb-2 mb-lg-0 menu w-auto">
 
-                        @if (Context.Session.GetString("isLoggedIn") == null || Context.Session.GetString("UserTypeId") == "1")
+                        @if (Context.Session.GetString("isLoggedIn") == null || Context.Session.GetString("isLoggedIn") == false.ToString() || Context.Session.GetString("UserTypeId") == "1")
                         {
                             <li class="nav-item btn pas">
 
@@ -265,7 +265,7 @@
                         <li class="nav-item btn normal">
                             <a class="nav-link px-0" aria-current="page" asp-controller="Home" asp-action="ContactUs">Contact</a>
                         </li>
-                        @if (Context.Session.GetString("isLoggedIn") != null)
+                        @if(Context.Session.GetString("isLoggedIn") == true.ToString())
                         {
                             <li class="nav-item btn normal-2 side-border-visible">
 

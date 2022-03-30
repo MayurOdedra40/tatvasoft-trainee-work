@@ -43,7 +43,7 @@
                     <ul class="px-0 nav nav-tabs">
 
                         <li class="nav-item">
-                            <a class="text active dismiss" data-bs-toggle="tab" href="#Service-request">
+                            <a class="text dismiss" data-bs-toggle="tab" href="javascript:;" id="service-manage1">
                                 Service
                                 Requests
                             </a>
@@ -57,7 +57,7 @@
                     <ul class="px-0 nav nav-tabs">
 
                         <li class="nav-item">
-                            <a class="text dismiss" data-bs-toggle="tab" href="#User-managment">
+                            <a class="text dismiss" data-bs-toggle="tab" href="javascript:;" id="user-manage1">
                                 User
                                 managment
                             </a>
@@ -126,16 +126,16 @@
                 <ul class="container admin-menu px-0 nav nav-tabs">
 
                     <li class="row mx-0 nav-item w-100">
-                        <a class="text-start active pe-0" data-bs-toggle="tab" 
-                           href="javascript:;"  id="service-manage">
+                        <a class="text-start active pe-0" data-bs-toggle="tab"
+                           href="javascript:;" id="service-manage">
                             Service
                             Requests
                         </a>
                     </li>
 
                     <li class="row mx-0 nav-item w-100">
-                        <a class="text-start pe-0" data-bs-toggle="tab" 
-                           href="javascript:;" id="user-manage" >
+                        <a class="text-start pe-0" data-bs-toggle="tab"
+                           href="javascript:;" id="user-manage">
                             User
                             managment
                         </a>
@@ -148,11 +148,11 @@
             <div class="col px-0">
                 <div class="tab-content admin-content">
                     <div class="tab-pane active" id="Service-request">
-                       
+
                     </div>
 
                     <div class="tab-pane fade" id="User-managment">
-                        
+
                     </div>
                 </div>
             </div>
@@ -172,29 +172,29 @@
         })
 
         $(document).ready(function () {
-        $.ajax({
-            type: "GET",
-            url: "/Admin/GetServiceManage",
-            success: function (response) {
-                $('#Service-request').html(response);
-                $('.tab-content div').removeClass("show");
-                $('.tab-content div').removeClass("active");
-                $('#Service-request').addClass("show");
-                $('#Service-request').addClass("active");
-                $('.admin-menu li a').removeClass("active");
-                $('#service-manage').addClass("active");
-                $('#Service-request form').data('validator', null);
-                $.validator.unobtrusive.parse('#Service-request form');
-                $.ajax({
-                    type: "GET",
-                    url: "/Admin/DefaultServiceManage",
-                    success: function (data) {
-                        $("#serviceHolder").html(data);
-                    }
+            $.ajax({
+                type: "GET",
+                url: "/Admin/GetServiceManage",
+                success: function (response) {
+                    $('#Service-request').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#Service-request').addClass("show");
+                    $('#Service-request').addClass("active");
+                    $('.admin-menu li a').removeClass("active");
+                    $('#service-manage').addClass("active");
+                    $('#Service-request form').data('validator', null);
+                    $.validator.unobtrusive.parse('#Service-request form');
+                    $.ajax({
+                        type: "GET",
+                        url: "/Admin/DefaultServiceManage",
+                        success: function (data) {
+                            $("#serviceHolder").html(data);
+                        }
 
-                });
-            }
-        });
+                    });
+                }
+            });
 
         });
 
@@ -248,6 +248,57 @@
             });
         });
 
+
+        $("#service-manage1").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/GetServiceManage",
+                success: function (response) {
+                    $('#Service-request').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#Service-request').addClass("show");
+                    $('#Service-request').addClass("active");
+                    $('.admin-menu li a').removeClass("active");
+                    $('#service-manage').addClass("active");
+                    $('#Service-request form').data('validator', null);
+                    $.validator.unobtrusive.parse('#Service-request form');
+                    $.ajax({
+                        type: "GET",
+                        url: "/Admin/DefaultServiceManage",
+                        success: function (data) {
+                            $("#serviceHolder").html(data);
+                        }
+
+                    });
+                }
+            });
+        });
+
+        $("#user-manage1").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/GetUserManage",
+                success: function (response) {
+                    $('#User-managment').html(response);
+                    $('.tab-content div').removeClass("show");
+                    $('.tab-content div').removeClass("active");
+                    $('#User-managment').addClass("show");
+                    $('#User-managment').addClass("active");
+                    $('.admin-menu li a').removeClass("active");
+                    $('#user-manage').addClass("active");
+                    $.ajax({
+                        type: "GET",
+                        url: "/Admin/DefaultUserManage",
+                        success: function (data) {
+                            $("#user-holder").html(data);
+                        }
+
+                    });
+                }
+            });
+        });
+
         function callAdminPageSize(data, what) {
 
             var no = data.value;
@@ -270,7 +321,7 @@
                     }
                 });
             }
-           
+
         }
 
         function showAdminDetails(sr) {
@@ -295,6 +346,7 @@
                     else if (from == "Refund") {
 
                         $("#Refund").modal("show");
+                        $("#oldRefund").val($("#RefundAmount").val());
                     }
                 }
             });
@@ -420,13 +472,13 @@
                                 document.getElementById("FeedbackError").innerHTML = "Only Character";
                                 return false;
                             }
-                            else if (feedback.length>500) {
+                            else if (feedback.length > 500) {
                                 document.getElementById("FeedbackError").innerHTML = "Only 500 Character";
                                 return false;
                             }
                             else {
 
-                            return true;
+                                return true;
                             }
                         }
                     }
@@ -456,6 +508,127 @@
         function AdminServiceSuccess(data) {
             $("#serviceHolder").html(data);
         }
+
+
+        function refundSuccess() {
+            $("#Refund").modal("toggle");
+        }
+
+        function calculateRefund() {
+            debugger;
+            
+            $("#RefundAmount").val(0);
+            var totalCost = $("#totalCostRefund").val();
+            var typeCal = $("#typeOfCalculation").val();
+            var data = $("#AmountToRefund").val();
+            var feedback = $("#RedundComment").val();
+            var alreadyRefund = $("#oldRefund").val();
+            if (alreadyRefund == "") {
+                $("#oldRefund").val("0");
+                alreadyRefund = "0";
+            }
+            if (data == "") {
+                $("#RefundAmount").val("0");
+                $("#refundd").addClass("disabled");
+            }
+            else if (typeCal == 1) {
+                if (!/^[0-9]+$/.test(data)) {
+                    $("#amountError").html("Invalid Percnetage. Only 0-9 characteers");
+
+                }
+                else if (parseFloat(data) > 100) {
+                    $("#amountError").html("Cannot be Greater than 100");
+                }
+                else {
+                     
+                    var per = parseFloat(data) / 100;
+                    var refundAmt = per * parseFloat(totalCost);
+
+                    if (refundAmt + parseFloat(alreadyRefund) > totalCost) {
+                        $("#amountError").html("Total Refund cannot be Greater than TotalCost");
+                        $("#refundd").addClass("disabled");
+                    }
+                    else {
+
+                        $("#RefundAmount").val(refundAmt);
+
+                        if (feedback != "") {
+                            $("#refundd").removeClass("disabled");
+                        }
+                        else {
+                            $("#refundd").addClass("disabled");
+                        }
+                    }
+                    
+                }
+            }
+            else {
+                if (!/^[0-9]+$/.test(data)) {
+                    $("#amountError").html("Invalid fixed. Only 0-9 characteers");
+
+                }
+                else if (parseFloat(data) > parseFloat(totalCost)) {
+                    $("#amountError").html("Cannot be Greater than " + totalCost);
+                }
+                else {
+
+                    if (parseFloat(data) + parseFloat(alreadyRefund) > totalCost) {
+                        $("#amountError").html("Total Refund cannot be Greater than TotalCost");
+                        $("#refundd").addClass("disabled");
+                    }
+                    else {
+                        $("#RefundAmount").val(data);
+
+
+                        if (feedback != "") {
+                            $("#refundd").removeClass("disabled");
+                        }
+                        else {
+                            $("#refundd").addClass("disabled");
+                        }
+                    }
+                   
+                }
+
+            }
+        }
+
+        function emptyerror() {
+            $("#amountError").html("");
+        }
+
+        function checkFeedbackValidity() {
+            debugger;
+            var feedback = document.getElementById("RedundComment").value;
+            $("#feedbackerror").html("");
+            if (feedback == "") {
+                $("#refundd").addClass("disabled");
+                $("#feedbackerror").html("Comment is Required");
+            }
+            else if (!/^[0-9a-zA-Z_,' "]+$/.test(feedback)) {
+                $("#feedbackerror").html("Invalid Feedback, Only 0-9,a-z,_,' ");
+                $("#refundd").addClass("disabled");
+            }
+            else {
+                var amt = $("#AmountToRefund").val();
+                if (amt == "") {
+                    $("#refundd").addClass("disabled");
+                }
+                else {
+                    $("#refundd").removeClass("disabled");
+                }
+            }
+        }
+
+       
+    </script>
+
+    <script>
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        }
+
     </script>
 
 </body>

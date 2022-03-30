@@ -11,24 +11,31 @@
 
                 <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
                 @if (TempData.ContainsKey("Message"))
-                {
-                    @if (TempData["ModalName"].ToString() == "#loginModal")
+                {@if (TempData.ContainsKey("ModalName"))
                     {
-                        <span class="danger d-block">
-                            @TempData["Message"]
-                        </span>
+                        @if (TempData["ModalName"].ToString() == "#loginModal")
+                        {
+                            <span class="danger d-block">
+                                @TempData["Message"]
+                            </span>
+                        }
                     }
 
-                }
+
+            }
 
                 @if (TempData.ContainsKey("SuccessMessage"))
                 {
-                    @if (TempData["ModalName"].ToString() == "#loginModal")
+                    @if (TempData.ContainsKey("ModalName"))
                     {
-                        <span class="success d-block">
-                            @TempData["SuccessMessage"]
-                        </span>
+                        @if (TempData["ModalName"].ToString() == "#loginModal")
+                        {
+                            <span class="success d-block">
+                                @TempData["SuccessMessage"]
+                            </span>
+                        }
                     }
+
 
                 }
                 <form class="" method="post" asp-controller="Home" asp-action="Login">
@@ -80,23 +87,30 @@
                 <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
 
                 @if (TempData.ContainsKey("Message"))
-                {
-                    @if (TempData["ModalName"].ToString() == "#forgot-password-Modal")
+                {@if (TempData.ContainsKey("ModalName"))
                     {
-                        <span class="danger d-block">
-                            @TempData["Message"]
-                        </span>
+                        @if (TempData["ModalName"].ToString() == "#forgot-password-Modal")
+                        {
+                            <span class="danger d-block">
+                                @TempData["Message"]
+                            </span>
+                        }
                     }
 
-                }
+
+            }
                 @if (TempData.ContainsKey("SuccessMessage"))
                 {
-                    @if (TempData["ModalName"].ToString() == "#forgot-password-Modal")
+                    @if (TempData.ContainsKey("ModalName"))
                     {
-                        <span class="success d-block">
-                            @TempData["SuccessMessage"]
-                        </span>
+                        @if (TempData["ModalName"].ToString() == "#forgot-password-Modal")
+                        {
+                            <span class="success d-block">
+                                @TempData["SuccessMessage"]
+                            </span>
+                        }
                     }
+
 
                 }
 
@@ -132,27 +146,35 @@
                     </span>
                     @if (TempData.ContainsKey("Message"))
                     {
-                        @if (TempData["ModalName"].ToString() == "#logout-Modal")
+                        @if (TempData.ContainsKey("ModalName"))
                         {
-                            <p>
-                                @TempData["Message"]
-                            </p>
+                            @if (TempData["ModalName"].ToString() == "#logout-Modal")
+                            {
+                                <p>
+                                    @TempData["Message"]
+                                </p>
+                            }
                         }
 
+
                     }
-                    <p class="p-0 m-0" id="text-message">
-                        @if (TempData.ContainsKey("Message2"))
+                <p class="p-0 m-0" id="text-message">
+                    @if (TempData.ContainsKey("Message2"))
+                    {
+                        @if (TempData.ContainsKey("ModalName"))
                         {
                             @if (TempData["ModalName"].ToString() == "#logout-Modal")
                             {
                                 @TempData["Message2"]
-                            
+
+                            }
                         }
 
-                        }
-                        </p>
-                        <button class="btn" data-bs-dismiss="modal">Ok</button>
-                    </div>
+
+                    }
+                </p>
+                    <button class="btn" data-bs-dismiss="modal">Ok</button>
+                </div>
             </div>
         </div>
     </div>
@@ -160,7 +182,8 @@
 
 
 @*error Modal*@
-<div class="modal fade" id="error-Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+@*<div class="modal fade" id="error-Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body container">
@@ -168,7 +191,7 @@
                     <span>
                         <img src="~/Images/close-icon-small.png" height="26" width="26" alt="">
                     </span>
-                    @if (TempData.ContainsKey("Message"))
+                  @if (TempData.ContainsKey("Message"))
                     {
                         @if (TempData["ModalName"].ToString() == "#logout-Modal"|| TempData["ModalName"].ToString() == "#error-Modal")
                         {
@@ -194,4 +217,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@

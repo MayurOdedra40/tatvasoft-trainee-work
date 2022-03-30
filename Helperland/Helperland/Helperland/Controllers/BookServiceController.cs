@@ -11,6 +11,8 @@ using System.Net;
 using System;
 using System.Globalization;
 using Newtonsoft.Json;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace Helperland.Controllers
 {
@@ -147,6 +149,16 @@ namespace Helperland.Controllers
             return PartialView("_BookService3Partial");
         }
 
+
+        public IActionResult LoadDefaultAddress()
+        {
+            int userid = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+            List<UserAddress> userAddress =  _context.UserAddresses.Where(x => x.UserId.Equals(userid)).ToList();
+            ViewBag.addresses = userAddress;
+
+            return PartialView("_BookService3Partial");
+        }
+
         [HttpPost]
         public IActionResult AddNewAddress(UserAddress userAddress)
         {
@@ -179,6 +191,61 @@ namespace Helperland.Controllers
 
             return PartialView("_BookService4Partial");
         }
+
+
+        public void SendMailToSp(string zip,ServiceRequest service, ServiceRequestAddress serviceAddress)
+        {
+            List<User> users = _context.Users.ToList();
+            List<User> sp = new List<User>();
+
+            foreach(User u in users)
+            {
+                if (u.UserTypeId == 2)
+                {
+                    if (u.ZipCode != null)
+                    {
+                        if (u.ZipCode == zip)
+                        {
+                            sp.Add(u);
+                        }
+                    }
+                    else
+                    {
+                        sp.Add(u);
+                    }
+                }
+                
+            }
+
+
+            foreach(User u in sp)
+            {
+                var name = u.FirstName + " " + u.LastName;
+
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Helperland", "helperlandindia@gmail.com"));
+                message.To.Add(new MailboxAddress(name, u.Email));
+                message.Subject = "Regarding New Service in your area";
+                message.Body = new TextPart("plain")
+                {
+                    Text = "\nHello "+name+
+                    "\nNew Service has been Requested in your Area"+
+                    "\nService Details:"+
+                    "\nDate: "+service.ServiceStartDate+
+                    "\nAmount : "+service.TotalCost+
+                    "\nHas Pet: "+ service.HasPets+
+                    "\nComment: "+service.Comments+
+                    "\nAddress"+serviceAddress.AddressLine1+" "+serviceAddress.AddressLine2+", "+serviceAddress.PostalCode+" "+serviceAddress.City+" "
+                };
+                using var client = new SmtpClient();
+                client.Connect("smtp.gmail.com", 587, false);
+                client.Authenticate("helperlandindia@gmail.com", "Helperland@123");
+                client.Send(message);
+                client.Disconnect(true);
+            }
+
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> CompleteService(ServiceRequest serviceRequest)
@@ -214,6 +281,10 @@ namespace Helperland.Controllers
             };
             await this._context.ServiceRequestExtras.AddAsync(serviceRequestExtra);
             await this._context.SaveChangesAsync();
+
+            string zip = HttpContext.Session.GetString("Zipcode");
+
+            SendMailToSp(zip,newService, newServiceRequestAddress);
 
             TempData["Message"] = "Booking has been Successfully submitted";
             TempData["Message2"] = "Service Request ID: "+id.ToString();

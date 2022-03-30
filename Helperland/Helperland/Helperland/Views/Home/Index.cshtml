@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http;
+@{
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -35,7 +36,7 @@
         </div>
 
         <div class="row row3 mx-0">
-            <a class="btn mx-auto" asp-controller="Home" asp-action="ServiceProvider">Let's Book a Cleaner</a>
+            <a class="btn mx-auto" data-bs-toggle="modal" data-bs-target="#loginModal" href="/">Let's Book a Cleaner</a>
         </div>
 
         <div class="row row4 mx-0">
@@ -375,4 +376,25 @@
     </section>
 
     <!-- cookies section -->
+}
+
+
+@section LogoutScript{
+
+    @*if (TempData.ContainsKey("IsLoggedOut"))*@
+        @if (Convert.ToBoolean(Context.Session.GetString("isLoggedIn"))==false)
+        {
+
+            <script>
+            debugger;
+            history.pushState(null, null, location.href);
+            window.onpopstate = function () {
+                history.go(1);
+            }
+
+            </script>
+
+
+        }
+
 }

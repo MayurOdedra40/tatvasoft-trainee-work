@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System.Text;
 using MimeKit;
 using MailKit.Net.Smtp;
+using System.Net;
 
 namespace Helperland.Controllers
 {
@@ -398,7 +399,7 @@ namespace Helperland.Controllers
 
             if (GetService.PostalCode != null)
             {
-                services = services.Where(x => x.ZipCode.Equals(GetService.PostalCode)).ToList();
+                services = services.Where(x => x.ZipCode.Contains(GetService.PostalCode)).ToList();
             }
 
             if (GetService.CustomerId != 0)
@@ -456,7 +457,7 @@ namespace Helperland.Controllers
                 int i = 0;
                 foreach (string e in emails)
                 {
-                    if (e == GetService.Email)
+                    if (e.Contains(GetService.Email))
                     {
                         finalServices.Add(services[i]);
                     }
@@ -979,7 +980,7 @@ namespace Helperland.Controllers
 
             if(GetService.PostalCode!=null)
             {
-                services = services.Where(x => x.ZipCode.Equals(GetService.PostalCode)).ToList();
+                services = services.Where(x => x.ZipCode.Contains(GetService.PostalCode)).ToList();
             }
 
             if (GetService.CustomerId!=0)
@@ -1021,6 +1022,12 @@ namespace Helperland.Controllers
 
             if (GetService.ToDate != null)
             {
+                if (GetService.ToDate < GetService.FromDate)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    return Json(new { message = "To Date must be Greater than From Date" });
+                }
+
                 services = services.Where(x => x.ServiceStartDate <= GetService.ToDate).ToList();
             }
 
@@ -1037,7 +1044,7 @@ namespace Helperland.Controllers
                 int i = 0;
                 foreach(string e in emails)
                 {
-                    if (e == GetService.Email)
+                    if (e.Contains(GetService.Email))
                     {
                         finalServices.Add(services[i]);
                     }
@@ -1338,6 +1345,67 @@ namespace Helperland.Controllers
 
         }
 
+        public IActionResult Refund(ServiceAllDetails serviceRequest)
+        {
+            ServiceRequest service = _context.ServiceRequests.Find(serviceRequest.Service.ServiceRequestId);
+            service.Comments = serviceRequest.Service.Comments;
+            if (service.RefundedAmount == null)
+            {
+                service.RefundedAmount = serviceRequest.Service.RefundedAmount;
+
+            }
+            else
+            {
+                service.RefundedAmount += serviceRequest.Service.RefundedAmount;
+            }
+            service.Status = 6;
+            service.ModifiedDate = DateTime.Now;
+
+            this._context.ServiceRequests.Update(service);
+            this._context.SaveChanges();
+
+            int pageNumber = (int)HttpContext.Session.GetInt32("pageNumber");
+            int pageSize = (int)HttpContext.Session.GetInt32("pageSize");
+            string sortBy = HttpContext.Session.GetString("sortBy");
+            string sortOrder = HttpContext.Session.GetString("sortOrder");
+
+            PagedResult<ServiceRequest> result = GetDefaultServiceManage(pageNumber, pageSize, sortBy, sortOrder);
+
+            ViewBag.users = TempData["users"];
+            ViewBag.addresses = TempData["addresses"];
+            ViewBag.sp = TempData["sp"];
+            ViewBag.ratings = TempData["ratings"];
+
+
+            ViewBag.sortBy = sortBy;
+            switch (sortBy)
+            {
+                case "ServiceId":
+                    ViewBag.ServiceId = sortOrder == "Asc" ? "Desc" : "Asc";
+                    break;
+                case "Date":
+                    ViewBag.Date = sortOrder == "Asc" ? "Desc" : "Asc";
+                    break;
+                case "UserId":
+                    ViewBag.UserId = sortOrder == "Asc" ? "Desc" : "Asc";
+                    break;
+                case "Sps":
+                    ViewBag.Sps = sortOrder == "Asc" ? "Desc" : "Asc";
+                    break;
+                case "Amount":
+                    ViewBag.Amount = sortOrder == "Asc" ? "Desc" : "Asc";
+                    break;
+                case "Status":
+                    ViewBag.Status = sortOrder == "Asc" ? "Desc" : "Asc";
+                    break;
+
+                default:
+                    ViewBag.ServiceRequestIdsortOrder = "Desc";
+                    break;
+            }
+
+            return PartialView("_ServiceResultPartial", result);
+        }
 
 
 
@@ -1515,7 +1583,7 @@ namespace Helperland.Controllers
 
             if (GetUser.Mobile != null)
             {
-                users = users.Where(x => x.Mobile.Equals(GetUser.Mobile)).ToList();
+                users = users.Where(x => x.Mobile.Contains(GetUser.Mobile)).ToList();
             }
 
             if (GetUser.PostalCode != null)
@@ -1524,7 +1592,7 @@ namespace Helperland.Controllers
 
                 foreach (User u in users)
                 {
-                    if (u.UserTypeId == 2 && u.ZipCode != null && u.ZipCode == GetUser.PostalCode)
+                    if (u.UserTypeId == 2 && u.ZipCode != null && u.ZipCode.Contains(GetUser.PostalCode))
                     {
                         newUsers.Add(u);
                     }
@@ -1534,7 +1602,7 @@ namespace Helperland.Controllers
                         .OrderBy(x => x.AddressId)
                         .LastOrDefault();
 
-                        if (address != null && address.PostalCode == GetUser.PostalCode)
+                        if (address != null && address.PostalCode.Contains(GetUser.PostalCode))
                         {
                             newUsers.Add(u);
                         }
@@ -1547,7 +1615,7 @@ namespace Helperland.Controllers
 
             if (GetUser.Email != null)
             {
-                users = users.Where(x => x.Email.Equals(GetUser.Email)).ToList();
+                users = users.Where(x => x.Email.Contains(GetUser.Email)).ToList();
             }
 
             if (GetUser.FromDate != null)
@@ -1557,6 +1625,8 @@ namespace Helperland.Controllers
 
             if (GetUser.ToDate != null)
             {
+                
+
                 users = users.Where(x => x.CreatedDate <= GetUser.ToDate).ToList();
             }
 
@@ -1846,7 +1916,7 @@ namespace Helperland.Controllers
 
             if (GetUser.Mobile != null)
             {
-                users = users.Where(x => x.Mobile.Equals(GetUser.Mobile)).ToList();
+                users = users.Where(x => x.Mobile.Contains(GetUser.Mobile)).ToList();
             }
 
             if (GetUser.PostalCode!= null)
@@ -1855,7 +1925,7 @@ namespace Helperland.Controllers
 
                 foreach(User u in users)
                 {
-                    if(u.UserTypeId==2 && u.ZipCode != null && u.ZipCode == GetUser.PostalCode)
+                    if(u.UserTypeId==2 && u.ZipCode != null && u.ZipCode.Contains(GetUser.PostalCode))
                     {
                         newUsers.Add(u);
                     }
@@ -1865,7 +1935,7 @@ namespace Helperland.Controllers
                         .OrderBy(x => x.AddressId)
                         .LastOrDefault();
 
-                        if (address != null && address.PostalCode==GetUser.PostalCode)
+                        if (address != null && address.PostalCode.Contains(GetUser.PostalCode))
                         {
                             newUsers.Add(u);
                         }
@@ -1878,7 +1948,7 @@ namespace Helperland.Controllers
 
             if (GetUser.Email !=null)
             {
-                users = users.Where(x => x.Email.Equals(GetUser.Email)).ToList();
+                users = users.Where(x => x.Email.Contains(GetUser.Email)).ToList();
             }
 
             if (GetUser.FromDate != null)
@@ -1888,6 +1958,12 @@ namespace Helperland.Controllers
 
             if (GetUser.ToDate != null)
             {
+                if(GetUser.ToDate < GetUser.FromDate)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    return Json(new { message = "To Date must be Greater than From Date"});
+                }
+
                 users = users.Where(x => x.CreatedDate <= GetUser.ToDate).ToList();
             }
 
@@ -2068,6 +2144,7 @@ namespace Helperland.Controllers
         }
     
 
+        
         public IActionResult Export(int pageNumber = 1, int pageSize = 5)
         {
             PagedResult<User> result = GetDefaultUserManage(pageNumber, pageSize);

@@ -6,7 +6,7 @@
 
         <div class="container-fluid px-0 navbar-nav-scroll">
 
-            @if (Context.Session.GetString("isLoggedIn") != null)
+            @if (Context.Session.GetString("isLoggedIn") == true.ToString())
             {
                 <div class="row username mx-0">
                     <p class="px-0 mb-0 text">Welcome, <br> <b>@Context.Session.GetString("Name")</b></p>
@@ -134,7 +134,7 @@
             <div class="row main-menu mx-0">
 
                 <ul class="navbar-nav pe-0">
-                    @if (Context.Session.GetString("isLoggedIn") == null|| Context.Session.GetString("UserTypeId") == "1")
+                    @if (Context.Session.GetString("isLoggedIn") == null|| Context.Session.GetString("isLoggedIn") == false.ToString() || Context.Session.GetString("UserTypeId") == "1")
                     {
                         <li class="nav-item">
                             <a class="nav-link text dismiss" aria-current="page" asp-controller="BookService" asp-action="Index">
@@ -167,7 +167,7 @@
                         </a>
                     </li>
 
-                    @if (Context.Session.GetString("isLoggedIn") == null)
+                    @if (Context.Session.GetString("isLoggedIn") == null|| Context.Session.GetString("isLoggedIn") == false.ToString())
                     {
                         <li class="nav-item">
                             <a class="nav-link text dismiss" aria-current="page" data-bs-toggle="modal" data-bs-target="#loginModal">
@@ -235,7 +235,7 @@
                     </button>
 
                     <ul class="navbar-nav mb-2 mb-lg-0 menu w-auto">
-                        @if (Context.Session.GetString("isLoggedIn") == null || Context.Session.GetString("UserTypeId") == "1")
+                        @if (Context.Session.GetString("isLoggedIn") == null || Context.Session.GetString("isLoggedIn") == false.ToString() || Context.Session.GetString("UserTypeId") == "1")
                         {
                             <li class="nav-item btn pas">
 
@@ -267,96 +267,97 @@
                         </li>
 
 
-                        @if (Context.Session.GetString("isLoggedIn") != null)
-                        {
+                        @*@if (Context.Session.GetString("isLoggedIn") != null && Context.Session.GetString("isLoggedIn") == false.ToString())*@
+                            @if (Context.Session.GetString("isLoggedIn") == true.ToString())
+                            {
 
 
 
-                            <li class="nav-item btn normal-2 side-border-visible">
+                                <li class="nav-item btn normal-2 side-border-visible">
 
-                                <a class="nav-link px-0 position-relative" aria-current="page" href="#">
+                                    <a class="nav-link px-0 position-relative" aria-current="page" href="#">
 
-                                    <img src="~/Images/icon-notification.png" alt="" width="27" height="30">
-                                    <span class="position-absolute translate-middle badge bg-danger">
-                                        2
-                                    </span>
-                                </a>
-                            </li>
+                                        <img src="~/Images/icon-notification.png" alt="" width="27" height="30">
+                                        <span class="position-absolute translate-middle badge bg-danger">
+                                            2
+                                        </span>
+                                    </a>
+                                </li>
 
-                            <li class="nav-item btn normal-2 pt-0">
-                                <a class="nav-link px-0 d-inline" aria-current="page" href="#">
-                                    <img class="img-fluid"
-                                         src="~/Images/user-icon.png" alt="" width="36" height="36">
-                                </a>
-                                <div class="dropdown d-inline ">
-                                    <button type="button" class="btn p-0" data-bs-toggle="dropdown">
-                                        <img src="~/Images/menu-down.png" alt="">
-                                    </button>
-                                    <div class="dropdown-menu">
+                                <li class="nav-item btn normal-2 pt-0">
+                                    <a class="nav-link px-0 d-inline" aria-current="page" href="#">
+                                        <img class="img-fluid"
+                                             src="~/Images/user-icon.png" alt="" width="36" height="36">
+                                    </a>
+                                    <div class="dropdown d-inline ">
+                                        <button type="button" class="btn p-0" data-bs-toggle="dropdown">
+                                            <img src="~/Images/menu-down.png" alt="">
+                                        </button>
+                                        <div class="dropdown-menu">
 
-                                        <ul class="nav nab-tabs">
-
-
-                                            <li class="row nav-item d-block w-100 py-1">
-                                                <p class="text mb-0">welcome,<br> <b>@Context.Session.GetString("Name")</b></p>
-                                            </li>
+                                            <ul class="nav nab-tabs">
 
 
-                                            <li class="nav-item d-block w-100 py-1">
+                                                <li class="row nav-item d-block w-100 py-1">
+                                                    <p class="text mb-0">welcome,<br> <b>@Context.Session.GetString("Name")</b></p>
+                                                </li>
 
-                                                @if (Context.Session.GetString("UserTypeId") == "1")
-                                                {
-                                                    <a class="dropdown-text active dismiss" asp-controller="Customer" asp-action="Index">Dashboard</a>
-                                                }
 
-                                                else if (Context.Session.GetString("UserTypeId") == "2")
-                                                {
-                                                    <a class="dropdown-text active dismiss" asp-controller="ServiceProvider" asp-action="Index">Dashboard</a>
-                                                }
-                                                else
-                                                {
-                                                    <a class="dropdown-text active dismiss" data-bs-toggle="tab"
-                                                       href="#Service-provider-Dashboard">Dashboard</a>
-                                                }
+                                                <li class="nav-item d-block w-100 py-1">
 
-                                            </li>
+                                                    @if (Context.Session.GetString("UserTypeId") == "1")
+                                                    {
+                                                        <a class="dropdown-text active dismiss" asp-controller="Customer" asp-action="Index">Dashboard</a>
+                                                    }
 
-                                            <li class="nav-item d-block w-100 py-1">
-                                                @if (Context.Session.GetString("UserTypeId") == "1")
-                                                {
-                                                    <a class="dropdown-text dismiss" asp-controller="Customer" asp-action="IndexWithCode" asp-route-id="5">My Setting</a>
-                                                }
-                                                else if (Context.Session.GetString("UserTypeId") == "2")
-                                                {
-                                                    <a class="dropdown-text dismiss" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="8">My Setting</a>
-                                                }
-                                            </li>
+                                                    else if (Context.Session.GetString("UserTypeId") == "2")
+                                                    {
+                                                        <a class="dropdown-text active dismiss" asp-controller="ServiceProvider" asp-action="Index">Dashboard</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="dropdown-text active dismiss" data-bs-toggle="tab"
+                                                           href="#Service-provider-Dashboard">Dashboard</a>
+                                                    }
 
-                                            <li class="nav-item d-block w-100 py-1">
-                                                <a asp-controller="Home" asp-action="Logout" class="dropdown-text dismiss">Logout</a>
-                                            </li>
+                                                </li>
 
-                                        </ul>
+                                                <li class="nav-item d-block w-100 py-1">
+                                                    @if (Context.Session.GetString("UserTypeId") == "1")
+                                                    {
+                                                        <a class="dropdown-text dismiss" asp-controller="Customer" asp-action="IndexWithCode" asp-route-id="5">My Setting</a>
+                                                    }
+                                                    else if (Context.Session.GetString("UserTypeId") == "2")
+                                                    {
+                                                        <a class="dropdown-text dismiss" asp-controller="ServiceProvider" asp-action="IndexWithCode" asp-route-id="8">My Setting</a>
+                                                    }
+                                                </li>
+
+                                                <li class="nav-item d-block w-100 py-1">
+                                                    <a asp-controller="Home" asp-action="Logout" class="dropdown-text dismiss">Logout</a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+
                                     </div>
 
-                                </div>
+                                </li>
 
-                            </li>
-
-                        }
-                        else
-                        {
+                            }
+                            else
+                            {
 
 
-                            <li class="nav-item btn pas">
-                                <a class="nav-link login px-0" aria-current="page" asp-controller="Home" asp-action="Index" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
-                            </li>
+                                <li class="nav-item btn pas">
+                                    <a class="nav-link login px-0" aria-current="page" asp-controller="Home" asp-action="Index" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                                </li>
 
-                            <li class="nav-item btn pas">
-                                <a class="nav-link px-0" asp-controller="Home" asp-action="ServiceProvider">Become a Helper</a>
-                            </li>
+                                <li class="nav-item btn pas">
+                                    <a class="nav-link px-0" asp-controller="Home" asp-action="ServiceProvider">Become a Helper</a>
+                                </li>
 
-                        }
+                            }
 
 
                         <li class="nav-item btn dropdown">

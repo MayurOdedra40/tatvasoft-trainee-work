@@ -2,15 +2,15 @@
 
 @{
     List<UserAddress> addressess = null;
-    if (@ViewBag.addresses != null)
+    if (ViewBag.addresses != null)
     {
 
-        addressess = new List<UserAddress>(@ViewBag.addresses);
+        addressess = new List<UserAddress>(ViewBag.addresses);
     }
 
 }
 <div id="holdAddAddressForm" class="contianer mt-3 px-0 w-100">
-    
+
 </div>
 <form class="contianer px-0 w-100" method="post" asp-controller="BookService" asp-action="TakeAddressDetials" data-ajax="true" data-ajax-success="tabThreeSuccess" data-ajax-update="#service-payment">
 
@@ -26,6 +26,7 @@
         <ul class="address-picker p-0 m-0">
             @if (addressess != null)
             {
+
                 @foreach (UserAddress address in addressess)
                 {
                     string add = address.AddressLine1 + " " + address.AddressLine2 + ", " + address.City + " " + address.PostalCode;
@@ -85,5 +86,21 @@
 
 
 </form>
+
+@*<div><strong>Your Favorite Service providers</strong></div>
+<hr class="mb-2">
+<div>You can choose your fevorite service provider from the below list</div>
+<div class="row">
+    <div class="col-12 m-4">
+        <div class="fevorite-service-cap mb-1"></div>
+        <div class="mb-2" style="font-size: 18px;">
+            <strong>Sandip patel</strong>
+        </div>
+        <button id="select-btn" type="submit" class="fevorite-service-select-btn"
+                name="Select" value="Select">
+            Select
+        </button>
+    </div>
+</div>*@
 
 

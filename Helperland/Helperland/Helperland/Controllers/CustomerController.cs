@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Net;
 using cloudscribe.Pagination.Models;
 using System.Text;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace Helperland.Controllers
 {
@@ -615,20 +617,126 @@ namespace Helperland.Controllers
             return PartialView("_Modal");
         }
 
+        public void SendMailtoSp(ServiceRequest service)
+        {
+            User u = _context.Users.Find(service.ServiceProviderId);
+
+            var name = u.FirstName + " " + u.LastName;
+
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Helperland", "helperlandindia@gmail.com"));
+            message.To.Add(new MailboxAddress(name, u.Email));
+            message.Subject = "Regarding Reschduling of Service";
+            message.Body = new TextPart("plain")
+            {
+                Text = "\nHello " + name +
+                "\nService Request id: "+service.ServiceRequestId+ " has been reschduled by Customer"+
+                "\nNew Date: " + service.ServiceStartDate
+                
+            };
+            using var client = new SmtpClient();
+            client.Connect("smtp.gmail.com", 587, false);
+            client.Authenticate("helperlandindia@gmail.com", "Helperland@123");
+            client.Send(message);
+            client.Disconnect(true);
+        }
+
+        public bool CheckConflict(ServiceRequest service)
+        {
+
+            var AST = service.ServiceStartDate;
+            double totalhour = Convert.ToDouble(service.ServiceHours + service.ExtraHours);
+            var AET = AST.AddHours(totalhour);
+
+            List<ServiceRequest> serviceRequestss = _context.ServiceRequests.Where(x => x.ServiceProviderId.Equals(service.ServiceProviderId) && x.ServiceRequestId!=service.ServiceRequestId && x.Status.Equals(2) && x.ServiceStartDate > DateTime.Now).ToList();
+
+
+            foreach (ServiceRequest s in serviceRequestss)
+            {
+                //if(s.ServiceStartDate.Date>startDateTime.Date || startDateTime.Date>s.ServiceStartDate.Date)
+                if (s.ServiceStartDate.Date.Subtract(AST.Date) >= TimeSpan.FromHours(24) || AST.Date.Subtract(s.ServiceStartDate.Date) >= TimeSpan.FromHours(24))
+                {
+                    continue;
+                }
+                else // same date
+                {
+                    var BST = s.ServiceStartDate;
+                    var BET = BST.AddHours((double)(s.ServiceHours + s.ExtraHours));
+
+                    if (AST >= BST) // ast is larger
+                    {
+                        if (AET < BET || (BET.AddHours(1) > AST))
+                        {
+                            //Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                            //return Json(new { message = "Another service request with Id =" + s.ServiceRequestId + " has already been assigned which has time overlap with this service request. You can’t pick this one!" });
+                            return false;
+                        }
+                        else
+                            continue;
+                    }
+
+                    else // bst larger
+                    {
+                        if (BET < AET || (AET.AddHours(1) > BST))
+                        {
+                            //Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                            //return Json(new { message = "Another service request with Id =" + s.ServiceRequestId + " has already been assigned which has time overlap with this service request. You can’t pick this one!" });
+                            return false;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Reschedule(ServiceRequest serviceRequest)
         {
             ServiceRequest sr = await _context.ServiceRequests.Where(x =>
                     x.ServiceRequestId.Equals(serviceRequest.ServiceRequestId)).FirstOrDefaultAsync();
 
-            string date = serviceRequest.StartDate.ToString("yyyy-MM-dd");
-            string time = serviceRequest.StartTime.ToString("HH:mm:ss");
-            DateTime startDateTime = Convert.ToDateTime(date).Add(TimeSpan.Parse(time));
-            sr.ServiceStartDate = startDateTime;
-            sr.Status = 5;
-            sr.ModifiedDate = DateTime.Now;
+            if(sr.ServiceProviderId==null)
+            {
+                string date = serviceRequest.StartDate.ToString("yyyy-MM-dd");
+                string time = serviceRequest.StartTime.ToString("HH:mm:ss");
+                DateTime startDateTime = Convert.ToDateTime(date).Add(TimeSpan.Parse(time));
+                sr.ServiceStartDate = startDateTime;
+                sr.Status = 5;
+                sr.ModifiedDate = DateTime.Now;
 
-            this._context.SaveChanges();
+                this._context.SaveChanges();
+            }
+            else
+            {
+                string date = serviceRequest.StartDate.ToString("yyyy-MM-dd");
+                string time = serviceRequest.StartTime.ToString("HH:mm:ss");
+                DateTime startDateTime = Convert.ToDateTime(date).Add(TimeSpan.Parse(time));
+                sr.ServiceStartDate = startDateTime;
+
+                if (CheckConflict(sr)==false)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    return Json(new{ message= "Another service request has been assigned to the service provider on that time. Either choose another date or pick up a different time slot" });
+                }
+                else
+                {
+                    sr.Status = 5;
+                    sr.ModifiedDate = DateTime.Now;
+
+                    this._context.SaveChanges();
+                }
+            }
+            
+
+            if (sr.ServiceProviderId!=null)
+            {
+                SendMailtoSp(sr);
+            }
 
             TempData["Message"] = "Booking has been Successfully rescheduled";
             TempData["ModalName"] = "#logout-Modal";
@@ -672,11 +780,41 @@ namespace Helperland.Controllers
             return PartialView("_DashboardPartial", result);
         }
 
+
+
+        public void CancelMailToSP(ServiceRequest service)
+        {
+            User u = _context.Users.Find(service.ServiceProviderId);
+
+            var name = u.FirstName + " " + u.LastName;
+
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Helperland", "helperlandindia@gmail.com"));
+            message.To.Add(new MailboxAddress(name, u.Email));
+            message.Subject = "Regarding Cancel of Service";
+            message.Body = new TextPart("plain")
+            {
+                Text = "\nHello " + name +
+                "\nService Request id: " + service.ServiceRequestId + " has been Cancelled by Customer"
+                
+
+            };
+            using var client = new SmtpClient();
+            client.Connect("smtp.gmail.com", 587, false);
+            client.Authenticate("helperlandindia@gmail.com", "Helperland@123");
+            client.Send(message);
+            client.Disconnect(true);
+        }
         [HttpPost]
         public async Task<IActionResult> CancelRequest(ServiceRequest serviceRequest)
         {
             ServiceRequest sr = await _context.ServiceRequests.Where(x =>
                     x.ServiceRequestId.Equals(serviceRequest.ServiceRequestId)).FirstOrDefaultAsync();
+
+            if(sr.ServiceProviderId!=null)
+            {
+                CancelMailToSP(sr);
+            }
 
             sr.Comments = serviceRequest.Comments;
             sr.Status = 4;
@@ -684,6 +822,7 @@ namespace Helperland.Controllers
             sr.HasIssue = true;
 
             await this._context.SaveChangesAsync();
+
 
             TempData["Message"] = "Booking has be Cancelled";
             TempData["ModalName"] = "#logout-Modal";
